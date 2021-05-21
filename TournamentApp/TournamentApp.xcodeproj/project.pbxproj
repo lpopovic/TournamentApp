@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0394370265847DE0088A386 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039436F265847DE0088A386 /* HomeViewController.swift */; };
+		D0394373265848210088A386 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394372265848210088A386 /* PlayerListViewController.swift */; };
+		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
+		D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437926584A760088A386 /* TournamentBracketViewController.swift */; };
+		D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437C26584C5D0088A386 /* Extensions+UIView.swift */; };
+		D039438226584DA50088A386 /* APIUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438126584DA50088A386 /* APIUrl.swift */; };
+		D039438526584DBB0088A386 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438426584DBB0088A386 /* ApiCaller.swift */; };
+		D039438826584DD40088A386 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438726584DD40088A386 /* HapticsManager.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
-		D094F6982658225D0011EEA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6972658225D0011EEA9 /* ViewController.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
 		D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F6992658225D0011EEA9 /* Main.storyboard */; };
 		D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F69E2658225F0011EEA9 /* LaunchScreen.storyboard */; };
@@ -20,10 +27,17 @@
 		9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.debug.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D039436F265847DE0088A386 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D0394372265848210088A386 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
+		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		D039437926584A760088A386 /* TournamentBracketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentBracketViewController.swift; sourceTree = "<group>"; };
+		D039437C26584C5D0088A386 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		D039438126584DA50088A386 /* APIUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrl.swift; sourceTree = "<group>"; };
+		D039438426584DBB0088A386 /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
+		D039438726584DD40088A386 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D094F6972658225D0011EEA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D094F69A2658225D0011EEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D094F69C2658225F0011EEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D094F69F2658225F0011EEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,8 +62,31 @@
 				9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */,
 				A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D039437F26584C680088A386 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				D039438726584DD40088A386 /* HapticsManager.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
+		D039438026584C8B0088A386 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D039438126584DA50088A386 /* APIUrl.swift */,
+				D039438426584DBB0088A386 /* ApiCaller.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D039438A265850BC0088A386 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 		D094F6872658225D0011EEA9 = {
@@ -95,6 +132,7 @@
 		D094F6AA265822AF0011EEA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D039438A265850BC0088A386 /* TableCell */,
 				D094F6992658225D0011EEA9 /* Main.storyboard */,
 			);
 			path = Views;
@@ -103,7 +141,10 @@
 		D094F6AC265822BA0011EEA9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D094F6972658225D0011EEA9 /* ViewController.swift */,
+				D039436F265847DE0088A386 /* HomeViewController.swift */,
+				D0394372265848210088A386 /* PlayerListViewController.swift */,
+				D0394376265849AB0088A386 /* PlayerViewController.swift */,
+				D039437926584A760088A386 /* TournamentBracketViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +160,7 @@
 		D094F6AE2658236A0011EEA9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D039437C26584C5D0088A386 /* Extensions+UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -126,6 +168,8 @@
 		D094F6AF265824100011EEA9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D039438026584C8B0088A386 /* Networking */,
+				D039437F26584C680088A386 /* Haptics */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -252,9 +296,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D094F6982658225D0011EEA9 /* ViewController.swift in Sources */,
+				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
+				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
+				D039438226584DA50088A386 /* APIUrl.swift in Sources */,
+				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
+				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
+				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
+				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
+				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
