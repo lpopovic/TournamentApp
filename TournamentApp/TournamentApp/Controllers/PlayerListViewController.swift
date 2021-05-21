@@ -8,22 +8,16 @@
 import UIKit
 
 class PlayerListViewController: UIViewController {
-
+    
+    // MARK: - Variable
+    static let storyboardIdentifier = "PlayerListViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = "Player List"
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.view.backgroundColor = .systemBackground
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
