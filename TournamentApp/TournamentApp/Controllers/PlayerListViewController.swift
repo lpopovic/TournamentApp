@@ -17,6 +17,7 @@ class PlayerListViewController: BaseViewController {
     
     // MARK: - Variable
     static let storyboardIdentifier = "PlayerListViewController"
+    var numberOfRows = 20
     
     // MARK: - Life Cycle
     
@@ -102,6 +103,8 @@ class PlayerListViewController: BaseViewController {
         self.refresher.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.refresher.endRefreshing()
+            self.numberOfRows = 20
+            self.tableView.reloadData()
         }
     }
     
@@ -109,7 +112,7 @@ class PlayerListViewController: BaseViewController {
 
 extension PlayerListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,6 +121,28 @@ extension PlayerListViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+            let spinner = UIActivityIndicatorView(style: .large)
+            spinner.color = .label
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+            
+            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView?.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.numberOfRows += 10
+                spinner.stopAnimating()
+                self.tableView.tableFooterView = nil
+                self.tableView.tableFooterView?.isHidden = true
+                self.tableView.reloadData()
+            }
+        }
+    }
     
 }
 
