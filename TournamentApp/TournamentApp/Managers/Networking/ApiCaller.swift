@@ -66,4 +66,31 @@ final class ApiCaller {
         }
     }
     
+    func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.sessionManager.request(APIUrl.shared.players + "/\(id)", method: .delete, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {
+                    completion(.failure(ApiError.faileedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                    if result.success {
+                        completion(.success(result.message))
+                    } else {
+                        completion(.failure(ApiError.runtimeError(message: result.message)))
+                    }
+                    
+                    
+                } catch let error {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

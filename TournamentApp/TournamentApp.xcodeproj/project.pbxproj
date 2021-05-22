@@ -27,6 +27,7 @@
 		D03943BA2659A57E0088A386 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943B92659A57E0088A386 /* Constant.swift */; };
 		D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943BC2659A8810088A386 /* Extensions+Formatter.swift */; };
 		D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943BF2659A8B40088A386 /* Extensions+Int.swift */; };
+		D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C22659AB680088A386 /* DefaultResponse.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		D03943B92659A57E0088A386 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D03943BC2659A8810088A386 /* Extensions+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Formatter.swift"; sourceTree = "<group>"; };
 		D03943BF2659A8B40088A386 /* Extensions+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Int.swift"; sourceTree = "<group>"; };
+		D03943C22659AB680088A386 /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				D03943A7265991AF0088A386 /* Player.swift */,
 				D03943AE2659924F0088A386 /* PlayerListResponse.swift */,
+				D03943C22659AB680088A386 /* DefaultResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			files = (
 				D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */,
 				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
+				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
