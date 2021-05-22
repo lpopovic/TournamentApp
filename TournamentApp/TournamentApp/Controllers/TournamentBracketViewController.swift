@@ -7,23 +7,14 @@
 
 import UIKit
 
-class TournamentBracketViewController: UIViewController {
+class TournamentBracketViewController: BaseViewController {
 
+    // MARK: - Variable
+    static let storyboardIdentifier = "TournamentBracketViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        title = "Draw"
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlayerListViewController: UIViewController {
+class PlayerListViewController: BaseViewController {
     
     // MARK: - IBOutlet
     
@@ -81,11 +81,21 @@ class PlayerListViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapAddPlayerButton() {
+        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerViewController.storyboardIdentifier)
         
+        guard let nvc = self.navigationController else {
+            return
+        }
+        nvc.pushViewController(vc, animated: true)
     }
     
     @objc private func didTapAddDrawButton() {
+        let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier)
         
+        guard let nvc = self.navigationController else {
+            return
+        }
+        nvc.pushViewController(vc, animated: true)
     }
     
     @objc private func didSwipeRefresh() {

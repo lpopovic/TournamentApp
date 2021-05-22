@@ -17,6 +17,7 @@
 		D039438826584DD40088A386 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438726584DD40088A386 /* HapticsManager.swift */; };
 		D039438E265854C40088A386 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438D265854C40088A386 /* NavigationViewController.swift */; };
 		D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039439026585F910088A386 /* Extensions+UIImage.swift */; };
+		D0394394265903410088A386 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394393265903400088A386 /* BaseViewController.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		D039438726584DD40088A386 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		D039438D265854C40088A386 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		D039439026585F910088A386 /* Extensions+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIImage.swift"; sourceTree = "<group>"; };
+		D0394393265903400088A386 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				D039438D265854C40088A386 /* NavigationViewController.swift */,
+				D0394393265903400088A386 /* BaseViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,

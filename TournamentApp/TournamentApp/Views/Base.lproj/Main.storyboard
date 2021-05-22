@@ -97,12 +97,24 @@
         <!--Tournament Bracket View Controller-->
         <scene sceneID="N2Y-o5-MEP">
             <objects>
-                <viewController id="9Vn-Zo-eCm" customClass="TournamentBracketViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TournamentBracketViewController" id="9Vn-Zo-eCm" customClass="TournamentBracketViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SbN-5p-ZdQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TournamentBracketViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqB-mQ-jae">
+                                <rect key="frame" x="76.5" y="437.5" width="261.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dm1-Ua-sQU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IqB-mQ-jae" firstAttribute="centerX" secondItem="SbN-5p-ZdQ" secondAttribute="centerX" id="Q7A-MO-uFI"/>
+                            <constraint firstItem="IqB-mQ-jae" firstAttribute="centerY" secondItem="SbN-5p-ZdQ" secondAttribute="centerY" id="Qrf-rY-7ng"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jB5-N2-Cux"/>
                 </viewController>
@@ -113,12 +125,24 @@
         <!--Player View Controller-->
         <scene sceneID="wGJ-jC-h7V">
             <objects>
-                <viewController id="90n-7J-QHB" customClass="PlayerViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerViewController" id="90n-7J-QHB" customClass="PlayerViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j8f-v4-TMr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hl-QY-CfR">
+                                <rect key="frame" x="128" y="437.5" width="158.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="D9t-dE-aWg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Hl-QY-CfR" firstAttribute="centerX" secondItem="j8f-v4-TMr" secondAttribute="centerX" id="rXE-Ia-xyd"/>
+                            <constraint firstItem="7Hl-QY-CfR" firstAttribute="centerY" secondItem="j8f-v4-TMr" secondAttribute="centerY" id="yTD-rf-o4p"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jF6-hE-uL8"/>
                 </viewController>

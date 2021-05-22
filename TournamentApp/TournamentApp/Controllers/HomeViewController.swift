@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     // MARK: - IBOutlet
     
@@ -23,9 +23,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Welcome"
-        self.navigationItem.largeTitleDisplayMode = .always
-
-        self.view.backgroundColor = .systemBackground
         
         self.setupButton()
         self.setupImageView()
@@ -58,8 +55,8 @@ class HomeViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTap(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
+       
+        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
         
         guard let nvc = self.navigationController else {
             return
