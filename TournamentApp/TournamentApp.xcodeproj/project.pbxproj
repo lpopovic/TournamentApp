@@ -22,6 +22,7 @@
 		D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039439C265924680088A386 /* PlayerTableViewCell.xib */; };
 		D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */; };
 		D03943A8265991AF0088A386 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A7265991AF0088A386 /* Player.swift */; };
+		D03943AF2659924F0088A386 /* PlayerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943AE2659924F0088A386 /* PlayerListResponse.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		D039439C265924680088A386 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
 		D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewController.swift; sourceTree = "<group>"; };
 		D03943A7265991AF0088A386 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D03943AE2659924F0088A386 /* PlayerListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListResponse.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D03943A7265991AF0088A386 /* Player.swift */,
+				D03943AE2659924F0088A386 /* PlayerListResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
+				D03943AF2659924F0088A386 /* PlayerListResponse.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
