@@ -65,11 +65,11 @@ class PlayerTableViewCell: UITableViewCell {
     }
     
     
-    func configure(with model: String) {
-        self.firstNameLabel.text = model
-        self.lastNameLabel.text = "Last Name"
-        self.pointsLabel.text = "1000 points"
-        self.rankLabel.text = "# 1"
+    func configure(with model: Player, _ rank: Int) {
+        self.firstNameLabel.text = model.firstName
+        self.lastNameLabel.text = model.lastName
+        self.pointsLabel.text = "\(model.points.formatedWithSeparator) points"
+        self.rankLabel.text = "# \(rank)"
         
     }
 }

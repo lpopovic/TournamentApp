@@ -17,7 +17,7 @@ class PlayerListViewController: BaseViewController {
     
     // MARK: - Variable
     static let storyboardIdentifier = "PlayerListViewController"
-    var numberOfRows = 20
+    var playerList: [Player] = [Player]()
     
     // MARK: - Life Cycle
     
@@ -29,12 +29,7 @@ class PlayerListViewController: BaseViewController {
         self.setupRefreshControl()
         
         self.spinner.startAnimating()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.spinner.stopAnimating()
-        self.tableView.isHidden = false
+        self.fetchData()
     }
     
     // MARK: - UI
@@ -116,10 +111,31 @@ class PlayerListViewController: BaseViewController {
     
     @objc private func didSwipeRefresh() {
         self.refresher.beginRefreshing()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.refresher.endRefreshing()
-            self.numberOfRows = 20
-            self.tableView.reloadData()
+        self.fetchData()
+    }
+    
+    private func fetchData() {
+        ApiCaller.shared.getAllPlayerList { [weak self] (result) in
+            switch result {
+            case .success(let model):
+                self?.playerList = model.data
+                self?.playerList.sort{ $0.points > $1.points } 
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.tableView.isHidden = false
+                    self?.spinner.stopAnimating()
+                    self?.refresher.endRefreshing()
+                }
+            case .failure(let error):
+                self?.playerList.removeAll()
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.tableView.isHidden = false
+                    self?.spinner.stopAnimating()
+                    self?.refresher.endRefreshing()
+                    UIAlertController.showApiCallerMessage(self, title: nil, message: error.localizedDescription)
+                }
+            }
         }
     }
     
@@ -127,40 +143,41 @@ class PlayerListViewController: BaseViewController {
 
 extension PlayerListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return playerList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier) as? PlayerTableViewCell else {
             return UITableViewCell()
         }
-       
-        cell.configure(with: "Lazar")
+        let model = self.playerList[indexPath.row]
+        let rank = indexPath.row + 1
+        cell.configure(with: model, rank)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-        
-        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
-            let spinner = UIActivityIndicatorView(style: .large)
-            spinner.color = .label
-            spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-            
-            self.tableView.tableFooterView = spinner
-            self.tableView.tableFooterView?.isHidden = false
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.numberOfRows += 10
-                spinner.stopAnimating()
-                self.tableView.tableFooterView = nil
-                self.tableView.tableFooterView?.isHidden = true
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let lastSectionIndex = tableView.numberOfSections - 1
+//        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+//
+//        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+//            let spinner = UIActivityIndicatorView(style: .large)
+//            spinner.color = .label
+//            spinner.startAnimating()
+//            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+//
+//            self.tableView.tableFooterView = spinner
+//            self.tableView.tableFooterView?.isHidden = false
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                self.numberOfRows += 10
+//                spinner.stopAnimating()
+//                self.tableView.tableFooterView = nil
+//                self.tableView.tableFooterView?.isHidden = true
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
     
 }
 

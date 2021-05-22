@@ -12,7 +12,7 @@ final class APIUrl {
     
     private init () {}
     
-    let baseApiUrl = "http://internships-mobile.htec.co.rs/api/"
+    private let baseApiUrl = "http://internships-mobile.htec.co.rs/api/"
     
     var players: String {
         get {

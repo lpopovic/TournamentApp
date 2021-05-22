@@ -8,9 +8,9 @@
 import Foundation
 
 struct Player: Codable {
-    let id: String
+    let id: Int
     let firstName: String
     let lastName: String
-    let points: String
-    let tournament_id: String
+    let points: Int
+    let tournament_id: Int?
 }
