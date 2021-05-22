@@ -87,7 +87,8 @@ class PlayerListViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapAddPlayerButton() {
-        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerViewController.storyboardIdentifier)
+        guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
+        vc.typeOfVC = .add
         
         guard let nvc = self.navigationController else {
             return
@@ -97,6 +98,15 @@ class PlayerListViewController: BaseViewController {
     
     @objc private func didTapAddDrawButton() {
         let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier)
+        
+        guard let nvc = self.navigationController else {
+            return
+        }
+        nvc.pushViewController(vc, animated: true)
+    }
+    
+    private func didTapTableViewCell(with model: String?) {
+        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerViewController.storyboardIdentifier)
         
         guard let nvc = self.navigationController else {
             return
@@ -157,6 +167,7 @@ extension PlayerListViewController: UITableViewDataSource {
 extension PlayerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.didTapTableViewCell(with: nil)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

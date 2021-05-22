@@ -122,6 +122,33 @@
             </objects>
             <point key="canvasLocation" x="1474" y="834"/>
         </scene>
+        <!--Player Add Edit View Controller-->
+        <scene sceneID="cPt-7x-iMp">
+            <objects>
+                <viewController storyboardIdentifier="PlayerAddEditViewController" id="pRb-Ca-yHJ" customClass="PlayerAddEditViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SjE-If-dNk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerAddEditViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7A-pr-zGx">
+                                <rect key="frame" x="98.5" y="437.5" width="217.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Avs-pB-ACG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="d7A-pr-zGx" firstAttribute="centerY" secondItem="SjE-If-dNk" secondAttribute="centerY" id="bHs-kB-19g"/>
+                            <constraint firstItem="d7A-pr-zGx" firstAttribute="centerX" secondItem="SjE-If-dNk" secondAttribute="centerX" id="y38-At-sF0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSu-sL-27Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3251" y="94"/>
+        </scene>
         <!--Player View Controller-->
         <scene sceneID="wGJ-jC-h7V">
             <objects>

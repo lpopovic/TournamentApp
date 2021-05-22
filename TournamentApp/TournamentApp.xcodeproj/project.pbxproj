@@ -20,6 +20,7 @@
 		D0394394265903410088A386 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394393265903400088A386 /* BaseViewController.swift */; };
 		D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039439B265924680088A386 /* PlayerTableViewCell.swift */; };
 		D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039439C265924680088A386 /* PlayerTableViewCell.xib */; };
+		D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		D0394393265903400088A386 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D039439B265924680088A386 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		D039439C265924680088A386 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
+		D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewController.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				D039436F265847DE0088A386 /* HomeViewController.swift */,
 				D0394372265848210088A386 /* PlayerListViewController.swift */,
 				D0394376265849AB0088A386 /* PlayerViewController.swift */,
+				D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */,
 				D039437926584A760088A386 /* TournamentBracketViewController.swift */,
 			);
 			path = Controllers;
@@ -337,6 +340,7 @@
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
 				D039438226584DA50088A386 /* APIUrl.swift in Sources */,
+				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
