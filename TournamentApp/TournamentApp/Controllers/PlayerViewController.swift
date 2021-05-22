@@ -7,10 +7,17 @@
 
 import UIKit
 
+protocol PlayerViewControllerDelegate: AnyObject {
+    func playerIsDeleted(with id: Int)
+    func playerIsUpdated(with id: Int)
+}
+
 class PlayerViewController: BaseViewController {
     
     // MARK: - Variable
     static let storyboardIdentifier = "PlayerViewController"
+    var playerId: Int?
+    weak var delegate: PlayerViewController?
     
     // MARK: - Life Cycle
     
