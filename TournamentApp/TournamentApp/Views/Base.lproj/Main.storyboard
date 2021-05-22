@@ -65,10 +65,30 @@
                     <view key="view" contentMode="scaleToFill" id="ZjD-Jt-gZG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="z2y-Z7-kU6">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="NLB-eM-3dF">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="QNx-MV-1jS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="z2y-Z7-kU6" firstAttribute="top" secondItem="QNx-MV-1jS" secondAttribute="top" id="5FN-Tb-csn"/>
+                            <constraint firstItem="QNx-MV-1jS" firstAttribute="bottom" secondItem="z2y-Z7-kU6" secondAttribute="bottom" id="Olw-gf-YpK"/>
+                            <constraint firstItem="QNx-MV-1jS" firstAttribute="trailing" secondItem="z2y-Z7-kU6" secondAttribute="trailing" id="TJm-6V-sWb"/>
+                            <constraint firstItem="z2y-Z7-kU6" firstAttribute="leading" secondItem="QNx-MV-1jS" secondAttribute="leading" id="cE6-NV-06B"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ltu-zL-9Yg"/>
+                    <connections>
+                        <outlet property="spinner" destination="NLB-eM-3dF" id="GBU-eB-onZ"/>
+                        <outlet property="tableView" destination="z2y-Z7-kU6" id="Bwz-CS-f4m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LX3-e4-Gjt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -33,6 +33,8 @@ class HomeViewController: UIViewController {
         
     }
     
+    // MARK: - UI
+    
     private func setupButton() {
         self.showPlayerListButton.setTitle("See list of players", for: .normal)
         self.showPlayerListButton.setTitleColor(.label, for: .normal)
