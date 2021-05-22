@@ -38,7 +38,7 @@ final class ApiCaller {
         
     }
     
-    func getAllPlayerList(completion: @escaping (Result<PlayerListResponse, Error>) -> Void) {
+    func getAllPlayerList(completion: @escaping (Result<[Player], Error>) -> Void) {
         self.sessionManager.request(APIUrl.shared.players, method: .get, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
@@ -51,7 +51,7 @@ final class ApiCaller {
                 do {
                     let result = try JSONDecoder().decode(PlayerListResponse.self, from: data)
                     if result.success {
-                        completion(.success(result))
+                        completion(.success(result.data))
                     } else {
                         completion(.failure(ApiError.runtimeError(message: result.message)))
                     }
@@ -80,6 +80,34 @@ final class ApiCaller {
                     let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
                     if result.success {
                         completion(.success(result.message))
+                    } else {
+                        completion(.failure(ApiError.runtimeError(message: result.message)))
+                    }
+                    
+                    
+                } catch let error {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void) {
+        self.sessionManager.request(APIUrl.shared.players + "/\(id)", method: .get, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.data else {
+                    completion(.failure(ApiError.faileedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(PlayerDetailResponse.self, from: data)
+                    if result.success {
+                        completion(.success(result.data))
                     } else {
                         completion(.failure(ApiError.runtimeError(message: result.message)))
                     }

@@ -118,7 +118,7 @@ class PlayerListViewController: BaseViewController {
         ApiCaller.shared.getAllPlayerList { [weak self] (result) in
             switch result {
             case .success(let model):
-                self?.playerList = model.data
+                self?.playerList = model
                 self?.playerList.sort{ $0.getPoints() > $1.getPoints() } 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
