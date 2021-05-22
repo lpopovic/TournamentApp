@@ -119,7 +119,7 @@ class PlayerListViewController: BaseViewController {
             switch result {
             case .success(let model):
                 self?.playerList = model.data
-                self?.playerList.sort{ $0.points > $1.points } 
+                self?.playerList.sort{ $0.getPoints() > $1.getPoints() } 
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     self?.tableView.isHidden = false

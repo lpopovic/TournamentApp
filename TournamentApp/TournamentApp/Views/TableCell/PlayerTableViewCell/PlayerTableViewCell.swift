@@ -68,7 +68,7 @@ class PlayerTableViewCell: UITableViewCell {
     func configure(with model: Player, _ rank: Int) {
         self.firstNameLabel.text = model.firstName
         self.lastNameLabel.text = model.lastName
-        self.pointsLabel.text = "\(model.points.formatedWithSeparator) points"
+        self.pointsLabel.text = "\(model.getPoints().formatedWithSeparator) points"
         self.rankLabel.text = "# \(rank)"
         
     }

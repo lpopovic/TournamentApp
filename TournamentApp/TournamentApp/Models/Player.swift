@@ -11,6 +11,12 @@ struct Player: Codable {
     let id: Int
     let firstName: String
     let lastName: String
-    let points: Int
+    let points: Int?
     let tournament_id: Int?
+}
+
+extension Player {
+    func getPoints() -> Int {
+        return self.points ?? 0
+    }
 }
