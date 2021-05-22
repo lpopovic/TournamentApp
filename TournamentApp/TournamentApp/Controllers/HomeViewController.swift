@@ -34,8 +34,8 @@ class HomeViewController: BaseViewController {
     
     private func setupButton() {
         self.showPlayerListButton.setTitle("See list of players", for: .normal)
-        self.showPlayerListButton.setTitleColor(.label, for: .normal)
-        self.showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
+        self.showPlayerListButton.setTitleColor(.systemBlue, for: .normal)
+        self.showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         self.showPlayerListButton.titleLabel?.textAlignment = .center
         self.showPlayerListButton.addTarget(self, action: #selector(didTap(_:)), for: .touchUpInside)
     }
@@ -49,7 +49,7 @@ class HomeViewController: BaseViewController {
         self.nameOfTournomentLabel.text = "Serbian Open"
         self.nameOfTournomentLabel.numberOfLines = 0
         self.nameOfTournomentLabel.textColor = .label
-        self.nameOfTournomentLabel.font = .systemFont(ofSize: 19, weight: .bold)
+        self.nameOfTournomentLabel.font = .systemFont(ofSize: 20, weight: .bold)
     }
     
     // MARK: - Actions

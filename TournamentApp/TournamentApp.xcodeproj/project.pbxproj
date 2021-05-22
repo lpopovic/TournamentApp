@@ -18,6 +18,8 @@
 		D039438E265854C40088A386 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438D265854C40088A386 /* NavigationViewController.swift */; };
 		D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039439026585F910088A386 /* Extensions+UIImage.swift */; };
 		D0394394265903410088A386 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394393265903400088A386 /* BaseViewController.swift */; };
+		D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039439B265924680088A386 /* PlayerTableViewCell.swift */; };
+		D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039439C265924680088A386 /* PlayerTableViewCell.xib */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		D039438D265854C40088A386 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		D039439026585F910088A386 /* Extensions+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIImage.swift"; sourceTree = "<group>"; };
 		D0394393265903400088A386 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D039439B265924680088A386 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
+		D039439C265924680088A386 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		D039438A265850BC0088A386 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				D03943A02659246E0088A386 /* PlayerTableViewCell */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -102,6 +107,15 @@
 				D0394393265903400088A386 /* BaseViewController.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		D03943A02659246E0088A386 /* PlayerTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D039439B265924680088A386 /* PlayerTableViewCell.swift */,
+				D039439C265924680088A386 /* PlayerTableViewCell.xib */,
+			);
+			path = PlayerTableViewCell;
 			sourceTree = "<group>";
 		};
 		D094F6872658225D0011EEA9 = {
@@ -275,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */,
 				D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */,
 				D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */,
 				D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */,
@@ -313,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,

@@ -74,9 +74,14 @@ class PlayerListViewController: BaseViewController {
     private func setupTableView() {
         self.tableView.register(UITableViewCell.self,
                                         forCellReuseIdentifier: "cell")
+        self.tableView.register(UINib(nibName: PlayerTableViewCell.identifier, bundle: nil),
+                                forCellReuseIdentifier: PlayerTableViewCell.identifier)
+        self.tableView.separatorColor = .label
+        self.tableView.backgroundColor = .systemBackground
         self.tableView.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
+     
     }
     
     // MARK: - Actions
@@ -116,8 +121,11 @@ extension PlayerListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! UITableViewCell
-        cell.textLabel?.text = "Novak Djokovic"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier) as? PlayerTableViewCell else {
+            return UITableViewCell()
+        }
+       
+        cell.configure(with: "Lazar")
         return cell
     }
     
@@ -149,5 +157,8 @@ extension PlayerListViewController: UITableViewDataSource {
 extension PlayerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
