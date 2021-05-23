@@ -16,6 +16,7 @@ class PlayerListViewController: BaseViewController {
     var refresher : UIRefreshControl!
     
     // MARK: - Variable
+    
     static let storyboardIdentifier = "PlayerListViewController"
     var playerList: [Player] = [Player]()
     
@@ -30,6 +31,11 @@ class PlayerListViewController: BaseViewController {
         
         self.spinner.startAnimating()
         self.fetchData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.spinner.center = self.view.center
     }
     
     // MARK: - UI
@@ -67,8 +73,6 @@ class PlayerListViewController: BaseViewController {
     }
     
     private func setupTableView() {
-        self.tableView.register(UITableViewCell.self,
-                                        forCellReuseIdentifier: "cell")
         self.tableView.register(UINib(nibName: PlayerTableViewCell.identifier, bundle: nil),
                                 forCellReuseIdentifier: PlayerTableViewCell.identifier)
         self.tableView.separatorColor = .label
@@ -76,7 +80,7 @@ class PlayerListViewController: BaseViewController {
         self.tableView.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
-     
+        
     }
     
     // MARK: - Actions
@@ -100,8 +104,13 @@ class PlayerListViewController: BaseViewController {
         nvc.pushViewController(vc, animated: true)
     }
     
-    private func didTapTableViewCell(with model: String?) {
-        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerViewController.storyboardIdentifier)
+    private func didTapTableViewCell(with model: Player) {
+        guard let vc = storyboardMain.instantiateViewController(
+            withIdentifier: PlayerViewController.storyboardIdentifier
+        ) as? PlayerViewController else { return }
+        
+        vc.playerId = model.id
+        vc.delegate = self
         
         guard let nvc = self.navigationController else {
             return
@@ -156,37 +165,50 @@ extension PlayerListViewController: UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let lastSectionIndex = tableView.numberOfSections - 1
-//        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-//
-//        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
-//            let spinner = UIActivityIndicatorView(style: .large)
-//            spinner.color = .label
-//            spinner.startAnimating()
-//            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-//
-//            self.tableView.tableFooterView = spinner
-//            self.tableView.tableFooterView?.isHidden = false
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                self.numberOfRows += 10
-//                spinner.stopAnimating()
-//                self.tableView.tableFooterView = nil
-//                self.tableView.tableFooterView?.isHidden = true
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //        let lastSectionIndex = tableView.numberOfSections - 1
+    //        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+    //
+    //        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
+    //            let spinner = UIActivityIndicatorView(style: .large)
+    //            spinner.color = .label
+    //            spinner.startAnimating()
+    //            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+    //
+    //            self.tableView.tableFooterView = spinner
+    //            self.tableView.tableFooterView?.isHidden = false
+    //
+    //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+    //                self.numberOfRows += 10
+    //                spinner.stopAnimating()
+    //                self.tableView.tableFooterView = nil
+    //                self.tableView.tableFooterView?.isHidden = true
+    //                self.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     
 }
 
 extension PlayerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.didTapTableViewCell(with: nil)
+        self.didTapTableViewCell(with: self.playerList[indexPath.row])
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+extension PlayerListViewController: PlayerViewControllerDelegate {
+    func playerIsDeleted(with id: Int) {
+        self.playerList = self.playerList.filter{ $0.id != id }
+        self.tableView.reloadData()
+    }
+    
+    func playerIsUpdated(with id: Int) {
+        
+    }
+    
+    
 }

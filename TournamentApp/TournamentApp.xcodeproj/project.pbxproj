@@ -30,6 +30,9 @@
 		D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C22659AB680088A386 /* DefaultResponse.swift */; };
 		D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C52659AE450088A386 /* PlayerDetail.swift */; };
 		D03943C92659B05F0088A386 /* PlayerDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C82659B05F0088A386 /* PlayerDetailResponse.swift */; };
+		D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943CC2659B5860088A386 /* PlayerInfoTableCell.swift */; };
+		D03943CF2659B5860088A386 /* PlayerInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03943CD2659B5860088A386 /* PlayerInfoTableCell.xib */; };
+		D03943D32659C2170088A386 /* Extensions+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943D22659C2170088A386 /* Extensions+String.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -65,6 +68,9 @@
 		D03943C22659AB680088A386 /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		D03943C52659AE450088A386 /* PlayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetail.swift; sourceTree = "<group>"; };
 		D03943C82659B05F0088A386 /* PlayerDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailResponse.swift; sourceTree = "<group>"; };
+		D03943CC2659B5860088A386 /* PlayerInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoTableCell.swift; sourceTree = "<group>"; };
+		D03943CD2659B5860088A386 /* PlayerInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoTableCell.xib; sourceTree = "<group>"; };
+		D03943D22659C2170088A386 /* Extensions+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+String.swift"; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 		D039438A265850BC0088A386 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				D03943D52659D3120088A386 /* BioTableVIewCell */,
+				D03943CB2659B5650088A386 /* PlayerInfoTableCell */,
 				D03943A02659246E0088A386 /* PlayerTableViewCell */,
 			);
 			path = TableCell;
@@ -136,6 +144,22 @@
 				D039439C265924680088A386 /* PlayerTableViewCell.xib */,
 			);
 			path = PlayerTableViewCell;
+			sourceTree = "<group>";
+		};
+		D03943CB2659B5650088A386 /* PlayerInfoTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				D03943CC2659B5860088A386 /* PlayerInfoTableCell.swift */,
+				D03943CD2659B5860088A386 /* PlayerInfoTableCell.xib */,
+			);
+			path = PlayerInfoTableCell;
+			sourceTree = "<group>";
+		};
+		D03943D52659D3120088A386 /* BioTableVIewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BioTableVIewCell;
 			sourceTree = "<group>";
 		};
 		D094F6872658225D0011EEA9 = {
@@ -222,6 +246,7 @@
 				D03943B92659A57E0088A386 /* Constant.swift */,
 				D03943BC2659A8810088A386 /* Extensions+Formatter.swift */,
 				D03943BF2659A8B40088A386 /* Extensions+Int.swift */,
+				D03943D22659C2170088A386 /* Extensions+String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,6 +348,7 @@
 				D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */,
 				D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */,
 				D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */,
+				D03943CF2659B5860088A386 /* PlayerInfoTableCell.xib in Resources */,
 				D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03943D32659C2170088A386 /* Extensions+String.swift in Sources */,
 				D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */,
 				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
 				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
@@ -384,6 +411,7 @@
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
+				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
 				D03943A8265991AF0088A386 /* Player.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */,

@@ -9,13 +9,15 @@ import UIKit
 
 class PlayerTableViewCell: UITableViewCell {
     
-    
     // MARK: - Outlets
+    
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    
     // MARK: - Variables
+    
     static let identifier = "PlayerTableViewCell"
 
     override func awakeFromNib() {

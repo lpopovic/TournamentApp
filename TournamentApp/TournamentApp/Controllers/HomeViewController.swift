@@ -16,6 +16,7 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     // MARK: - Variable
+    
     static let storyboardIdentifier = "HomeViewController"
     
     // MARK: - Life Cycle

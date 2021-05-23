@@ -11,4 +11,8 @@ extension Int {
     var formatedWithSeparator: String {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
+    
+    var boolValue: Bool {
+        return self != 0
+    }
 }

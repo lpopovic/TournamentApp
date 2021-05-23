@@ -14,8 +14,21 @@ extension UIAlertController {
             title: title ?? "Ooops",
             message: message,
             preferredStyle: .alert)
-        
+       
         alertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        guard let vc = viewController else { return  }
+        vc.present(alertVC, animated: true, completion: nil)
+    }
+    
+    static func showApiCallerMessage(_ viewController: UIViewController?, title: String?, message: String, action: UIAlertAction) {
+        let alertVC = UIAlertController(
+            title: title ?? "Ooops",
+            message: message,
+            preferredStyle: .alert)
+        
+        alertVC.addAction(action)
+      
         guard let vc = viewController else { return  }
         vc.present(alertVC, animated: true, completion: nil)
     }

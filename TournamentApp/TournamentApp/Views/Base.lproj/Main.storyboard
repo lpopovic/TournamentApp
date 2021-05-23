@@ -157,21 +157,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayerViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hl-QY-CfR">
-                                <rect key="frame" x="128" y="437.5" width="158.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jBo-R1-DRZ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="Xep-nk-Z6X">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="D9t-dE-aWg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7Hl-QY-CfR" firstAttribute="centerX" secondItem="j8f-v4-TMr" secondAttribute="centerX" id="rXE-Ia-xyd"/>
-                            <constraint firstItem="7Hl-QY-CfR" firstAttribute="centerY" secondItem="j8f-v4-TMr" secondAttribute="centerY" id="yTD-rf-o4p"/>
+                            <constraint firstItem="D9t-dE-aWg" firstAttribute="trailing" secondItem="jBo-R1-DRZ" secondAttribute="trailing" id="V2g-e1-Sad"/>
+                            <constraint firstItem="jBo-R1-DRZ" firstAttribute="leading" secondItem="D9t-dE-aWg" secondAttribute="leading" id="fFr-ed-VDq"/>
+                            <constraint firstItem="jBo-R1-DRZ" firstAttribute="top" secondItem="D9t-dE-aWg" secondAttribute="top" id="fuk-l6-VPc"/>
+                            <constraint firstItem="D9t-dE-aWg" firstAttribute="bottom" secondItem="jBo-R1-DRZ" secondAttribute="bottom" id="vQ5-fo-gsT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jF6-hE-uL8"/>
+                    <connections>
+                        <outlet property="spinner" destination="Xep-nk-Z6X" id="4eM-dF-iA4"/>
+                        <outlet property="tableView" destination="jBo-R1-DRZ" id="8WW-AR-q6G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hH-Ek-8xs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

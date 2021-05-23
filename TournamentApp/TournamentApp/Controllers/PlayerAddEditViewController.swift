@@ -10,6 +10,7 @@ import UIKit
 class PlayerAddEditViewController: BaseViewController {
 
     // MARK: - Variable
+    
     static let storyboardIdentifier = "PlayerAddEditViewController"
     var typeOfVC: TypeViewController = .add
     
