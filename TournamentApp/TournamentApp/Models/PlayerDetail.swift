@@ -16,6 +16,7 @@ struct PlayerDetail: Codable {
     let profileImageUrl: String?
     let isProfessional: Int?
     let tournament_id: Int?
+    let description: String?
 }
 
 extension PlayerDetail {

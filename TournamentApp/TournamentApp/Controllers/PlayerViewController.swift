@@ -71,8 +71,12 @@ class PlayerViewController: BaseViewController {
     private func setupTableView() {
         self.tableView.register(UINib(nibName: PlayerInfoTableCell.identifier, bundle: nil),
                                 forCellReuseIdentifier: PlayerInfoTableCell.identifier)
+        self.tableView.register(UINib(nibName: BioTableViewCell.identifier, bundle: nil),
+                                forCellReuseIdentifier: BioTableViewCell.identifier)
         self.tableView.separatorColor = .clear
         self.tableView.backgroundColor = .systemBackground
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         self.tableView.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -182,11 +186,11 @@ extension PlayerViewController: UITableViewDataSource {
             return cell
             
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerInfoTableCell.identifier) as? PlayerInfoTableCell,
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BioTableViewCell.identifier) as? BioTableViewCell,
                   let model = self.playerDetailInfo else {
                 return UITableViewCell()
             }
-            cell.configure(with: model)
+            cell.configure(with: "Bio", bio: model.description)
             
             return cell
         default:
