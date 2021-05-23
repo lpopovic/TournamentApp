@@ -30,7 +30,7 @@ class PlayerViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupVC()
+        title = "Player"
         self.setupSpinner()
         self.setupTableView()
         
@@ -45,21 +45,23 @@ class PlayerViewController: BaseViewController {
     
     // MARK: - UI
     
-    func setupVC() {
-        title = "Player"
-        let deleteButton = UIBarButtonItem(
-            title: "Delete",
-            style: .done,
-            target: self,
-            action: #selector(didTapDeleteButton)
-        )
-        let editButton = UIBarButtonItem(
-            image: UIImage(systemName: "pencil"),
-            style: .done,
-            target: self,
-            action:#selector(didTapEditButton)
-        )
-        navigationItem.rightBarButtonItems = [deleteButton, editButton]
+    func setupNavigationButtons() {
+        if let player = self.playerDetailInfo, player.tournament_id == GlobalConstants.tournomentId {
+            let deleteButton = UIBarButtonItem(
+                title: "Delete",
+                style: .done,
+                target: self,
+                action: #selector(didTapDeleteButton)
+            )
+            let editButton = UIBarButtonItem(
+                image: UIImage(systemName: "pencil"),
+                style: .done,
+                target: self,
+                action:#selector(didTapEditButton)
+            )
+            navigationItem.rightBarButtonItems = [deleteButton, editButton]
+        }
+       
     }
     
     private func setupSpinner() {
@@ -74,7 +76,7 @@ class PlayerViewController: BaseViewController {
         self.tableView.register(UINib(nibName: BioTableViewCell.identifier, bundle: nil),
                                 forCellReuseIdentifier: BioTableViewCell.identifier)
         self.tableView.separatorColor = .clear
-        self.tableView.backgroundColor = .systemBackground
+        self.tableView.backgroundColor = .secondarySystemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
         self.tableView.isHidden = true
@@ -111,6 +113,7 @@ class PlayerViewController: BaseViewController {
                     self?.spinner.stopAnimating()
                     self?.tableView.isHidden = false
                     self?.tableView.reloadData()
+                    self?.setupNavigationButtons()
                 }
             case .failure(let error):
                 self?.playerDetailInfo = nil

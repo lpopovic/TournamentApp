@@ -61,7 +61,18 @@ final class ApiCaller {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                guard let data = response.data else {
+                    completion(.failure(error))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                   
+                    completion(.failure(ApiError.runtimeError(message: result.message)))
+    
+                } catch let error {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -89,7 +100,18 @@ final class ApiCaller {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                guard let data = response.data else {
+                    completion(.failure(error))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                   
+                    completion(.failure(ApiError.runtimeError(message: result.message)))
+    
+                } catch let error {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -117,7 +139,18 @@ final class ApiCaller {
                     completion(.failure(error))
                 }
             case .failure(let error):
-                completion(.failure(error))
+                guard let data = response.data else {
+                    completion(.failure(error))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                   
+                    completion(.failure(ApiError.runtimeError(message: result.message)))
+    
+                } catch let error {
+                    completion(.failure(error))
+                }
             }
         }
     }

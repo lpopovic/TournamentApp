@@ -13,6 +13,22 @@ struct Player: Codable {
     let lastName: String
     let points: Int?
     let tournament_id: Int?
+    
+    init(id: Int, firstName: String, lastName: String) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.points = nil
+        self.tournament_id = nil
+    }
+    
+    init(id: Int, firstName: String, lastName: String, points: Int?, tournament_id: Int?) {
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.points = points
+        self.tournament_id = tournament_id
+    }
 }
 
 extension Player {
