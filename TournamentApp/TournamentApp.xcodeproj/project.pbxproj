@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375641265AE36B009EE660 /* Extensions+Date.swift */; };
 		D0394370265847DE0088A386 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039436F265847DE0088A386 /* HomeViewController.swift */; };
 		D0394373265848210088A386 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394372265848210088A386 /* PlayerListViewController.swift */; };
 		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
@@ -47,6 +48,7 @@
 		9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.debug.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0375641265AE36B009EE660 /* Extensions+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Date.swift"; sourceTree = "<group>"; };
 		D039436F265847DE0088A386 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0394372265848210088A386 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				D03943BC2659A8810088A386 /* Extensions+Formatter.swift */,
 				D03943BF2659A8B40088A386 /* Extensions+Int.swift */,
 				D03943D22659C2170088A386 /* Extensions+String.swift */,
+				D0375641265AE36B009EE660 /* Extensions+Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
 				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
+				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
 				D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,

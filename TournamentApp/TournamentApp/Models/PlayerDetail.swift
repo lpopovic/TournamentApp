@@ -54,9 +54,7 @@ extension PlayerDetail {
     
     func getStringDateOfBirth() -> String? {
         if let dateOfBirth = self.dateOfBirth, let date = dateOfBirth.toDate() {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "YYYY/MM/dd"
-            return dateFormatter.string(from: date)
+            return date.getDateOfBirthFormatString()
         } else {
             return nil
         }
