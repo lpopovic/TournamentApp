@@ -230,4 +230,48 @@ final class ApiCaller {
         }
         
     }
+    
+    func putDetailPlayer(with id: Int,
+                         paramsToUpdate: [String: Any],
+                         profileImageUrl: Data?,
+                         completion: @escaping (Result<DefaultResponse, Error>) -> Void) {
+        var queryParam: String = ""
+        
+        for (key, value) in paramsToUpdate {
+            queryParam = queryParam + "&\(key)=\(value)"
+        }
+        
+        self.sessionManager.request(APIUrl.shared.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    guard let data = response.data else {
+                        completion(.failure(ApiError.failedToGetData))
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                        
+                        completion(.success(result))
+                        
+                    } catch let error {
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    guard let data = response.data else {
+                        completion(.failure(error))
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                        
+                        completion(.failure(ApiError.runtimeError(message: result.message)))
+                        
+                    } catch let error {
+                        completion(.failure(error))
+                    }
+                }
+            }
+    }
 }

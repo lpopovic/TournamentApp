@@ -10,7 +10,7 @@ import SDWebImage
 
 protocol PlayerAddEditViewControllerDelegate: AnyObject{
     func playerIsCreated()
-    func playerIsEdited()
+    func playerIsEdited(player: PlayerDetail)
 }
 
 class PlayerAddEditViewController: BaseViewController {
@@ -207,17 +207,24 @@ class PlayerAddEditViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapDoneButton() {
+        self.dismissKeyboard()
+        
         if self.typeOfVC == .add {
             self.validateUserInputs { (successful, message) in
                 if successful {
-                    // MARK: API CALL
                     self.fetchPostData()
                 } else {
                     UIAlertController.showAlertUserMessage(self, title: nil, message: message)
                 }
             }
         } else {
-            self.closeViewController()
+            self.validateUserInputs { (successful, message) in
+                if successful {
+                    self.chooseWhatParamsToUpdate()
+                } else {
+                    UIAlertController.showAlertUserMessage(self, title: nil, message: message)
+                }
+            }
         }
     }
     
@@ -313,9 +320,87 @@ class PlayerAddEditViewController: BaseViewController {
         }
     }
     
+    private func chooseWhatParamsToUpdate() {
+        guard let firstName = self.firstNameTextField.text,
+              let lastName = self.lastNameTextField.text,
+              let description = self.descriptionTextField.text,
+              let pointsText = self.pointsTextField.text,
+              let points = Int(pointsText),
+              let dateOfBirthText = self.datePickerTextField.text,
+              let dateOfBirth = dateOfBirthText.toDate(withFormat: Date.dateOfBirthFormat),
+              let photoImage = self.photoImageView.image,
+              let player = self.playerDetailInfo,
+              let playerId = self.playerId
+        else {
+            return
+        }
+        let isProfessional = self.isProfessionalSwitch.isOn ? 1 : 0
+        
+        var paramsToUpdate: [String: Any] = [:]
+        
+        //        if firstName != player.firstName {
+        paramsToUpdate.updateValue(firstName, forKey: ApiCaller.ApiParameters.firstName.rawValue)
+        //        }
+        //        if lastName != player.lastName {
+        paramsToUpdate.updateValue(lastName, forKey: ApiCaller.ApiParameters.lastName.rawValue)
+        //        }
+        if description != player.description {
+            paramsToUpdate.updateValue(description, forKey: ApiCaller.ApiParameters.description.rawValue)
+        }
+        if points != player.points {
+            paramsToUpdate.updateValue(points, forKey: ApiCaller.ApiParameters.points.rawValue)
+        }
+        if dateOfBirth != player.dateOfBirth?.toDate()  {
+            paramsToUpdate.updateValue(dateOfBirth, forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
+        }
+        if isProfessional != player.isProfessional  {
+            paramsToUpdate.updateValue(dateOfBirth, forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
+        }
+        
+        if !paramsToUpdate.isEmpty {
+            self.fetchPutData(for: playerId, with: paramsToUpdate)
+        } else {
+            UIAlertController.showAlertUserMessage(self, title: nil, message: "You didn't change anything")
+        }
+        
+    }
+    
     private func okActionForSuccessfulCreatePlayer() -> UIAlertAction {
         return UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
             self?.delegate?.playerIsCreated()
+            self?.closeViewController()
+        })
+    }
+    
+    private func okActionForSuccessfulUpdatePlayer() -> UIAlertAction {
+        return UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            
+            guard
+                let strongSelf = self,
+                let firstName = self?.firstNameTextField.text,
+                let lastName = self?.lastNameTextField.text,
+                let description = self?.descriptionTextField.text,
+                let pointsText = self?.pointsTextField.text,
+                let points = Int(pointsText),
+                let dateOfBirth = self?.datePickerTextField.text,
+                let player = self?.playerDetailInfo,
+                let isProfessional = strongSelf.isProfessionalSwitch.isOn ? 1 : 0
+            else {
+                return
+            }
+            self?.delegate?.playerIsEdited(
+                player: PlayerDetail(
+                    id: player.id,
+                    firstName: firstName,
+                    lastName: lastName,
+                    points: points,
+                    dateOfBirth: dateOfBirth,
+                    profileImageUrl: player.profileImageUrl,
+                    isProfessional: isProfessional,
+                    tournament_id: player.tournament_id,
+                    description: description
+                )
+            )
             self?.closeViewController()
         })
     }
@@ -343,6 +428,7 @@ class PlayerAddEditViewController: BaseViewController {
             
             switch result {
             case .success(let model):
+                
                 DispatchQueue.main.async {
                     self?.spinner.stopAnimating()
                     guard let strongSelf = self else {return}
@@ -355,7 +441,42 @@ class PlayerAddEditViewController: BaseViewController {
                     )
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                
+                DispatchQueue.main.async {
+                    self?.spinner.stopAnimating()
+                    UIAlertController.showAlertUserMessage(
+                        self,
+                        title: nil,
+                        message: error.localizedDescription
+                    )
+                }
+            }
+        }
+    }
+    
+    //MARK:FETCH
+    private func fetchPutData(for id: Int, with params: [String: Any]) {
+        self.spinner.startAnimating()
+        ApiCaller.shared.putDetailPlayer(
+            with: id,
+            paramsToUpdate: params,
+            profileImageUrl: nil
+        ) { [weak self] (result) in
+            
+            switch result {
+            case .success(let model):
+                
+                self?.spinner.stopAnimating()
+                guard let strongSelf = self else {return}
+                let action = strongSelf.okActionForSuccessfulUpdatePlayer()
+                UIAlertController.showAlertUserMessage(
+                    self,
+                    title: "Successfully",
+                    message: model.message,
+                    action: action
+                )
+            case .failure(let error):
+                
                 DispatchQueue.main.async {
                     self?.spinner.stopAnimating()
                     UIAlertController.showAlertUserMessage(

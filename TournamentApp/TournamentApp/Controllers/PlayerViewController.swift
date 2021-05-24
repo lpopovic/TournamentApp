@@ -9,7 +9,7 @@ import UIKit
 
 protocol PlayerViewControllerDelegate: AnyObject {
     func playerIsDeleted(with id: Int)
-    func playerIsUpdated(with id: Int)
+    func playerIsUpdated(with id: Int, player: PlayerDetail)
 }
 
 class PlayerViewController: BaseViewController {
@@ -26,6 +26,7 @@ class PlayerViewController: BaseViewController {
     var playerId: Int?
     var playerDetailInfo: PlayerDetail?
     weak var delegate: PlayerViewControllerDelegate?
+    var isPlayerEdit = false
     
     // MARK: - Life Cycle
     
@@ -43,6 +44,14 @@ class PlayerViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.spinner.center = self.view.center
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if self.isMovingFromParent, self.isPlayerEdit == true, let id = self.playerId, let player = self.playerDetailInfo {
+            self.delegate?.playerIsUpdated(with: id, player: player)
+        }
     }
     
     // MARK: - UI
@@ -106,6 +115,7 @@ class PlayerViewController: BaseViewController {
         vc.typeOfVC = .edit
         vc.playerId = self.playerId
         vc.playerDetailInfo = self.playerDetailInfo
+        vc.delegate = self
         
         guard let nvc = self.navigationController else {
             return
@@ -232,4 +242,19 @@ extension PlayerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+}
+
+extension PlayerViewController: PlayerAddEditViewControllerDelegate {
+    func playerIsCreated() {}
+    
+    func playerIsEdited(player: PlayerDetail) {
+        guard let id = self.playerId else {
+            return
+        }
+        self.isPlayerEdit = true
+        self.playerDetailInfo = player
+        self.tableView.reloadData()
+    }
+    
+    
 }

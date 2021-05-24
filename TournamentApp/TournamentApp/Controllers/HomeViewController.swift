@@ -12,7 +12,7 @@ class HomeViewController: BaseViewController {
     // MARK: - IBOutlet
     
     @IBOutlet weak var showPlayerListButton: UIButton!
-    @IBOutlet weak var nameOfTournomentLabel: UILabel!
+    @IBOutlet weak var nameOfTournomentButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
     // MARK: - Variable
@@ -25,15 +25,15 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "Welcome"
         
-        self.setupButton()
+        self.setupShowPlayerListButton()
         self.setupImageView()
-        self.setupLabel()
+        self.setupNameOfTournomentButton()
         
     }
     
     // MARK: - UI
     
-    private func setupButton() {
+    private func setupShowPlayerListButton() {
         self.showPlayerListButton.setTitle("See list of players", for: .normal)
         self.showPlayerListButton.setTitleColor(.systemBlue, for: .normal)
         self.showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -46,11 +46,13 @@ class HomeViewController: BaseViewController {
         self.imageView.image = UIImage.LocalImage.serbianOpenLogo.value
     }
     
-    private func setupLabel() {
-        self.nameOfTournomentLabel.text = "Serbian Open"
-        self.nameOfTournomentLabel.numberOfLines = 0
-        self.nameOfTournomentLabel.textColor = .label
-        self.nameOfTournomentLabel.font = .systemFont(ofSize: 20, weight: .bold)
+    private func setupNameOfTournomentButton() {
+        self.nameOfTournomentButton.setTitle("Serbian Open", for: .normal)
+        self.nameOfTournomentButton.setTitleColor(.label, for: .normal)
+        self.nameOfTournomentButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        self.nameOfTournomentButton.titleLabel?.numberOfLines = 1
+        self.nameOfTournomentButton.titleLabel?.textAlignment = .center
+        self.nameOfTournomentButton.addTarget(self, action: #selector(didTap(_:)), for: .touchUpInside)
     }
     
     // MARK: - Actions

@@ -202,25 +202,45 @@ extension PlayerListViewController: UITableViewDelegate {
 }
 
 extension PlayerListViewController: PlayerViewControllerDelegate {
+    func playerIsUpdated(with id: Int, player: PlayerDetail) {
+        if let index = self.playerList.firstIndex(where: { $0.id == id }) {
+            let item = self.playerList[index]
+            guard item.firstName != player.firstName ||
+                  item.lastName != player.lastName ||
+                  item.points != player.points
+                  else { return }
+        
+            DispatchQueue.main.async {
+                self.playerList[index] = Player(id: id,
+                                                firstName: player.firstName,
+                                                lastName: player.lastName,
+                                                points: player.points,
+                                                tournament_id: player.tournament_id)
+                self.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                self.tableView.reloadData()
+              
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                
+             
+            }
+           
+        }
+      
+    }
+    
     func playerIsDeleted(with id: Int) {
         self.playerList = self.playerList.filter{ $0.id != id }
         self.tableView.reloadData()
     }
     
-    func playerIsUpdated(with id: Int) {
-        
-    }
-    
-    
 }
 
 extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
+    func playerIsEdited(player: PlayerDetail) { }
+    
     func playerIsCreated() {
         self.spinner.startAnimating()
         self.fetchData()
-    }
-    
-    func playerIsEdited() {
-        
     }
 }

@@ -17,15 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIu-u1-2FX">
-                                <rect key="frame" x="139" y="276" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-MO-uq8">
-                                <rect key="frame" x="139.5" y="506" width="41" height="30"/>
-                                <state key="normal" title="asdas"/>
+                                <rect key="frame" x="145" y="506" width="30" height="30"/>
+                                <state key="normal" title="-"/>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZlB-gC-qDm">
                                 <rect key="frame" x="60" y="60" width="200" height="200"/>
@@ -34,22 +28,26 @@
                                     <constraint firstAttribute="width" constant="200" id="JcA-WH-kXJ"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keU-LA-n4F">
+                                <rect key="frame" x="145" y="276" width="30" height="30"/>
+                                <state key="normal" title="-"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZlB-gC-qDm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CWD-A1-DNg"/>
                             <constraint firstItem="ZlB-gC-qDm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Cef-6d-c4b"/>
-                            <constraint firstItem="EIu-u1-2FX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E0A-BD-6b7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="t2H-MO-uq8" secondAttribute="bottom" constant="32" id="JH0-87-PdF"/>
-                            <constraint firstItem="EIu-u1-2FX" firstAttribute="top" secondItem="ZlB-gC-qDm" secondAttribute="bottom" constant="16" id="Ot1-xY-axO"/>
                             <constraint firstItem="t2H-MO-uq8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V3K-ry-gik"/>
+                            <constraint firstItem="keU-LA-n4F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iH2-RL-ops"/>
+                            <constraint firstItem="keU-LA-n4F" firstAttribute="top" secondItem="ZlB-gC-qDm" secondAttribute="bottom" constant="16" id="rde-Ug-QAR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MBY-2u-FYG"/>
                     <connections>
                         <outlet property="imageView" destination="ZlB-gC-qDm" id="701-O7-t68"/>
-                        <outlet property="nameOfTournomentLabel" destination="EIu-u1-2FX" id="4tt-uo-De2"/>
+                        <outlet property="nameOfTournomentButton" destination="keU-LA-n4F" id="wqc-5E-PPh"/>
                         <outlet property="showPlayerListButton" destination="t2H-MO-uq8" id="zOe-SQ-oHo"/>
                         <segue destination="8Je-Gb-aoY" kind="show" id="Mxa-MF-aC2"/>
                     </connections>
