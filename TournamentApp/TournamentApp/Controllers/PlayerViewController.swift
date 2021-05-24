@@ -18,6 +18,7 @@ class PlayerViewController: BaseViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    var refresher : UIRefreshControl!
     
     // MARK: - Variable
     
@@ -33,6 +34,7 @@ class PlayerViewController: BaseViewController {
         title = "Player"
         self.setupSpinner()
         self.setupTableView()
+        self.setupRefreshControl()
         
         self.spinner.startAnimating()
         self.fetchData()
@@ -70,6 +72,14 @@ class PlayerViewController: BaseViewController {
         self.spinner.style = .large
     }
     
+    private func setupRefreshControl() {
+        self.refresher = UIRefreshControl()
+        self.tableView.addSubview(refresher)
+        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
+        self.refresher.tintColor = .label
+        self.refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
+    }
+    
     private func setupTableView() {
         self.tableView.register(UINib(nibName: PlayerInfoTableCell.identifier, bundle: nil),
                                 forCellReuseIdentifier: PlayerInfoTableCell.identifier)
@@ -103,6 +113,11 @@ class PlayerViewController: BaseViewController {
         nvc.pushViewController(vc, animated: true)
     }
     
+    @objc private func didSwipeRefresh() {
+        self.refresher.beginRefreshing()
+        self.fetchData()
+    }
+    
     func fetchData() {
         guard let id = self.playerId else {
             return
@@ -116,14 +131,16 @@ class PlayerViewController: BaseViewController {
                     self?.tableView.isHidden = false
                     self?.tableView.reloadData()
                     self?.setupNavigationButtons()
+                    self?.refresher.endRefreshing()
                 }
             case .failure(let error):
                 self?.playerDetailInfo = nil
                 DispatchQueue.main.async {
                     UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                     self?.spinner.stopAnimating()
-                    self?.tableView.isHidden = true
+                    self?.tableView.isHidden = false
                     self?.tableView.reloadData()
+                    self?.refresher.endRefreshing()
                 }
             }
         }

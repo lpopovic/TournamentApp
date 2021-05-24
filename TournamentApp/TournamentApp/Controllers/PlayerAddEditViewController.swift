@@ -313,6 +313,13 @@ class PlayerAddEditViewController: BaseViewController {
         }
     }
     
+    private func okActionForSuccessfulCreatePlayer() -> UIAlertAction {
+        return UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            self?.delegate?.playerIsCreated()
+            self?.closeViewController()
+        })
+    }
+    
     private func fetchPostData() {
         guard let firstName = self.firstNameTextField.text,
               let lastName = self.lastNameTextField.text,
@@ -361,12 +368,6 @@ class PlayerAddEditViewController: BaseViewController {
         }
     }
     
-    private func okActionForSuccessfulCreatePlayer() -> UIAlertAction {
-        return UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
-            self?.delegate?.playerIsCreated()
-            self?.closeViewController()
-        })
-    }
 }
 
 extension PlayerAddEditViewController: ImagePickerViewDelegate {

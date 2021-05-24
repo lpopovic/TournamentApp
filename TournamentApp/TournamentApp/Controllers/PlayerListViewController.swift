@@ -67,9 +67,9 @@ class PlayerListViewController: BaseViewController {
     private func setupRefreshControl() {
         self.refresher = UIRefreshControl()
         self.tableView.addSubview(refresher)
-        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
-        refresher.tintColor = .label
-        refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
+        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
+        self.refresher.tintColor = .label
+        self.refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
     }
     
     private func setupTableView() {
