@@ -65,6 +65,7 @@ class HomeViewController: BaseViewController {
             return
         }
         nvc.pushViewController(vc, animated: true)
+        HapticsManager.shared.vibrateForSelection()
         
     }
     

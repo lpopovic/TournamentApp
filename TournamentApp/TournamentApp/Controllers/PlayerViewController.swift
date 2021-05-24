@@ -108,6 +108,7 @@ class PlayerViewController: BaseViewController {
     
     @objc private func didTapDeleteButton() {
         self.showDialogForDeletePlayer()
+        HapticsManager.shared.vibrateForSelection()
     }
     
     @objc private func didTapEditButton() {
@@ -121,6 +122,7 @@ class PlayerViewController: BaseViewController {
             return
         }
         nvc.pushViewController(vc, animated: true)
+        HapticsManager.shared.vibrateForSelection()
     }
     
     @objc private func didSwipeRefresh() {
@@ -176,6 +178,7 @@ class PlayerViewController: BaseViewController {
                     message: message,
                     action: action
                 )
+                HapticsManager.shared.vibrate(for: .success)
             case .failure(let error):
                 DispatchQueue.main.async {
                     UIAlertController.showAlertUserMessage(
@@ -183,6 +186,7 @@ class PlayerViewController: BaseViewController {
                         title: nil,
                         message: error.localizedDescription
                     )
+                    HapticsManager.shared.vibrate(for: .error)
                 }
             }
         }
@@ -248,9 +252,6 @@ extension PlayerViewController: PlayerAddEditViewControllerDelegate {
     func playerIsCreated() {}
     
     func playerIsEdited(player: PlayerDetail) {
-        guard let id = self.playerId else {
-            return
-        }
         self.isPlayerEdit = true
         self.playerDetailInfo = player
         self.tableView.reloadData()

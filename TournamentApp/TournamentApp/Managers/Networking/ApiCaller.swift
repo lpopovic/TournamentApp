@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireURLCache5
 
 final class ApiCaller {
     
@@ -20,6 +21,7 @@ final class ApiCaller {
         "x-tournament-id": "\(GlobalConstants.tournomentId)",
         "Accept": "application/json",
     ]
+    private let cacheAge = 30
     
     private init () {}
     
@@ -121,7 +123,7 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }
+            }.cache(maxAge: self.cacheAge)
     }
     
     func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void) {
@@ -199,7 +201,7 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }
+            }.cache(maxAge: self.cacheAge)
     }
     
     func postCreatePlayer(firstName: String,

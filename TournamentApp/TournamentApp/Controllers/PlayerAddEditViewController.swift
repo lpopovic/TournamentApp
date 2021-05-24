@@ -215,6 +215,7 @@ class PlayerAddEditViewController: BaseViewController {
                     self.fetchPostData()
                 } else {
                     UIAlertController.showAlertUserMessage(self, title: nil, message: message)
+                    HapticsManager.shared.vibrate(for: .error)
                 }
             }
         } else {
@@ -223,6 +224,7 @@ class PlayerAddEditViewController: BaseViewController {
                     self.chooseWhatParamsToUpdate()
                 } else {
                     UIAlertController.showAlertUserMessage(self, title: nil, message: message)
+                    HapticsManager.shared.vibrate(for: .error)
                 }
             }
         }
@@ -328,7 +330,7 @@ class PlayerAddEditViewController: BaseViewController {
               let points = Int(pointsText),
               let dateOfBirthText = self.datePickerTextField.text,
               let dateOfBirth = dateOfBirthText.toDate(withFormat: Date.dateOfBirthFormat),
-              let photoImage = self.photoImageView.image,
+              let _ = self.photoImageView.image,
               let player = self.playerDetailInfo,
               let playerId = self.playerId
         else {
@@ -439,6 +441,7 @@ class PlayerAddEditViewController: BaseViewController {
                         message: model.message,
                         action: action
                     )
+                    HapticsManager.shared.vibrate(for: .success)
                 }
             case .failure(let error):
                 
@@ -449,12 +452,12 @@ class PlayerAddEditViewController: BaseViewController {
                         title: nil,
                         message: error.localizedDescription
                     )
+                    HapticsManager.shared.vibrate(for: .error)
                 }
             }
         }
     }
     
-    //MARK:FETCH
     private func fetchPutData(for id: Int, with params: [String: Any]) {
         self.spinner.startAnimating()
         ApiCaller.shared.putDetailPlayer(
@@ -475,6 +478,7 @@ class PlayerAddEditViewController: BaseViewController {
                     message: model.message,
                     action: action
                 )
+                HapticsManager.shared.vibrate(for: .success)
             case .failure(let error):
                 
                 DispatchQueue.main.async {
@@ -484,6 +488,7 @@ class PlayerAddEditViewController: BaseViewController {
                         title: nil,
                         message: error.localizedDescription
                     )
+                    HapticsManager.shared.vibrate(for: .error)
                 }
             }
         }

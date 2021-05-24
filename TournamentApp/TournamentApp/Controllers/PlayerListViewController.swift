@@ -96,6 +96,7 @@ class PlayerListViewController: BaseViewController {
             return
         }
         nvc.pushViewController(vc, animated: true)
+        HapticsManager.shared.vibrateForSelection()
     }
     
     @objc private func didTapAddDrawButton() {
@@ -105,6 +106,7 @@ class PlayerListViewController: BaseViewController {
             return
         }
         nvc.pushViewController(vc, animated: true)
+        HapticsManager.shared.vibrateForSelection()
     }
     
     private func didTapTableViewCell(with model: Player) {
@@ -123,8 +125,6 @@ class PlayerListViewController: BaseViewController {
     
     @objc private func didSwipeRefresh() {
         self.refresher.beginRefreshing()
-        self.playerList.removeAll()
-        self.tableView.reloadData()
         self.page = 1
         self.fetchData()
     }
@@ -196,8 +196,6 @@ extension PlayerListViewController: UITableViewDataSource {
                             self.playerList.sort{ $0.getPoints() > $1.getPoints() }
                             self.page += 1
                             self.tableView.reloadData()
-                        } else {
-                            UIAlertController.showAlertUserMessage(self, title: nil, message: "Currently no more players!")
                         }
                         spinner.stopAnimating()
                         self.tableView.tableFooterView = nil
@@ -222,6 +220,7 @@ extension PlayerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.didTapTableViewCell(with: self.playerList[indexPath.row])
+        HapticsManager.shared.vibrateForSelection()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
