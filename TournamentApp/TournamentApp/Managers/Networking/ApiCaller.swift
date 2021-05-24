@@ -45,7 +45,9 @@ final class ApiCaller {
              points,
              dateOfBirth,
              isProfessional,
-             profileImageUrl
+             profileImageUrl,
+             limit,
+             page
     }
     
     func getAllPlayerList(completion: @escaping (Result<[Player], Error>) -> Void) {
@@ -66,6 +68,41 @@ final class ApiCaller {
                             completion(.failure(ApiError.runtimeError(message: result.message)))
                         }
                         
+                        
+                    } catch let error {
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    guard let data = response.data else {
+                        completion(.failure(error))
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                        
+                        completion(.failure(ApiError.runtimeError(message: result.message)))
+                        
+                    } catch let error {
+                        completion(.failure(error))
+                    }
+                }
+            }
+    }
+    
+    func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], Error>) -> Void) {
+        self.sessionManager.request(APIUrl.shared.players + "?\(ApiParameters.limit)=\(limit)&\(ApiParameters.page)=\(page)&", method: .get, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    guard let data = response.data else {
+                        completion(.failure(ApiError.failedToGetData))
+                        return
+                    }
+                    do {
+                        let result = try JSONDecoder().decode(PlayerListResponse.self, from: data)
+                        
+                        completion(.success(result.data))
                         
                     } catch let error {
                         completion(.failure(error))

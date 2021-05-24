@@ -19,6 +19,8 @@ class PlayerListViewController: BaseViewController {
     
     static let storyboardIdentifier = "PlayerListViewController"
     var playerList: [Player] = [Player]()
+    var page = 1
+    let limit = 20
     
     // MARK: - Life Cycle
     
@@ -121,15 +123,19 @@ class PlayerListViewController: BaseViewController {
     
     @objc private func didSwipeRefresh() {
         self.refresher.beginRefreshing()
+        self.playerList.removeAll()
+        self.tableView.reloadData()
+        self.page = 1
         self.fetchData()
     }
     
     private func fetchData() {
-        ApiCaller.shared.getAllPlayerList { [weak self] (result) in
+        ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
             switch result {
             case .success(let model):
                 self?.playerList = model
-                self?.playerList.sort{ $0.getPoints() > $1.getPoints() } 
+                self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                self?.page += 1
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                     self?.tableView.isHidden = false
@@ -166,28 +172,49 @@ extension PlayerListViewController: UITableViewDataSource {
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    //        let lastSectionIndex = tableView.numberOfSections - 1
-    //        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-    //
-    //        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex {
-    //            let spinner = UIActivityIndicatorView(style: .large)
-    //            spinner.color = .label
-    //            spinner.startAnimating()
-    //            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-    //
-    //            self.tableView.tableFooterView = spinner
-    //            self.tableView.tableFooterView?.isHidden = false
-    //
-    //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-    //                self.numberOfRows += 10
-    //                spinner.stopAnimating()
-    //                self.tableView.tableFooterView = nil
-    //                self.tableView.tableFooterView?.isHidden = true
-    //                self.tableView.reloadData()
-    //            }
-    //        }
-    //    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && self.playerList.count >= limit {
+            let spinner = UIActivityIndicatorView(style: .large)
+            spinner.color = .label
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+            
+            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView?.isHidden = false
+            
+            
+            
+            ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) {  (result) in
+                switch result {
+                case .success(let model):
+                    DispatchQueue.main.async {
+                        if model.count > 0 {
+                            self.playerList = self.playerList + model
+                            self.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                            self.page += 1
+                            self.tableView.reloadData()
+                        } else {
+                            UIAlertController.showAlertUserMessage(self, title: nil, message: "Currently no more players!")
+                        }
+                        spinner.stopAnimating()
+                        self.tableView.tableFooterView = nil
+                        self.tableView.tableFooterView?.isHidden = true
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        spinner.stopAnimating()
+                        self.tableView.tableFooterView = nil
+                        self.tableView.tableFooterView?.isHidden = true
+                        self.tableView.reloadData()
+                        UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
     
 }
 
@@ -206,10 +233,10 @@ extension PlayerListViewController: PlayerViewControllerDelegate {
         if let index = self.playerList.firstIndex(where: { $0.id == id }) {
             let item = self.playerList[index]
             guard item.firstName != player.firstName ||
-                  item.lastName != player.lastName ||
-                  item.points != player.points
-                  else { return }
-        
+                    item.lastName != player.lastName ||
+                    item.points != player.points
+            else { return }
+            
             DispatchQueue.main.async {
                 self.playerList[index] = Player(id: id,
                                                 firstName: player.firstName,
@@ -218,15 +245,15 @@ extension PlayerListViewController: PlayerViewControllerDelegate {
                                                 tournament_id: player.tournament_id)
                 self.playerList.sort{ $0.getPoints() > $1.getPoints() }
                 self.tableView.reloadData()
-              
+                
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                 
-             
+                
             }
-           
+            
         }
-      
+        
     }
     
     func playerIsDeleted(with id: Int) {
