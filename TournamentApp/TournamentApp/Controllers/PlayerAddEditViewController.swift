@@ -22,6 +22,8 @@ class PlayerAddEditViewController: BaseViewController {
     let datePicker = UIDatePicker()
     var imagePicker: ImagePickerView!
     var activeTextField : UITextField!
+    let placeholderImage = UIImage(systemName: "photo")
+    let addImage = UIImage(systemName: "person.fill")
     
     // MARK: - Variable
     
@@ -87,8 +89,22 @@ class PlayerAddEditViewController: BaseViewController {
                                      selector: #selector(keyboardWillHide(notification:)))
     }
     
+    
     private func setupDatePickerInTextField(){
+        let yearsToSubForMin = -50
+        let yearsToSubForMax = -12
+        let currentDate = Date.getCurrentDate()
+        var dateComponent = DateComponents()
+        
+        dateComponent.year = yearsToSubForMin
+        let minDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        dateComponent.year = yearsToSubForMax
+        let maxDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        
+        datePicker.minimumDate = minDate
+        datePicker.maximumDate = maxDate
         datePicker.datePickerMode = .date
+        
         if #available(iOS 13.4, *) {
             datePicker.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 250.0)
             datePicker.preferredDatePickerStyle = .wheels
@@ -108,11 +124,10 @@ class PlayerAddEditViewController: BaseViewController {
     }
     
     private func setupPhotoImageView() {
-        self.photoImageView.image = UIImage(systemName: "photo")
+        self.photoImageView.image = addImage
         self.photoImageView.clipsToBounds = true
         self.photoImageView.contentMode = .scaleAspectFill
-        self.photoImageView.layer.cornerRadius =  self.photoImageView.frame.size.width / 2
-        self.photoImageView.layer.borderColor = UIColor.systemBlue.cgColor
+        self.photoImageView.layer.borderColor = UIColor.label.cgColor
         self.photoImageView.layer.borderWidth = 0.7
         
         let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPhotoImageView(tapGestureRecognizer:)))
@@ -159,7 +174,17 @@ class PlayerAddEditViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapDoneButton() {
-        self.closeViewController()
+        if self.typeOfVC == .add {
+            self.validateUserInputs { (successful, message) in
+                if successful {
+                    // MARK: API CALL 
+                } else {
+                    UIAlertController.showApiCallerMessage(self, title: nil, message: message)
+                }
+            }
+        } else {
+            self.closeViewController()
+        }
     }
     
     @objc private func didTapCameraButton(sender: UIButton) {
@@ -212,6 +237,47 @@ class PlayerAddEditViewController: BaseViewController {
         }, completion: nil)
     }
     
+    private func validateUserInputs(completion: @escaping (Bool, String) -> Void) {
+        guard let firstName = self.firstNameTextField.text,
+              let lastName = self.lastNameTextField.text,
+              let description = self.descriptionTextField.text,
+              let points = self.pointsTextField.text,
+              let dateOfBirth = self.datePickerTextField.text,
+              let photoImage = self.photoImageView.image,
+              String.Validation.isNotEmpty(value: firstName).value,
+              String.Validation.isNotEmpty(value: lastName).value,
+              String.Validation.isNotEmpty(value: description).value,
+              String.Validation.isNotEmpty(value: points).value,
+              String.Validation.isNotEmpty(value: dateOfBirth).value
+        else {
+            completion(false, "Fill all fields!")
+            return
+        }
+        
+        if  String.Validation.isText(value: firstName).value == true &&
+                String.Validation.isLastNameText(value: lastName).value == true &&
+                String.Validation.isNotEmpty(value: description).value == true &&
+                String.Validation.isPositiveNumber(value: points).value == true &&
+                String.Validation.isDate(value: dateOfBirth).value == true &&
+                photoImage != addImage {
+            completion(true,"")
+        } else {
+            if  !String.Validation.isText(value: firstName).value {
+                completion(false,"First name is not valid.")
+            } else if !String.Validation.isLastNameText(value: lastName).value {
+                completion(false,"Last name is not valid.")
+            } else  if !String.Validation.isDate(value: dateOfBirth).value {
+                completion(false,"Date of birth is not valid.")
+            } else if !String.Validation.isNotEmpty(value: description).value {
+                completion(false,"Description is not valid.")
+            } else if !String.Validation.isPositiveNumber(value: points).value {
+                completion(false, "Set valid positive number.")
+            } else if photoImage == addImage {
+                completion(false, "Add Photo.")
+            }
+            
+        }
+    }
 }
 
 extension PlayerAddEditViewController: ImagePickerViewDelegate {
