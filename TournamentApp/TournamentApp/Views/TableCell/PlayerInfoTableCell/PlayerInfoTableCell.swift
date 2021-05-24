@@ -35,7 +35,7 @@ class PlayerInfoTableCell: UITableViewCell {
         self.setupPointsLabel()
         self.setupDateOfBirthLabel()
         self.setupIsProfessionalLabel()
-      
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -79,11 +79,11 @@ class PlayerInfoTableCell: UITableViewCell {
         self.dateOfBirthLabel.text = "\(model.getStringDateOfBirth() ?? "Date of birth undefined")"
         self.pointsLabel.text = "Scored points: \(model.getPoints().formatedWithSeparator)"
         self.isProfessionalLabel.text = "Professional athlete: \(model.getStringIsProfessional())"
-            self.photoImageView.sd_setImage(
-                with: URL(string: model.profileImageUrl ?? ""),
-                placeholderImage: UIImage(systemName: "photo"),
-                completed: nil
-            )
+        self.photoImageView.sd_setImage(
+            with: URL(string: model.profileImageUrl ?? ""),
+            placeholderImage: UIImage(systemName: "photo"),
+            completed: nil
+        )
     }
     
 }

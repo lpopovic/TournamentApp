@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol PlayerAddEditViewControllerDelegate: AnyObject{
     func playerIsCreated()
@@ -35,6 +36,8 @@ class PlayerAddEditViewController: BaseViewController {
     static let storyboardIdentifier = "PlayerAddEditViewController"
     var typeOfVC: TypeViewController = .add
     weak var delegate: PlayerAddEditViewControllerDelegate?
+    var playerId: Int?
+    var playerDetailInfo: PlayerDetail?
     
     enum TypeViewController {
         case edit, add
@@ -63,6 +66,10 @@ class PlayerAddEditViewController: BaseViewController {
         self.setupTextFields()
         self.setupSpinner()
         self.setupKeyboard()
+        
+        if self.typeOfVC == .edit {
+            self.initialDataForEditInputs()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -83,7 +90,9 @@ class PlayerAddEditViewController: BaseViewController {
             target: self,
             action:#selector(didTapCameraButton)
         )
-        navigationItem.rightBarButtonItems = [doneButton, cameraButton]
+        let rightBarButtonItems = [doneButton, cameraButton]
+        
+        navigationItem.rightBarButtonItems = rightBarButtonItems
     }
     
     func setupKeyboard() {
@@ -175,6 +184,24 @@ class PlayerAddEditViewController: BaseViewController {
         self.spinner.tintColor = .label
         self.spinner.hidesWhenStopped = true
         self.spinner.style = .large
+    }
+    
+    private func initialDataForEditInputs() {
+        guard let player = self.playerDetailInfo else {
+            return
+        }
+        
+        self.photoImageView.sd_setImage(
+            with: URL(string: player.profileImageUrl ?? ""),
+            placeholderImage: placeholderImage,
+            completed: nil
+        )
+        self.firstNameTextField.text = player.firstName
+        self.lastNameTextField.text = player.lastName
+        self.datePickerTextField.text = "\(player.getStringDateOfBirth() ?? "")"
+        self.descriptionTextField.text = player.description
+        self.pointsTextField.text = "\(player.getPoints())"
+        self.isProfessionalSwitch.setOn(player.isProfessional == 1 ? true : false, animated: true)
     }
     
     // MARK: - Actions

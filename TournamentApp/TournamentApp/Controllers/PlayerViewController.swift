@@ -94,6 +94,8 @@ class PlayerViewController: BaseViewController {
     @objc private func didTapEditButton() {
         guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
         vc.typeOfVC = .edit
+        vc.playerId = self.playerId
+        vc.playerDetailInfo = self.playerDetailInfo
         
         guard let nvc = self.navigationController else {
             return
