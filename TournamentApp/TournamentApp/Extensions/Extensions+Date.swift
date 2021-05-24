@@ -10,7 +10,10 @@ import Foundation
 extension Date {
     func getDateOfBirthFormatString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.dateFormat = Date.dateOfBirthFormat
         return dateFormatter.string(from: self)
     }
+    
+    static let dateOfBirthFormat: String = "YYYY-MM-dd"
+    static let dateOfBirthFullFormat: String = "yyyy-MM-dd HH:mm:ss"
 }
