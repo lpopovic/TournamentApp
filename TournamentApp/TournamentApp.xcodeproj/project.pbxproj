@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375641265AE36B009EE660 /* Extensions+Date.swift */; };
+		D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375644265B0301009EE660 /* ImagePickerView.swift */; };
 		D0394370265847DE0088A386 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039436F265847DE0088A386 /* HomeViewController.swift */; };
 		D0394373265848210088A386 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394372265848210088A386 /* PlayerListViewController.swift */; };
 		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
@@ -49,6 +50,7 @@
 		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0375641265AE36B009EE660 /* Extensions+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Date.swift"; sourceTree = "<group>"; };
+		D0375644265B0301009EE660 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		D039436F265847DE0088A386 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0394372265848210088A386 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 				A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0375647265BC2BF009EE660 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D0375644265B0301009EE660 /* ImagePickerView.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		D039437F26584C680088A386 /* Haptics */ = {
@@ -219,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				D039438A265850BC0088A386 /* TableCell */,
+				D0375647265BC2BF009EE660 /* Other */,
 				D094F6992658225D0011EEA9 /* Main.storyboard */,
 			);
 			path = Views;
@@ -429,6 +440,7 @@
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
 				D03943C92659B05F0088A386 /* PlayerDetailResponse.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
+				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
 				D039438226584DA50088A386 /* APIUrl.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,

@@ -162,8 +162,8 @@ class PlayerViewController: BaseViewController {
     func showDialogForDeletePlayer() {
         let alert = UIAlertController(title: "Are you sure?", message: "You can't undo this action.", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-            self.fetchDeleteData()
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
+            self?.fetchDeleteData()
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         

@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     // MARK: - Variable
     let storyboardMain = UIStoryboard(name: "Main", bundle: nil)
     
@@ -28,5 +28,12 @@ class BaseViewController: UIViewController {
         }
         nvc.popViewController(animated: true)
     }
-
+    
+    func subscribeToNotification(_ notification: NSNotification.Name, selector: Selector) {
+        NotificationCenter.default.addObserver(self, selector: selector, name: notification, object: nil)
+    }
+    
+    func unsubscribeFromAllNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
