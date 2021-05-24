@@ -88,6 +88,7 @@ class PlayerListViewController: BaseViewController {
     @objc private func didTapAddPlayerButton() {
         guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
         vc.typeOfVC = .add
+        vc.delegate = self
         
         guard let nvc = self.navigationController else {
             return
@@ -142,7 +143,7 @@ class PlayerListViewController: BaseViewController {
                     self?.tableView.isHidden = false
                     self?.spinner.stopAnimating()
                     self?.refresher.endRefreshing()
-                    UIAlertController.showApiCallerMessage(self, title: nil, message: error.localizedDescription)
+                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                 }
             }
         }
@@ -211,4 +212,15 @@ extension PlayerListViewController: PlayerViewControllerDelegate {
     }
     
     
+}
+
+extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
+    func playerIsCreated() {
+        self.spinner.startAnimating()
+        self.fetchData()
+    }
+    
+    func playerIsEdited() {
+        
+    }
 }

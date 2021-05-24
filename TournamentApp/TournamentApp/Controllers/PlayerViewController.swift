@@ -118,7 +118,7 @@ class PlayerViewController: BaseViewController {
             case .failure(let error):
                 self?.playerDetailInfo = nil
                 DispatchQueue.main.async {
-                    UIAlertController.showApiCallerMessage(self, title: nil, message: error.localizedDescription)
+                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                     self?.spinner.stopAnimating()
                     self?.tableView.isHidden = true
                     self?.tableView.reloadData()
@@ -141,7 +141,7 @@ class PlayerViewController: BaseViewController {
                     self?.closeViewController()
                 })
                 
-                UIAlertController.showApiCallerMessage(
+                UIAlertController.showAlertUserMessage(
                     self,
                     title: "Successfully",
                     message: message,
@@ -149,7 +149,7 @@ class PlayerViewController: BaseViewController {
                 )
             case .failure(let error):
                 DispatchQueue.main.async {
-                    UIAlertController.showApiCallerMessage(
+                    UIAlertController.showAlertUserMessage(
                         self,
                         title: nil,
                         message: error.localizedDescription

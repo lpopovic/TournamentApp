@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
-    static func showApiCallerMessage(_ viewController: UIViewController?, title: String?, message: String) {
+    static func showAlertUserMessage(_ viewController: UIViewController?, title: String?, message: String) {
         let alertVC = UIAlertController(
             title: title ?? "Ooops",
             message: message,
@@ -21,7 +21,7 @@ extension UIAlertController {
         vc.present(alertVC, animated: true, completion: nil)
     }
     
-    static func showApiCallerMessage(_ viewController: UIViewController?, title: String?, message: String, action: UIAlertAction) {
+    static func showAlertUserMessage(_ viewController: UIViewController?, title: String?, message: String, action: UIAlertAction) {
         let alertVC = UIAlertController(
             title: title ?? "Ooops",
             message: message,

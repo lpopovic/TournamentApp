@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol PlayerAddEditViewControllerDelegate: AnyObject{
+    func playerIsCreated()
+    func playerIsEdited()
+}
+
 class PlayerAddEditViewController: BaseViewController {
     
     // MARK: - @IBOutlet
@@ -29,6 +34,7 @@ class PlayerAddEditViewController: BaseViewController {
     
     static let storyboardIdentifier = "PlayerAddEditViewController"
     var typeOfVC: TypeViewController = .add
+    weak var delegate: PlayerAddEditViewControllerDelegate?
     
     enum TypeViewController {
         case edit, add
@@ -177,9 +183,10 @@ class PlayerAddEditViewController: BaseViewController {
         if self.typeOfVC == .add {
             self.validateUserInputs { (successful, message) in
                 if successful {
-                    // MARK: API CALL 
+                    // MARK: API CALL
+                    self.fetchPostData()
                 } else {
-                    UIAlertController.showApiCallerMessage(self, title: nil, message: message)
+                    UIAlertController.showAlertUserMessage(self, title: nil, message: message)
                 }
             }
         } else {
@@ -277,6 +284,61 @@ class PlayerAddEditViewController: BaseViewController {
             }
             
         }
+    }
+    
+    private func fetchPostData() {
+        guard let firstName = self.firstNameTextField.text,
+              let lastName = self.lastNameTextField.text,
+              let description = self.descriptionTextField.text,
+              let points = self.pointsTextField.text,
+              let dateOfBirth = self.datePickerTextField.text,
+              let photoImage = self.photoImageView.image,
+              let isProfessional = self.isProfessionalSwitch.isOn ? 1 : 0,
+              let photoImageData = photoImage.jpeg(.medium)
+        else {
+            return
+        }
+        self.spinner.startAnimating()
+        ApiCaller.shared.postCreatePlayer(firstName: firstName,
+                                          lastName: lastName,
+                                          description: description,
+                                          points: points,
+                                          dateOfBirth: dateOfBirth,
+                                          isProfessional: isProfessional,
+                                          profileImageUrl: photoImageData) { [weak self] (result) in
+            
+            switch result {
+            case .success(let model):
+                DispatchQueue.main.async {
+                    self?.spinner.stopAnimating()
+                    guard let strongSelf = self else {return}
+                    let action = strongSelf.okActionForSuccessfulCreatePlayer()
+                    UIAlertController.showAlertUserMessage(
+                        self,
+                        title: "Successfully",
+                        message: model.message,
+                        action: action
+                    )
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self?.spinner.stopAnimating()
+                    UIAlertController.showAlertUserMessage(
+                        self,
+                        title: nil,
+                        message: error.localizedDescription
+                    )
+                }
+            }
+        }
+    }
+    
+    private func okActionForSuccessfulCreatePlayer() -> UIAlertAction {
+        return UIAlertAction(title: "Ok", style: .default, handler: { [weak self] _ in
+            self?.delegate?.playerIsCreated()
+            self?.closeViewController()
+        })
     }
 }
 
