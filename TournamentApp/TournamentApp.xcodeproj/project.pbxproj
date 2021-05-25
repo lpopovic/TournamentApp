@@ -117,6 +117,13 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		D0375697265D8EE4009EE660 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
 		D039437F26584C680088A386 /* Haptics */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +235,7 @@
 		D094F6AA265822AF0011EEA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D0375697265D8EE4009EE660 /* CollectionCell */,
 				D039438A265850BC0088A386 /* TableCell */,
 				D0375647265BC2BF009EE660 /* Other */,
 				D094F6992658225D0011EEA9 /* Main.storyboard */,

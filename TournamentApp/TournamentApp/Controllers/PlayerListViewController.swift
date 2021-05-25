@@ -19,8 +19,8 @@ class PlayerListViewController: BaseViewController {
     
     static let storyboardIdentifier = "PlayerListViewController"
     var playerList: [Player] = [Player]()
-    var page = 1
-    let limit = 20
+    var page: Int = 1
+    let limit: Int = 20
     
     // MARK: - Life Cycle
     
@@ -31,8 +31,7 @@ class PlayerListViewController: BaseViewController {
         self.setupSpinner()
         self.setupRefreshControl()
         
-        self.spinner.startAnimating()
-        self.fetchData()
+        self.getInitPlayerList()
     }
     
     override func viewDidLayoutSubviews() {
@@ -155,6 +154,12 @@ class PlayerListViewController: BaseViewController {
         }
     }
     
+    private func getInitPlayerList() {
+        self.spinner.startAnimating()
+        self.page = 1
+        self.fetchData()
+    }
+    
 }
 
 extension PlayerListViewController: UITableViewDataSource {
@@ -266,7 +271,6 @@ extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
     func playerIsEdited(player: PlayerDetail) { }
     
     func playerIsCreated() {
-        self.spinner.startAnimating()
-        self.fetchData()
+        self.getInitPlayerList()
     }
 }

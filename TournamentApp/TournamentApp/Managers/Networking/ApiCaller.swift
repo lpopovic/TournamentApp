@@ -55,7 +55,7 @@ final class ApiCaller {
     func getAllPlayerList(completion: @escaping (Result<[Player], Error>) -> Void) {
         self.sessionManager.request(APIUrl.shared.players, method: .get, headers: headers)
             .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
+            .responseJSON (completionHandler: { (response) in
                 switch response.result {
                 case .success:
                     guard let data = response.data else {
@@ -88,13 +88,13 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }
+            }, autoClearCache: true).cache(maxAge: self.cacheAge)
     }
     
     func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], Error>) -> Void) {
         self.sessionManager.request(APIUrl.shared.players + "?\(ApiParameters.limit)=\(limit)&\(ApiParameters.page)=\(page)&", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
+            .responseJSON (completionHandler: { (response) in
                 switch response.result {
                 case .success:
                     guard let data = response.data else {
@@ -123,7 +123,7 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }.cache(maxAge: self.cacheAge)
+            }, autoClearCache: true).cache(maxAge: self.cacheAge)
     }
     
     func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void) {
@@ -168,7 +168,7 @@ final class ApiCaller {
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void) {
         self.sessionManager.request(APIUrl.shared.players + "/\(id)", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
+            .responseJSON (completionHandler: { (response) in
                 switch response.result {
                 case .success:
                     guard let data = response.data else {
@@ -201,7 +201,7 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }.cache(maxAge: self.cacheAge)
+            }, autoClearCache: true).cache(maxAge: self.cacheAge)
     }
     
     func postCreatePlayer(firstName: String,
@@ -233,7 +233,7 @@ final class ApiCaller {
                 
             }
             
-        }, to: APIUrl.shared.players+"/1270", usingThreshold: UInt64.init(), method: .post, headers: postHeader)
+        }, to: APIUrl.shared.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
         .validate(statusCode: 200..<300)
         .responseJSON { (response) in
             
