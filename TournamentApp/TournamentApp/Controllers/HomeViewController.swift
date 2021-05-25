@@ -59,7 +59,7 @@ class HomeViewController: BaseViewController {
     
     @objc private func didTap(_ sender: UIButton) {
        
-        let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier)
+        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
         
         guard let nvc = self.navigationController else {
             return

@@ -26,7 +26,6 @@ class PlayerTableViewCell: UITableViewCell {
         self.contentView.clipsToBounds = true
         self.backgroundColor = .secondarySystemBackground
         self.contentView.backgroundColor = .secondarySystemBackground
-        self.contentView.clipsToBounds = true
         self.setupFirstNameLabel()
         self.setupLastNameLabel()
         self.setupRankLabel()

@@ -23,7 +23,6 @@ class BioTableViewCell: UITableViewCell {
         self.contentView.clipsToBounds = true
         self.backgroundColor = .secondarySystemBackground
         self.contentView.backgroundColor = .secondarySystemBackground
-        self.contentView.clipsToBounds = true
         self.selectionStyle = .none
         
         self.setupTitleLabel()

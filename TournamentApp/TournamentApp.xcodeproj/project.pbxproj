@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375641265AE36B009EE660 /* Extensions+Date.swift */; };
 		D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375644265B0301009EE660 /* ImagePickerView.swift */; };
+		D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0375699265D9588009EE660 /* TournamentCollectionViewCell.swift */; };
+		D037569C265D9588009EE660 /* TournamentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D037569A265D9588009EE660 /* TournamentCollectionViewCell.xib */; };
+		D03756A9265D9E7A009EE660 /* TournamentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03756A7265D9E7A009EE660 /* TournamentTableViewCell.swift */; };
+		D03756AA265D9E7A009EE660 /* TournamentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03756A8265D9E7A009EE660 /* TournamentTableViewCell.xib */; };
 		D0394370265847DE0088A386 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039436F265847DE0088A386 /* HomeViewController.swift */; };
 		D0394373265848210088A386 /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394372265848210088A386 /* PlayerListViewController.swift */; };
 		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
@@ -51,6 +55,10 @@
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0375641265AE36B009EE660 /* Extensions+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Date.swift"; sourceTree = "<group>"; };
 		D0375644265B0301009EE660 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		D0375699265D9588009EE660 /* TournamentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCollectionViewCell.swift; sourceTree = "<group>"; };
+		D037569A265D9588009EE660 /* TournamentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentCollectionViewCell.xib; sourceTree = "<group>"; };
+		D03756A7265D9E7A009EE660 /* TournamentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentTableViewCell.swift; sourceTree = "<group>"; };
+		D03756A8265D9E7A009EE660 /* TournamentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentTableViewCell.xib; sourceTree = "<group>"; };
 		D039436F265847DE0088A386 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0394372265848210088A386 /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -120,8 +128,27 @@
 		D0375697265D8EE4009EE660 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
+				D037569E265D9591009EE660 /* TournamentCollectionViewCell */,
 			);
 			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		D037569E265D9591009EE660 /* TournamentCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D0375699265D9588009EE660 /* TournamentCollectionViewCell.swift */,
+				D037569A265D9588009EE660 /* TournamentCollectionViewCell.xib */,
+			);
+			path = TournamentCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		D03756A0265D9E29009EE660 /* TournomentTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D03756A7265D9E7A009EE660 /* TournamentTableViewCell.swift */,
+				D03756A8265D9E7A009EE660 /* TournamentTableViewCell.xib */,
+			);
+			path = TournomentTableViewCell;
 			sourceTree = "<group>";
 		};
 		D039437F26584C680088A386 /* Haptics */ = {
@@ -144,6 +171,7 @@
 		D039438A265850BC0088A386 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				D03756A0265D9E29009EE660 /* TournomentTableViewCell */,
 				D03943D52659D3120088A386 /* BioTableVIewCell */,
 				D03943CB2659B5650088A386 /* PlayerInfoTableCell */,
 				D03943A02659246E0088A386 /* PlayerTableViewCell */,
@@ -377,8 +405,10 @@
 				D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */,
 				D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */,
 				D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */,
+				D037569C265D9588009EE660 /* TournamentCollectionViewCell.xib in Resources */,
 				D03943CF2659B5860088A386 /* PlayerInfoTableCell.xib in Resources */,
 				D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */,
+				D03756AA265D9E7A009EE660 /* TournamentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +469,7 @@
 				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
 				D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
+				D03756A9265D9E7A009EE660 /* TournamentTableViewCell.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
@@ -454,6 +485,7 @@
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
+				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
 				D03943AF2659924F0088A386 /* PlayerListResponse.swift in Sources */,

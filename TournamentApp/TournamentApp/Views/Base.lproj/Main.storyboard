@@ -92,34 +92,6 @@
             </objects>
             <point key="canvasLocation" x="1474" y="94"/>
         </scene>
-        <!--Tournament Bracket View Controller-->
-        <scene sceneID="N2Y-o5-MEP">
-            <objects>
-                <viewController storyboardIdentifier="TournamentBracketViewController" id="9Vn-Zo-eCm" customClass="TournamentBracketViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SbN-5p-ZdQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TournamentBracketViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqB-mQ-jae">
-                                <rect key="frame" x="29.5" y="273.5" width="261" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="dm1-Ua-sQU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="IqB-mQ-jae" firstAttribute="centerX" secondItem="SbN-5p-ZdQ" secondAttribute="centerX" id="Q7A-MO-uFI"/>
-                            <constraint firstItem="IqB-mQ-jae" firstAttribute="centerY" secondItem="SbN-5p-ZdQ" secondAttribute="centerY" id="Qrf-rY-7ng"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="jB5-N2-Cux"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uRJ-e8-dCS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1474" y="834"/>
-        </scene>
         <!--Player Add Edit View Controller-->
         <scene sceneID="cPt-7x-iMp">
             <objects>
@@ -314,6 +286,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFF-qW-cRU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-623" y="94"/>
+        </scene>
+        <!--Tournament Bracket View Controller-->
+        <scene sceneID="gPf-3N-Oed">
+            <objects>
+                <viewController storyboardIdentifier="TournamentBracketViewController" id="EMl-nC-vsc" customClass="TournamentBracketViewController" customModule="TournamentApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H5D-oC-rs2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNz-YE-cvM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ani-Lx-ejb">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                                        <subviews>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yPJ-r3-Dyd">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pMT-wA-6Dr">
+                                                    <size key="itemSize" width="339" height="351"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="qYs-99-Yrf" customClass="CollCell" customModule="Demo_Bracket_UI" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="24.5" width="339" height="351"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="351"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </view>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="yPJ-r3-Dyd" firstAttribute="top" secondItem="ani-Lx-ejb" secondAttribute="top" id="1D7-Dl-FBt"/>
+                                            <constraint firstItem="yPJ-r3-Dyd" firstAttribute="leading" secondItem="ani-Lx-ejb" secondAttribute="leading" id="P4I-8p-1KG"/>
+                                            <constraint firstAttribute="bottom" secondItem="yPJ-r3-Dyd" secondAttribute="bottom" id="PZw-Nv-mZ9"/>
+                                            <constraint firstAttribute="height" constant="400" id="fJF-TL-vYr"/>
+                                            <constraint firstAttribute="width" constant="300" id="lDz-EK-tCi"/>
+                                            <constraint firstAttribute="trailing" secondItem="yPJ-r3-Dyd" secondAttribute="trailing" id="qZ9-Iq-ViB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ani-Lx-ejb" firstAttribute="leading" secondItem="TNz-YE-cvM" secondAttribute="leading" id="Ldb-Jn-qb4"/>
+                                    <constraint firstAttribute="trailing" secondItem="ani-Lx-ejb" secondAttribute="trailing" constant="20" id="fLT-D6-ACL"/>
+                                    <constraint firstItem="ani-Lx-ejb" firstAttribute="top" secondItem="TNz-YE-cvM" secondAttribute="top" id="hNM-rb-7Wu"/>
+                                    <constraint firstAttribute="bottom" secondItem="ani-Lx-ejb" secondAttribute="bottom" constant="168" id="nVM-AN-rIV"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8sc-e6-TOa"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="TNz-YE-cvM" firstAttribute="trailing" secondItem="8sc-e6-TOa" secondAttribute="trailing" id="Cmu-5T-ZwI"/>
+                            <constraint firstItem="TNz-YE-cvM" firstAttribute="bottom" secondItem="8sc-e6-TOa" secondAttribute="bottom" id="F4P-wq-RKK"/>
+                            <constraint firstItem="TNz-YE-cvM" firstAttribute="top" secondItem="8sc-e6-TOa" secondAttribute="top" id="QAL-zu-87b"/>
+                            <constraint firstItem="TNz-YE-cvM" firstAttribute="leading" secondItem="8sc-e6-TOa" secondAttribute="leading" id="tfg-YX-vBS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="yPJ-r3-Dyd" id="Jsj-mq-MgN"/>
+                        <outlet property="scrollView" destination="TNz-YE-cvM" id="gNy-lC-WDj"/>
+                        <outlet property="viewInScrollHeight" destination="fJF-TL-vYr" id="C38-cA-hA5"/>
+                        <outlet property="viewInScrollWidth" destination="lDz-EK-tCi" id="das-he-fh0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pCN-x3-zxL" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1474" y="919"/>
         </scene>
     </scenes>
     <resources>
