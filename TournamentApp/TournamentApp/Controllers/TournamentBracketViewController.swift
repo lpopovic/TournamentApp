@@ -20,6 +20,7 @@ class TournamentBracketViewController: BaseViewController {
     // MARK: - Variable
     static let storyboardIdentifier = "TournamentBracketViewController"
     var playerList: [Player] = [Player]()
+    private var matchInEachBracket: [[Match]] = []
     private let numberOfMatchInEachBracketData: [Int] = [16,8,4,2,1]
     private var drawPositionForPlayers: [[Int]] = []
     
@@ -32,7 +33,7 @@ class TournamentBracketViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Draw"
-       
+        
         self.setDrawForPlayer()
         
         self.setupVC()
@@ -92,9 +93,10 @@ class TournamentBracketViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapAddDWinnerButton() {
+        let winnerPlayerIndex = self.drawPositionForPlayers[self.numberOfMatchInEachBracketData.count][0] - 1
+        let winnerPlayer = self.playerList[winnerPlayerIndex]
         
-        let player = self.playerList[self.drawPositionForPlayers[5][0] - 1]
-        UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(player.firstName) \(player.lastName)")
+        UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
         HapticsManager.shared.vibrate(for: .success)
     }
     
@@ -120,7 +122,7 @@ class TournamentBracketViewController: BaseViewController {
     }
     
     private func setDrawForPlayer() {
-        for i in 0...5 {
+        for i in 0...self.numberOfMatchInEachBracketData.count {
             switch i {
             case 0:
                 let firstRound = self.seeding(numPlayers: 32)
@@ -146,11 +148,38 @@ class TournamentBracketViewController: BaseViewController {
                         index += 2
                     }
                 }
-                drawPositionForPlayers.append(nextRound)
+                self.drawPositionForPlayers.append(nextRound)
                 
             }
         }
-        print(drawPositionForPlayers)
+        
+        self.setMatchList(with: self.drawPositionForPlayers)
+    }
+    
+    private func setMatchList(with drawPositionForPlayers: [[Int]]) {
+        for section in 0..<(drawPositionForPlayers.count - 1) {
+            var bracketMatch = [Match]()
+            let bracketPlayer = drawPositionForPlayers[section]
+            var bracketPlayerIndex = 0
+            
+            while bracketPlayerIndex < bracketPlayer.count {
+                
+                let index = bracketPlayerIndex
+                
+                let match = Match(
+                    playerOne: self.playerList[bracketPlayer[index] - 1],
+                    playerOneRank: bracketPlayer[index],
+                    playerSecond: self.playerList[bracketPlayer[index + 1] - 1],
+                    playerSecondRank: bracketPlayer[index + 1]
+                )
+                bracketMatch.append(match)
+                
+                bracketPlayerIndex += 2
+            }
+            
+            self.matchInEachBracket.append(bracketMatch)
+            
+        }
     }
 }
 
@@ -219,18 +248,19 @@ extension TournamentBracketViewController : UITableViewDataSource {
         }
         
         cell.configureUI(sectionBracket: self.numberOfMatchInEachBracketData.count, tableViewTag: tableView.tag, indexPath: indexPath, separatorSize: self.separatorSize)
-
-        let index = indexPath.row * 2
+        
+        let index = indexPath.row
         
         let playerPositionOne = self.drawPositionForPlayers[tableView.tag][index]
         let playerPositionSecond = self.drawPositionForPlayers[tableView.tag][index + 1]
         
-       
-       
-        cell.configureData(player1: self.playerList[playerPositionOne - 1],
-                           with: playerPositionOne,
-                           and: self.playerList[playerPositionSecond - 1],
-                           with: playerPositionSecond)
+        let match = self.matchInEachBracket[tableView.tag][indexPath.row]
+        
+//        cell.configureData(player1: self.playerList[playerPositionOne - 1],
+//                           with: playerPositionOne,
+//                           and: self.playerList[playerPositionSecond - 1],
+//                           with: playerPositionSecond)
+        cell.configureData(with: match)
         
         return cell
     }

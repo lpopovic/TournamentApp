@@ -87,4 +87,9 @@ class TournamentTableViewCell: UITableViewCell {
         self.secondPlayerLabel.text = "#\(rank2) \(player2.firstName.prefix(1)). \(player2.lastName)"
     }
     
+    func configureData(with model: Match) {
+        self.firstPlayerLabel.text = "#\(model.playerOneRank) \(model.playerOne.firstName.prefix(1)). \(model.playerOne.lastName)"
+        self.secondPlayerLabel.text = "#\(model.playerSecondRank) \(model.playerSecond.firstName.prefix(1)). \(model.playerSecond.lastName)"
+    }
+    
 }
