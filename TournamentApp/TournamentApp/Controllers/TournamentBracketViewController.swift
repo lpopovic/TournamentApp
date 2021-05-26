@@ -249,17 +249,8 @@ extension TournamentBracketViewController : UITableViewDataSource {
         
         cell.configureUI(sectionBracket: self.numberOfMatchInEachBracketData.count, tableViewTag: tableView.tag, indexPath: indexPath, separatorSize: self.separatorSize)
         
-        let index = indexPath.row
-        
-        let playerPositionOne = self.drawPositionForPlayers[tableView.tag][index]
-        let playerPositionSecond = self.drawPositionForPlayers[tableView.tag][index + 1]
-        
         let match = self.matchInEachBracket[tableView.tag][indexPath.row]
-        
-//        cell.configureData(player1: self.playerList[playerPositionOne - 1],
-//                           with: playerPositionOne,
-//                           and: self.playerList[playerPositionSecond - 1],
-//                           with: playerPositionSecond)
+
         cell.configureData(with: match)
         
         return cell
