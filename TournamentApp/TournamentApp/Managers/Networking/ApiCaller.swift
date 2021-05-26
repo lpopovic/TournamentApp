@@ -53,7 +53,7 @@ final class ApiCaller {
     }
     
     func getAllPlayerList(completion: @escaping (Result<[Player], Error>) -> Void) {
-        self.sessionManager.request(APIUrl.shared.players, method: .get, headers: headers)
+        self.sessionManager.request(ApiUrl.shared.players, method: .get, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON (completionHandler: { (response) in
                 switch response.result {
@@ -92,7 +92,7 @@ final class ApiCaller {
     }
     
     func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], Error>) -> Void) {
-        self.sessionManager.request(APIUrl.shared.players + "?\(ApiParameters.limit)=\(limit)&\(ApiParameters.page)=\(page)&", method: .get, headers: headers)
+        self.sessionManager.request(ApiUrl.shared.players + "?\(ApiParameters.limit)=\(limit)&\(ApiParameters.page)=\(page)&", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON (completionHandler: { (response) in
                 switch response.result {
@@ -127,7 +127,7 @@ final class ApiCaller {
     }
     
     func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.sessionManager.request(APIUrl.shared.players + "/\(id)", method: .delete, headers: headers)
+        self.sessionManager.request(ApiUrl.shared.players + "/\(id)", method: .delete, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 switch response.result {
@@ -166,7 +166,7 @@ final class ApiCaller {
     }
     
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void) {
-        self.sessionManager.request(APIUrl.shared.players + "/\(id)", method: .get, headers: headers)
+        self.sessionManager.request(ApiUrl.shared.players + "/\(id)", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON (completionHandler: { (response) in
                 switch response.result {
@@ -233,7 +233,7 @@ final class ApiCaller {
                 
             }
             
-        }, to: APIUrl.shared.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
+        }, to: ApiUrl.shared.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
         .validate(statusCode: 200..<300)
         .responseJSON { (response) in
             
@@ -280,7 +280,7 @@ final class ApiCaller {
             queryParam = queryParam + "&\(key)=\(value)"
         }
         
-        self.sessionManager.request(APIUrl.shared.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
+        self.sessionManager.request(ApiUrl.shared.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 switch response.result {

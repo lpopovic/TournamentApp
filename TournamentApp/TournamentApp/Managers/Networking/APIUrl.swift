@@ -1,5 +1,5 @@
 //
-//  APIUrl.swift
+//  ApiUrl.swift
 //  TournamentApp
 //
 //  Created by MacBook on 5/21/21.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class APIUrl {
-    static let shared = APIUrl()
+final class ApiUrl {
+    static let shared = ApiUrl()
     
     private init () {}
     

@@ -19,7 +19,7 @@
 		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
 		D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437926584A760088A386 /* TournamentBracketViewController.swift */; };
 		D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437C26584C5D0088A386 /* Extensions+UIView.swift */; };
-		D039438226584DA50088A386 /* APIUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438126584DA50088A386 /* APIUrl.swift */; };
+		D039438226584DA50088A386 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438126584DA50088A386 /* ApiUrl.swift */; };
 		D039438526584DBB0088A386 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438426584DBB0088A386 /* ApiCaller.swift */; };
 		D039438826584DD40088A386 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438726584DD40088A386 /* HapticsManager.swift */; };
 		D039438E265854C40088A386 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438D265854C40088A386 /* NavigationViewController.swift */; };
@@ -66,7 +66,7 @@
 		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D039437926584A760088A386 /* TournamentBracketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentBracketViewController.swift; sourceTree = "<group>"; };
 		D039437C26584C5D0088A386 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
-		D039438126584DA50088A386 /* APIUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrl.swift; sourceTree = "<group>"; };
+		D039438126584DA50088A386 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		D039438426584DBB0088A386 /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 		D039438726584DD40088A386 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		D039438D265854C40088A386 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		D039438026584C8B0088A386 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D039438126584DA50088A386 /* APIUrl.swift */,
+				D039438126584DA50088A386 /* ApiUrl.swift */,
 				D039438426584DBB0088A386 /* ApiCaller.swift */,
 			);
 			path = Networking;
@@ -485,7 +485,7 @@
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
-				D039438226584DA50088A386 /* APIUrl.swift in Sources */,
+				D039438226584DA50088A386 /* ApiUrl.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
