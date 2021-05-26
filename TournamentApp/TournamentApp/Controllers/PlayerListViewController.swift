@@ -13,14 +13,15 @@ class PlayerListViewController: BaseViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    var refresher : UIRefreshControl!
+    private var refresher : UIRefreshControl!
+    private var spinnerTableView: UIActivityIndicatorView!
     
     // MARK: - Variable
     
     static let storyboardIdentifier = "PlayerListViewController"
     var playerList: [Player] = [Player]()
-    var page: Int = 1
-    let limit: Int = 20
+    private var page: Int = 1
+    private let limit: Int = 20
     
     // MARK: - Life Cycle
     
@@ -63,6 +64,9 @@ class PlayerListViewController: BaseViewController {
         self.spinner.tintColor = .label
         self.spinner.hidesWhenStopped = true
         self.spinner.style = .large
+        
+        self.spinnerTableView = UIActivityIndicatorView(style: .large)
+        self.spinnerTableView.color = .label
     }
     
     private func setupRefreshControl() {
@@ -201,37 +205,39 @@ extension PlayerListViewController: UITableViewDataSource {
         let lastSectionIndex = tableView.numberOfSections - 1
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         
-        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && self.playerList.count >= limit {
-            let spinner = UIActivityIndicatorView(style: .large)
-            spinner.color = .label
-            spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && !self.spinnerTableView.isAnimating {
+           
+            self.spinnerTableView.startAnimating()
+            self.spinnerTableView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
             
-            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView = self.spinnerTableView
             self.tableView.tableFooterView?.isHidden = false
             
             
             
-            ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) {  (result) in
+            ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
                 switch result {
                 case .success(let model):
+                    guard let strongSelf = self else {
+                        return
+                    }
                     DispatchQueue.main.async {
                         if model.count > 0 {
-                            self.playerList = self.playerList + model
-                            self.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                            self.page += 1
-                            self.tableView.reloadData()
+                            self?.playerList = strongSelf.playerList + model
+                            self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                            self?.page += 1
+                            self?.tableView.reloadData()
                         }
-                        spinner.stopAnimating()
-                        self.tableView.tableFooterView = nil
-                        self.tableView.tableFooterView?.isHidden = true
+                        self?.spinnerTableView.stopAnimating()
+                        self?.tableView.tableFooterView = nil
+                        self?.tableView.tableFooterView?.isHidden = true
                     }
                 case .failure(let error):
                     DispatchQueue.main.async {
-                        spinner.stopAnimating()
-                        self.tableView.tableFooterView = nil
-                        self.tableView.tableFooterView?.isHidden = true
-                        self.tableView.reloadData()
+                        self?.spinnerTableView.stopAnimating()
+                        self?.tableView.tableFooterView = nil
+                        self?.tableView.tableFooterView?.isHidden = true
+                        self?.tableView.reloadData()
                         UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                     }
                 }
