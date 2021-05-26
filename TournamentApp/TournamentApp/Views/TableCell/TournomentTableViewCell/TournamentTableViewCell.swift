@@ -58,9 +58,9 @@ class TournamentTableViewCell: UITableViewCell {
         self.secondPlayerLabel.textAlignment = .center
     }
     
-    func configureUI(sectionBracket: Int, tableViewTag: Int, indexPath: IndexPath, arrSeparatorSize: [Int] ) {
+    func configureUI(sectionBracket: Int, tableViewTag: Int, indexPath: IndexPath, separatorSize: [Int] ) {
 
-        self.separatorHeight.constant = CGFloat(arrSeparatorSize[tableViewTag] + 10)
+        self.separatorHeight.constant = CGFloat(separatorSize[tableViewTag] + 10)
         
         if(tableViewTag < sectionBracket - 1) {
             if(indexPath.row % 2 == 0) {
@@ -82,9 +82,9 @@ class TournamentTableViewCell: UITableViewCell {
         }
     }
     
-    func configureData(with firstPlayer: Player, and secondPlayer: Player) {
-        self.firstPlayerLabel.text = "\(firstPlayer.firstName.prefix(1)). \(firstPlayer.lastName)"
-        self.secondPlayerLabel.text = "\(secondPlayer.firstName.prefix(1)). \(secondPlayer.lastName)"
+    func configureData(player1: Player, with rank1: Int, and player2: Player, with rank2: Int) {
+        self.firstPlayerLabel.text = "#\(rank1) \(player1.firstName.prefix(1)). \(player1.lastName)"
+        self.secondPlayerLabel.text = "#\(rank2) \(player2.firstName.prefix(1)). \(player2.lastName)"
     }
     
 }

@@ -87,25 +87,45 @@ class PlayerListViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapAddPlayerButton() {
-        guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
-        vc.typeOfVC = .add
-        vc.delegate = self
-        
-        guard let nvc = self.navigationController else {
-            return
+        DispatchQueue.main.async {
+            guard let vc = self.storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
+            vc.typeOfVC = .add
+            vc.delegate = self
+            
+            guard let nvc = self.navigationController else {
+                return
+            }
+            nvc.pushViewController(vc, animated: true)
+            HapticsManager.shared.vibrateForSelection()
         }
-        nvc.pushViewController(vc, animated: true)
-        HapticsManager.shared.vibrateForSelection()
     }
     
     @objc private func didTapAddDrawButton() {
-        let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier)
         
-        guard let nvc = self.navigationController else {
-            return
+        var playersForDraw: [Player] = []
+        
+        for item in self.playerList {
+            if playersForDraw.count == 32 {
+                break
+            } else if item.tournament_id == nil {
+                playersForDraw.append(item)
+            }
         }
-        nvc.pushViewController(vc, animated: true)
-        HapticsManager.shared.vibrateForSelection()
+        
+        if playersForDraw.count == 32 {
+            
+            guard let nvc = self.navigationController,  let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier) as? TournamentBracketViewController else {
+                return
+            }
+            
+            vc.playerList = playersForDraw
+            nvc.pushViewController(vc, animated: true)
+            HapticsManager.shared.vibrateForSelection()
+        } else {
+            UIAlertController.showAlertUserMessage(self, title: nil, message: "There is not enough players, please load more.")
+            HapticsManager.shared.vibrate(for: .error)
+        }
+        
     }
     
     private func didTapTableViewCell(with model: Player) {
