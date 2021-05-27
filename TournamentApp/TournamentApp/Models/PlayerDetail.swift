@@ -18,19 +18,17 @@ struct PlayerDetail: Codable {
     let tournament_id: Int?
     let description: String?
     
-    init(id: Int, firstName: String, lastName: String) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        self.points = nil
-        self.dateOfBirth = nil
-        self.profileImageUrl = nil
-        self.isProfessional = nil
-        self.tournament_id = nil
-        self.description = nil
-    }
     
-    init(id: Int, firstName: String, lastName: String, points: Int?, dateOfBirth: String?, profileImageUrl: String?, isProfessional: Int?, tournament_id: Int?, description: String?) {
+    init(id: Int,
+         firstName: String,
+         lastName: String,
+         points: Int? = nil,
+         dateOfBirth: String? = nil,
+         profileImageUrl: String? = nil,
+         isProfessional: Int? = nil,
+         tournament_id: Int? = nil,
+         description: String? = nil)
+    {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName
