@@ -147,13 +147,15 @@ class PlayerDetailDataTests: XCTestCase {
         XCTAssertEqual(lastName, testData)
     }
     
-    func testPlayerModel_whenInitialized_getPoints() {
-        guard self.sut.points != nil else {
-            XCTAssertEqual(self.sut.getPoints(), 0)
+    func testPlayerDetailModel_whenInitialized_getPoints() {
+       
+        guard let _ = self.sut.points else {
+            let getPoints = self.sut.getPoints()
+            
+            XCTAssertEqual(getPoints, 0)
             
             return
         }
-        
         let getPoints = self.sut.getPoints()
         
         let testData = 100
@@ -161,7 +163,7 @@ class PlayerDetailDataTests: XCTestCase {
         XCTAssertEqual(getPoints, testData)
     }
     
-    func testPlayerModel_whenInitialized_getStringIsProfessional() {
+    func testPlayerDetailModel_whenInitialized_getStringIsProfessional() {
         let stringIsProfessional = self.sut.getStringIsProfessional()
         guard let isProfessional = self.sut.isProfessional else {
             XCTAssertEqual(stringIsProfessional, "undefined")

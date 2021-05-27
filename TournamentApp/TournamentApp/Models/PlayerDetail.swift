@@ -59,6 +59,9 @@ extension PlayerDetail {
     }
     
     func getPoints() -> Int {
-        return self.points ?? 0
+        guard let points = self.points else {
+            return 0
+        }
+        return points
     }
 }
