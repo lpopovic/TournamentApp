@@ -178,6 +178,36 @@ class PlayerListViewController: BaseViewController {
         }
     }
     
+    private func fetchMoreData() {
+        ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
+            switch result {
+            case .success(let model):
+                guard let strongSelf = self else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if model.count > 0 {
+                        self?.playerList = strongSelf.playerList + model
+                        self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                        self?.page += 1
+                        self?.tableView.reloadData()
+                    }
+                    self?.spinnerTableView.stopAnimating()
+                    self?.tableView.tableFooterView = nil
+                    self?.tableView.tableFooterView?.isHidden = true
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.spinnerTableView.stopAnimating()
+                    self?.tableView.tableFooterView = nil
+                    self?.tableView.tableFooterView?.isHidden = true
+                    self?.tableView.reloadData()
+                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     private func getInitPlayerList() {
         self.spinner.startAnimating()
         self.page = 1
@@ -213,35 +243,7 @@ extension PlayerListViewController: UITableViewDataSource {
             self.tableView.tableFooterView = self.spinnerTableView
             self.tableView.tableFooterView?.isHidden = false
             
-            
-            
-            ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
-                switch result {
-                case .success(let model):
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        if model.count > 0 {
-                            self?.playerList = strongSelf.playerList + model
-                            self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                            self?.page += 1
-                            self?.tableView.reloadData()
-                        }
-                        self?.spinnerTableView.stopAnimating()
-                        self?.tableView.tableFooterView = nil
-                        self?.tableView.tableFooterView?.isHidden = true
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        self?.spinnerTableView.stopAnimating()
-                        self?.tableView.tableFooterView = nil
-                        self?.tableView.tableFooterView?.isHidden = true
-                        self?.tableView.reloadData()
-                        UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
-                    }
-                }
-            }
+            self.fetchMoreData()
         }
     }
     
