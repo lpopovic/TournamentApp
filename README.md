@@ -14,7 +14,7 @@
 
 ## How to run 
 1. Clone this repo
-1. Open shell window and navigate to project folder
+1. Open shell window and navigate to project folder/ TournamentApp
 1. Run `pod install`
 1. Open `TournamentApp.xcworkspace`
 1. Run the project on selected device or simulator
