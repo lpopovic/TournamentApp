@@ -91,21 +91,42 @@ class PlayerListViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTapAddPlayerButton() {
-        DispatchQueue.main.async {
-            guard let vc = self.storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
-            vc.typeOfVC = .add
-            vc.delegate = self
-            
-            guard let nvc = self.navigationController else {
-                return
-            }
-            nvc.pushViewController(vc, animated: true)
-            HapticsManager.shared.vibrateForSelection()
-        }
+        HapticsManager.shared.vibrateForSelection()
+        self.pushPlayerAddEditViewController()
     }
     
     @objc private func didTapAddDrawButton() {
+        HapticsManager.shared.vibrateForSelection()
+        self.pushTournamentBracketViewController()
         
+    }
+    
+    private func didTapTableViewCell(with model: Player) {
+        guard let vc = storyboardMain.instantiateViewController(
+            withIdentifier: PlayerViewController.storyboardIdentifier
+        ) as? PlayerViewController else { return }
+        
+        vc.playerId = model.id
+        vc.delegate = self
+        
+        guard let nvc = self.navigationController else {
+            return
+        }
+        nvc.pushViewController(vc, animated: true)
+    }
+    
+    private func pushPlayerAddEditViewController() {
+        guard let vc = self.storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
+        vc.typeOfVC = .add
+        vc.delegate = self
+        
+        guard let nvc = self.navigationController else {
+            return
+        }
+        nvc.pushViewController(vc, animated: true)
+    }
+    
+    func pushTournamentBracketViewController() {
         var playersForDraw: [Player] = []
         
         for item in self.playerList {
@@ -124,27 +145,12 @@ class PlayerListViewController: BaseViewController {
             
             vc.playerList = playersForDraw
             nvc.pushViewController(vc, animated: true)
-            HapticsManager.shared.vibrateForSelection()
+           
         } else {
             UIAlertController.showAlertUserMessage(self, title: nil, message: "There is not enough players, please load more.")
-            HapticsManager.shared.vibrate(for: .error)
         }
-        
     }
     
-    private func didTapTableViewCell(with model: Player) {
-        guard let vc = storyboardMain.instantiateViewController(
-            withIdentifier: PlayerViewController.storyboardIdentifier
-        ) as? PlayerViewController else { return }
-        
-        vc.playerId = model.id
-        vc.delegate = self
-        
-        guard let nvc = self.navigationController else {
-            return
-        }
-        nvc.pushViewController(vc, animated: true)
-    }
     
     @objc private func didSwipeRefresh() {
         self.refresher.beginRefreshing()
@@ -236,7 +242,7 @@ extension PlayerListViewController: UITableViewDataSource {
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         
         if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && !self.spinnerTableView.isAnimating {
-           
+            
             self.spinnerTableView.startAnimating()
             self.spinnerTableView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
             
