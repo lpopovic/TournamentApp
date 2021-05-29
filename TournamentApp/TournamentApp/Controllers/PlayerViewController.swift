@@ -72,7 +72,7 @@ class PlayerViewController: BaseViewController {
             )
             navigationItem.rightBarButtonItems = [deleteButton, editButton]
         }
-       
+        
     }
     
     private func setupSpinner() {
@@ -112,6 +112,11 @@ class PlayerViewController: BaseViewController {
     }
     
     @objc private func didTapEditButton() {
+        HapticsManager.shared.vibrateForSelection()
+        self.pushPlayerAddEditViewController()
+    }
+    
+    private func pushPlayerAddEditViewController() {
         guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
         vc.typeOfVC = .edit
         vc.playerId = self.playerId
@@ -122,7 +127,6 @@ class PlayerViewController: BaseViewController {
             return
         }
         nvc.pushViewController(vc, animated: true)
-        HapticsManager.shared.vibrateForSelection()
     }
     
     @objc private func didSwipeRefresh() {
@@ -233,7 +237,7 @@ extension PlayerViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-     
+        
     }
     
     

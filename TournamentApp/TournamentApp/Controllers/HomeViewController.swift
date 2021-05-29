@@ -58,15 +58,18 @@ class HomeViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTap(_ sender: UIButton) {
-       
+        HapticsManager.shared.vibrateForSelection()
+        self.pushPlayerListViewController()
+        
+    }
+    
+    private func pushPlayerListViewController() {
         let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
         
         guard let nvc = self.navigationController else {
             return
         }
         nvc.pushViewController(vc, animated: true)
-        HapticsManager.shared.vibrateForSelection()
-        
     }
     
     
