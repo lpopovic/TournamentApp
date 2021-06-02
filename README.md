@@ -2,10 +2,14 @@
 > HTEC interview test application.
 
 ## Table of contents
+* [Task](#task)
 * [Preview](#preview)
 * [Build and Runtime Requirements](#build-and-runtime-requirements)
 * [How to run](#how-to-run)
 * [Contact](#contact)
+
+## Task
+Text of task can be see on this [link](https://github.com/HTEC-interview/ios-lazarp/blob/main/Task.pdf).
 
 ## Preview
 
