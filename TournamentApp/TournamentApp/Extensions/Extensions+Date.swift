@@ -8,9 +8,9 @@
 import Foundation
 
 extension Date {
-    func getDateOfBirthFormatString() -> String {
+    func getDateOfBirthFormatString(dateFormat: String = Date.dateOfBirthFormat) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Date.dateOfBirthFormat
+        dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: self)
     }
     

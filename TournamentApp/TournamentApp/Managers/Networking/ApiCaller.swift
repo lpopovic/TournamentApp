@@ -279,6 +279,7 @@ final class ApiCaller {
         for (key, value) in paramsToUpdate {
             queryParam = queryParam + "&\(key)=\(value)"
         }
+        queryParam = queryParam.replacingOccurrences(of: " ", with: "%20")
         
         self.sessionManager.request(ApiUrl.shared.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
             .validate(statusCode: 200..<300)
@@ -291,6 +292,8 @@ final class ApiCaller {
                     }
                     do {
                         let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
+                        
+                        self.sessionManager.clearCache(url: ApiUrl.shared.players + "/\(id)")
                         
                         completion(.success(result))
                         

@@ -337,7 +337,7 @@ class PlayerAddEditViewController: BaseViewController {
         //        }
         //        if lastName != player.lastName {
         paramsToUpdate.updateValue(lastName, forKey: ApiCaller.ApiParameters.lastName.rawValue)
-        //        }
+                }
         if description != player.description {
             paramsToUpdate.updateValue(description, forKey: ApiCaller.ApiParameters.description.rawValue)
         }
@@ -345,7 +345,7 @@ class PlayerAddEditViewController: BaseViewController {
             paramsToUpdate.updateValue(points, forKey: ApiCaller.ApiParameters.points.rawValue)
         }
         if dateOfBirth != player.dateOfBirth?.toDate()  {
-            paramsToUpdate.updateValue(dateOfBirth, forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
+            paramsToUpdate.updateValue(dateOfBirth.getDateOfBirthFormatString(), forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
         }
         if isProfessional != player.isProfessional  {
             paramsToUpdate.updateValue(dateOfBirth, forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
@@ -376,7 +376,8 @@ class PlayerAddEditViewController: BaseViewController {
                 let description = self?.descriptionTextField.text,
                 let pointsText = self?.pointsTextField.text,
                 let points = Int(pointsText),
-                let dateOfBirth = self?.datePickerTextField.text,
+                let dateOfBirthText = self?.datePickerTextField.text,
+                let dateOfBirth = dateOfBirthText.toDate(withFormat: Date.dateOfBirthFormat),
                 let player = self?.playerDetailInfo,
                 let isProfessional = strongSelf.isProfessionalSwitch.isOn ? 1 : 0
             else {
@@ -388,7 +389,7 @@ class PlayerAddEditViewController: BaseViewController {
                     firstName: firstName,
                     lastName: lastName,
                     points: points,
-                    dateOfBirth: dateOfBirth,
+                    dateOfBirth: dateOfBirth.getDateOfBirthFormatString(dateFormat: Date.dateOfBirthFullFormat),
                     profileImageUrl: player.profileImageUrl,
                     isProfessional: isProfessional,
                     tournament_id: player.tournament_id,
