@@ -2,9 +2,20 @@
 > HTEC interview test application.
 
 ## Table of contents
+* [Preview](#preview)
 * [Build and Runtime Requirements](#build-and-runtime-requirements)
 * [How to run](#how-to-run)
 * [Contact](#contact)
+
+## Preview
+
+### Images
+<img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/IMAGE_PREVIEW_01.png" width="240"/><img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/IMAGE_PREVIEW_02.png" width="240"/> 
+<img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/IMAGE_PREVIEW_03.png" width="240"/> 
+<img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/IMAGE_PREVIEW_04.png" width="240"/> 
+
+### GIF
+<img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/GIF_PREVIEW_01.gif" width="240"/> 
 
 ## Build and Runtime Requirements
 + Xcode 12.2 or later
