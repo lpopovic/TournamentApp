@@ -332,12 +332,9 @@ class PlayerAddEditViewController: BaseViewController {
         
         var paramsToUpdate: [String: Any] = [:]
         
-        //        if firstName != player.firstName {
         paramsToUpdate.updateValue(firstName, forKey: ApiCaller.ApiParameters.firstName.rawValue)
-        //        }
-        //        if lastName != player.lastName {
         paramsToUpdate.updateValue(lastName, forKey: ApiCaller.ApiParameters.lastName.rawValue)
-                }
+
         if description != player.description {
             paramsToUpdate.updateValue(description, forKey: ApiCaller.ApiParameters.description.rawValue)
         }
