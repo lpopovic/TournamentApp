@@ -31,4 +31,18 @@ extension Date {
          now = calendar.date(from: nowComponents)!
          return now as Date
      }
+    
+    static func getMinMaxDateForDatePicker() -> (minDate: Date?, maxDate: Date?) {
+        let yearsToSubForMin = -50
+        let yearsToSubForMax = -12
+        let currentDate = Date.getCurrentDate()
+        var dateComponent = DateComponents()
+        
+        dateComponent.year = yearsToSubForMin
+        let minDateValue = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        dateComponent.year = yearsToSubForMax
+        let maxDateValue = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        
+        return(minDate: minDateValue, maxDate: maxDateValue)
+    }
 }

@@ -106,18 +106,10 @@ class PlayerAddEditViewController: BaseViewController {
     
     
     private func setupDatePickerInTextField(){
-        let yearsToSubForMin = -50
-        let yearsToSubForMax = -12
-        let currentDate = Date.getCurrentDate()
-        var dateComponent = DateComponents()
+        let minMaxDateValue = Date.getMinMaxDateForDatePicker()
         
-        dateComponent.year = yearsToSubForMin
-        let minDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
-        dateComponent.year = yearsToSubForMax
-        let maxDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
-        
-        datePicker.minimumDate = minDate
-        datePicker.maximumDate = maxDate
+        datePicker.minimumDate = minMaxDateValue.minDate
+        datePicker.maximumDate = minMaxDateValue.maxDate
         datePicker.datePickerMode = .date
         
         if #available(iOS 13.4, *) {
