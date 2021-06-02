@@ -31,19 +31,18 @@
 		D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039439C265924680088A386 /* PlayerTableViewCell.xib */; };
 		D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */; };
 		D03943A8265991AF0088A386 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A7265991AF0088A386 /* Player.swift */; };
-		D03943AF2659924F0088A386 /* PlayerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943AE2659924F0088A386 /* PlayerListResponse.swift */; };
 		D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */; };
 		D03943BA2659A57E0088A386 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943B92659A57E0088A386 /* Constant.swift */; };
 		D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943BC2659A8810088A386 /* Extensions+Formatter.swift */; };
 		D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943BF2659A8B40088A386 /* Extensions+Int.swift */; };
 		D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C22659AB680088A386 /* DefaultResponse.swift */; };
 		D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C52659AE450088A386 /* PlayerDetail.swift */; };
-		D03943C92659B05F0088A386 /* PlayerDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943C82659B05F0088A386 /* PlayerDetailResponse.swift */; };
 		D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943CC2659B5860088A386 /* PlayerInfoTableCell.swift */; };
 		D03943CF2659B5860088A386 /* PlayerInfoTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03943CD2659B5860088A386 /* PlayerInfoTableCell.xib */; };
 		D03943D32659C2170088A386 /* Extensions+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943D22659C2170088A386 /* Extensions+String.swift */; };
 		D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943DB2659D5050088A386 /* BioTableViewCell.swift */; };
 		D03943DE2659D5050088A386 /* BioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03943DC2659D5050088A386 /* BioTableViewCell.xib */; };
+		D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088CDD52667DF7200F96ED3 /* DataResponse.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
 		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
@@ -92,19 +91,18 @@
 		D039439C265924680088A386 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
 		D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewController.swift; sourceTree = "<group>"; };
 		D03943A7265991AF0088A386 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		D03943AE2659924F0088A386 /* PlayerListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListResponse.swift; sourceTree = "<group>"; };
 		D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIAlertController.swift"; sourceTree = "<group>"; };
 		D03943B92659A57E0088A386 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D03943BC2659A8810088A386 /* Extensions+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Formatter.swift"; sourceTree = "<group>"; };
 		D03943BF2659A8B40088A386 /* Extensions+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Int.swift"; sourceTree = "<group>"; };
 		D03943C22659AB680088A386 /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		D03943C52659AE450088A386 /* PlayerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetail.swift; sourceTree = "<group>"; };
-		D03943C82659B05F0088A386 /* PlayerDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailResponse.swift; sourceTree = "<group>"; };
 		D03943CC2659B5860088A386 /* PlayerInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoTableCell.swift; sourceTree = "<group>"; };
 		D03943CD2659B5860088A386 /* PlayerInfoTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerInfoTableCell.xib; sourceTree = "<group>"; };
 		D03943D22659C2170088A386 /* Extensions+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+String.swift"; sourceTree = "<group>"; };
 		D03943DB2659D5050088A386 /* BioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioTableViewCell.swift; sourceTree = "<group>"; };
 		D03943DC2659D5050088A386 /* BioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BioTableViewCell.xib; sourceTree = "<group>"; };
+		D088CDD52667DF7200F96ED3 /* DataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponse.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -321,11 +319,10 @@
 			isa = PBXGroup;
 			children = (
 				D03943A7265991AF0088A386 /* Player.swift */,
-				D03943AE2659924F0088A386 /* PlayerListResponse.swift */,
-				D03943C22659AB680088A386 /* DefaultResponse.swift */,
 				D03943C52659AE450088A386 /* PlayerDetail.swift */,
-				D03943C82659B05F0088A386 /* PlayerDetailResponse.swift */,
 				D01E7728265E99C800FA65FE /* Match.swift */,
+				D03943C22659AB680088A386 /* DefaultResponse.swift */,
+				D088CDD52667DF7200F96ED3 /* DataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,7 +584,6 @@
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */,
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
-				D03943C92659B05F0088A386 /* PlayerDetailResponse.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
@@ -596,10 +592,10 @@
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
+				D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */,
 				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
-				D03943AF2659924F0088A386 /* PlayerListResponse.swift in Sources */,
 				D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */,
 				D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,

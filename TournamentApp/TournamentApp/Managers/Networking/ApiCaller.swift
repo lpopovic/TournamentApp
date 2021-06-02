@@ -63,7 +63,7 @@ final class ApiCaller {
                         return
                     }
                     do {
-                        let result = try JSONDecoder().decode(PlayerListResponse.self, from: data)
+                        let result = try JSONDecoder().decode(DataResponse<[Player]>.self, from: data)
                         if result.success {
                             completion(.success(result.data))
                         } else {
@@ -102,7 +102,7 @@ final class ApiCaller {
                         return
                     }
                     do {
-                        let result = try JSONDecoder().decode(PlayerListResponse.self, from: data)
+                        let result = try JSONDecoder().decode(DataResponse<[Player]>.self, from: data)
                         
                         completion(.success(result.data))
                         
@@ -176,7 +176,7 @@ final class ApiCaller {
                         return
                     }
                     do {
-                        let result = try JSONDecoder().decode(PlayerDetailResponse.self, from: data)
+                        let result = try JSONDecoder().decode(DataResponse<PlayerDetail>.self, from: data)
                         if result.success {
                             completion(.success(result.data))
                         } else {
