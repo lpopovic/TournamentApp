@@ -34,7 +34,9 @@ class TournamentBracketViewController: BaseViewController {
         super.viewDidLoad()
         title = "Draw"
         
-        self.setDrawForPlayer()
+        let result = SetDraw.shared.setDrawForPlayer(for: numberOfMatchInEachBracketData, with: &playerList)
+        self.drawPositionForPlayers = result.drawPositionForPlayers
+        self.matchInEachBracket = result.matchInEachBracket
         
         self.setupVC()
         self.setupScrollView()
@@ -100,87 +102,6 @@ class TournamentBracketViewController: BaseViewController {
         HapticsManager.shared.vibrate(for: .success)
     }
     
-    private func seeding(numPlayers: Int) -> [Int]{
-        let rounds = Int(log(Double(numPlayers))/log(2)-1)
-        var pls:[Int] = [1, 2]
-        
-        func nextLayer(_ pls:[Int])->[Int]{
-            var out: [Int] = [];
-            let length = pls.count*2+1;
-            for item in pls {
-                out.append(item)
-                out.append(length-item);
-            }
-            return out;
-        }
-        
-        for _ in 0..<rounds {
-            pls = nextLayer(pls);
-        }
-        
-        return pls;
-    }
-    
-    private func setDrawForPlayer() {
-        for i in 0...self.numberOfMatchInEachBracketData.count {
-            switch i {
-            case 0:
-                let firstRound = self.seeding(numPlayers: 32)
-                self.drawPositionForPlayers.append(firstRound)
-            default:
-                let lastRound = self.drawPositionForPlayers[i-1]
-                var nextRound: [Int] = []
-                
-                var index = 0
-                while index < lastRound.count / 2 {
-                    let winner = Int.random(in: 1...100) % 5 == 0 ? index : index + 1
-                    nextRound.append(lastRound[winner])
-                    
-                    index += 2
-                }
-                
-                index = lastRound.count / 2
-                if index > 1 {
-                    while index < lastRound.count {
-                        let winner = Int.random(in: 1...100) % 5 == 0 ? index : index + 1
-                        nextRound.append(lastRound[winner])
-                        
-                        index += 2
-                    }
-                }
-                self.drawPositionForPlayers.append(nextRound)
-                
-            }
-        }
-        
-        self.setMatchList(with: self.drawPositionForPlayers)
-    }
-    
-    private func setMatchList(with drawPositionForPlayers: [[Int]]) {
-        for section in 0..<(drawPositionForPlayers.count - 1) {
-            var bracketMatch = [Match]()
-            let bracketPlayer = drawPositionForPlayers[section]
-            var bracketPlayerIndex = 0
-            
-            while bracketPlayerIndex < bracketPlayer.count {
-                
-                let index = bracketPlayerIndex
-                
-                let match = Match(
-                    playerOne: self.playerList[bracketPlayer[index] - 1],
-                    playerOneRank: bracketPlayer[index],
-                    playerSecond: self.playerList[bracketPlayer[index + 1] - 1],
-                    playerSecondRank: bracketPlayer[index + 1]
-                )
-                bracketMatch.append(match)
-                
-                bracketPlayerIndex += 2
-            }
-            
-            self.matchInEachBracket.append(bracketMatch)
-            
-        }
-    }
 }
 
 extension TournamentBracketViewController: UIScrollViewDelegate {
