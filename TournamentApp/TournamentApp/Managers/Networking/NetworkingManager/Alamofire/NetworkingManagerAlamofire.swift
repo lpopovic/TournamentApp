@@ -86,7 +86,6 @@ extension NetworkingManagerAlamofire: NetworkingManagerProvider {
             encoding: setAlamofireEncoding(when: encoding),
             headers: setAlamofireHeaders(when: headers))
         .validate()
-        .cache(maxAge: cacheAge)
         
         return request
     }

@@ -53,7 +53,7 @@ final class ApiCaller {
     }
     
     func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.sessionManager.request(ApiUrl.shared.players + "/\(id)", method: .delete, headers: headers)
+        self.sessionManager.request(NetworkApiPath.players + "/\(id)", method: .delete, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 switch response.result {
@@ -92,7 +92,7 @@ final class ApiCaller {
     }
     
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void) {
-        self.sessionManager.request(ApiUrl.shared.players + "/\(id)", method: .get, headers: headers)
+        self.sessionManager.request(NetworkApiPath.players + "/\(id)", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON (completionHandler: { (response) in
                 switch response.result {
@@ -159,7 +159,7 @@ final class ApiCaller {
                 
             }
             
-        }, to: ApiUrl.shared.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
+        }, to: NetworkApiPath.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
         .validate(statusCode: 200..<300)
         .responseJSON { (response) in
             
@@ -207,7 +207,7 @@ final class ApiCaller {
         }
         queryParam = queryParam.replacingOccurrences(of: " ", with: "%20")
         
-        self.sessionManager.request(ApiUrl.shared.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
+        self.sessionManager.request(NetworkApiPath.players + "/\(id)?\(queryParam)", method: .put, headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 switch response.result {
@@ -219,7 +219,7 @@ final class ApiCaller {
                     do {
                         let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
                         
-                        self.sessionManager.clearCache(url: ApiUrl.shared.players + "/\(id)")
+                        self.sessionManager.clearCache(url: NetworkApiPath.players + "/\(id)")
                         
                         completion(.success(result))
                         

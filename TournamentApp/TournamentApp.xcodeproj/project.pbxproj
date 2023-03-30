@@ -25,6 +25,7 @@
 		7EDECBA829D5B06500182C82 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA729D5B06500182C82 /* PlayerRouter.swift */; };
 		7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAA29D5B0F100182C82 /* PlayerService.swift */; };
 		7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAC29D5B40800182C82 /* ApiParameter.swift */; };
+		7EDECBAF29D5C4FA00182C82 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */; };
 		D01E7729265E99C800FA65FE /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7728265E99C800FA65FE /* Match.swift */; };
 		D01E7777265EEC8F00FA65FE /* PlayerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7776265EEC8F00FA65FE /* PlayerDataTests.swift */; };
 		D01E777C265EF0E900FA65FE /* PlayerDetailDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E777B265EF0E900FA65FE /* PlayerDetailDataTests.swift */; };
@@ -39,7 +40,6 @@
 		D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0394376265849AB0088A386 /* PlayerViewController.swift */; };
 		D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437926584A760088A386 /* TournamentBracketViewController.swift */; };
 		D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039437C26584C5D0088A386 /* Extensions+UIView.swift */; };
-		D039438226584DA50088A386 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438126584DA50088A386 /* ApiUrl.swift */; };
 		D039438526584DBB0088A386 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438426584DBB0088A386 /* ApiCaller.swift */; };
 		D039438826584DD40088A386 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438726584DD40088A386 /* HapticsManager.swift */; };
 		D039438E265854C40088A386 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039438D265854C40088A386 /* NavigationViewController.swift */; };
@@ -99,6 +99,7 @@
 		7EDECBA729D5B06500182C82 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
 		7EDECBAA29D5B0F100182C82 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		7EDECBAC29D5B40800182C82 /* ApiParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiParameter.swift; sourceTree = "<group>"; };
+		7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiPath.swift; sourceTree = "<group>"; };
 		9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.debug.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,7 +119,6 @@
 		D0394376265849AB0088A386 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D039437926584A760088A386 /* TournamentBracketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentBracketViewController.swift; sourceTree = "<group>"; };
 		D039437C26584C5D0088A386 /* Extensions+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
-		D039438126584DA50088A386 /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		D039438426584DBB0088A386 /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 		D039438726584DD40088A386 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		D039438D265854C40088A386 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -355,8 +355,8 @@
 				7EDECBA929D5B0DC00182C82 /* Services */,
 				7EDECBA329D5A7D400182C82 /* Routable */,
 				7EDECB8229D58A3600182C82 /* NetworkingManager */,
-				D039438126584DA50088A386 /* ApiUrl.swift */,
 				D039438426584DBB0088A386 /* ApiCaller.swift */,
+				7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -728,7 +728,6 @@
 				7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
 				7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */,
-				D039438226584DA50088A386 /* ApiUrl.swift in Sources */,
 				7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */,
 				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
@@ -743,6 +742,7 @@
 				D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */,
 				D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,
+				7EDECBAF29D5C4FA00182C82 /* NetworkApiPath.swift in Sources */,
 				7EDECB9129D58C6C00182C82 /* NetworkError.swift in Sources */,
 				D088CDE02667E1FC00F96ED3 /* SetDraw.swift in Sources */,
 				7EDECB8B29D58AFC00182C82 /* NetworkingManagerModels.swift in Sources */,
