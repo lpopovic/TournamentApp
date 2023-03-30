@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */; };
+		7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */; };
+		7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */; };
+		7EDECB8B29D58AFC00182C82 /* NetworkingManagerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8A29D58AFC00182C82 /* NetworkingManagerModels.swift */; };
+		7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8C29D58C1500182C82 /* RequestResponseProvider.swift */; };
+		7EDECB8F29D58C4600182C82 /* ResultBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8E29D58C4600182C82 /* ResultBasic.swift */; };
+		7EDECB9129D58C6C00182C82 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9029D58C6C00182C82 /* NetworkError.swift */; };
+		7EDECB9329D58DC100182C82 /* TokenRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9229D58DC100182C82 /* TokenRefresher.swift */; };
+		7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9429D58DE800182C82 /* ResultObject.swift */; };
+		7EDECB9829D5901400182C82 /* Tokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9729D5901400182C82 /* Tokens.swift */; };
+		7EDECB9C29D590DB00182C82 /* NetworkingManagerAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9B29D590DB00182C82 /* NetworkingManagerAlamofire.swift */; };
+		7EDECB9E29D5910D00182C82 /* RequestResponseAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9D29D5910D00182C82 /* RequestResponseAlamofire.swift */; };
+		7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9F29D5911C00182C82 /* OAuth2HandlerAlamofire.swift */; };
+		7EDECBA229D59D0600182C82 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA129D59D0600182C82 /* Extensions+Data.swift */; };
+		7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA429D5A7E400182C82 /* NetworkRoutable.swift */; };
+		7EDECBA829D5B06500182C82 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA729D5B06500182C82 /* PlayerRouter.swift */; };
+		7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAA29D5B0F100182C82 /* PlayerService.swift */; };
+		7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAC29D5B40800182C82 /* ApiParameter.swift */; };
 		D01E7729265E99C800FA65FE /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7728265E99C800FA65FE /* Match.swift */; };
 		D01E7777265EEC8F00FA65FE /* PlayerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7776265EEC8F00FA65FE /* PlayerDataTests.swift */; };
 		D01E777C265EF0E900FA65FE /* PlayerDetailDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E777B265EF0E900FA65FE /* PlayerDetailDataTests.swift */; };
@@ -63,6 +81,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerParameterEncoding.swift; sourceTree = "<group>"; };
+		7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerHTTPMethod.swift; sourceTree = "<group>"; };
+		7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProvider.swift; sourceTree = "<group>"; };
+		7EDECB8A29D58AFC00182C82 /* NetworkingManagerModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerModels.swift; sourceTree = "<group>"; };
+		7EDECB8C29D58C1500182C82 /* RequestResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponseProvider.swift; sourceTree = "<group>"; };
+		7EDECB8E29D58C4600182C82 /* ResultBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBasic.swift; sourceTree = "<group>"; };
+		7EDECB9029D58C6C00182C82 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		7EDECB9229D58DC100182C82 /* TokenRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefresher.swift; sourceTree = "<group>"; };
+		7EDECB9429D58DE800182C82 /* ResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultObject.swift; sourceTree = "<group>"; };
+		7EDECB9729D5901400182C82 /* Tokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokens.swift; sourceTree = "<group>"; };
+		7EDECB9B29D590DB00182C82 /* NetworkingManagerAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerAlamofire.swift; sourceTree = "<group>"; };
+		7EDECB9D29D5910D00182C82 /* RequestResponseAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponseAlamofire.swift; sourceTree = "<group>"; };
+		7EDECB9F29D5911C00182C82 /* OAuth2HandlerAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2HandlerAlamofire.swift; sourceTree = "<group>"; };
+		7EDECBA129D59D0600182C82 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
+		7EDECBA429D5A7E400182C82 /* NetworkRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoutable.swift; sourceTree = "<group>"; };
+		7EDECBA729D5B06500182C82 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		7EDECBAA29D5B0F100182C82 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
+		7EDECBAC29D5B40800182C82 /* ApiParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiParameter.swift; sourceTree = "<group>"; };
 		9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.debug.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
 		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,9 +181,88 @@
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D03943B92659A57E0088A386 /* Constant.swift */,
+				7EDECB9629D58DF800182C82 /* Result */,
 				D088CDDF2667E1FC00F96ED3 /* SetDraw.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7EDECB8229D58A3600182C82 /* NetworkingManager */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECB9A29D590C600182C82 /* Alamofire */,
+				7EDECB9929D590A100182C82 /* Protocols */,
+				7EDECB8929D58AD500182C82 /* Models */,
+			);
+			path = NetworkingManager;
+			sourceTree = "<group>";
+		};
+		7EDECB8929D58AD500182C82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */,
+				7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */,
+				7EDECB8A29D58AFC00182C82 /* NetworkingManagerModels.swift */,
+				7EDECB9029D58C6C00182C82 /* NetworkError.swift */,
+				7EDECB9729D5901400182C82 /* Tokens.swift */,
+				7EDECBAC29D5B40800182C82 /* ApiParameter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7EDECB9629D58DF800182C82 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECB8E29D58C4600182C82 /* ResultBasic.swift */,
+				7EDECB9429D58DE800182C82 /* ResultObject.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		7EDECB9929D590A100182C82 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */,
+				7EDECB8C29D58C1500182C82 /* RequestResponseProvider.swift */,
+				7EDECB9229D58DC100182C82 /* TokenRefresher.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7EDECB9A29D590C600182C82 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECB9B29D590DB00182C82 /* NetworkingManagerAlamofire.swift */,
+				7EDECB9D29D5910D00182C82 /* RequestResponseAlamofire.swift */,
+				7EDECB9F29D5911C00182C82 /* OAuth2HandlerAlamofire.swift */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		7EDECBA329D5A7D400182C82 /* Routable */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECBA629D5B03100182C82 /* Routers */,
+				7EDECBA429D5A7E400182C82 /* NetworkRoutable.swift */,
+			);
+			path = Routable;
+			sourceTree = "<group>";
+		};
+		7EDECBA629D5B03100182C82 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECBA729D5B06500182C82 /* PlayerRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		7EDECBA929D5B0DC00182C82 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7EDECBAA29D5B0F100182C82 /* PlayerService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		D01E7763265EEB2E00FA65FE /* TournamentAppTests */ = {
@@ -237,6 +352,9 @@
 		D039438026584C8B0088A386 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7EDECBA929D5B0DC00182C82 /* Services */,
+				7EDECBA329D5A7D400182C82 /* Routable */,
+				7EDECB8229D58A3600182C82 /* NetworkingManager */,
 				D039438126584DA50088A386 /* ApiUrl.swift */,
 				D039438426584DBB0088A386 /* ApiCaller.swift */,
 			);
@@ -376,11 +494,11 @@
 				D039437C26584C5D0088A386 /* Extensions+UIView.swift */,
 				D039439026585F910088A386 /* Extensions+UIImage.swift */,
 				D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */,
-				D03943B92659A57E0088A386 /* Constant.swift */,
 				D03943BC2659A8810088A386 /* Extensions+Formatter.swift */,
 				D03943BF2659A8B40088A386 /* Extensions+Int.swift */,
 				D03943D22659C2170088A386 /* Extensions+String.swift */,
 				D0375641265AE36B009EE660 /* Extensions+Date.swift */,
+				7EDECBA129D59D0600182C82 /* Extensions+Data.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -585,32 +703,50 @@
 				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
+				7EDECB9329D58DC100182C82 /* TokenRefresher.swift in Sources */,
 				D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */,
 				D039437D26584C5D0088A386 /* Extensions+UIView.swift in Sources */,
 				D03756A9265D9E7A009EE660 /* TournamentTableViewCell.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
+				7EDECBA829D5B06500182C82 /* PlayerRouter.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
+				7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */,
 				D03943A8265991AF0088A386 /* Player.swift in Sources */,
+				7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */,
+				7EDECB9C29D590DB00182C82 /* NetworkingManagerAlamofire.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */,
+				7EDECB8F29D58C4600182C82 /* ResultBasic.swift in Sources */,
+				7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */,
+				7EDECB9E29D5910D00182C82 /* RequestResponseAlamofire.swift in Sources */,
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
+				7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
+				7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */,
 				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
+				7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */,
 				D039438226584DA50088A386 /* ApiUrl.swift in Sources */,
+				7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */,
+				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
+				7EDECBA229D59D0600182C82 /* Extensions+Data.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */,
 				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
+				7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
 				D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */,
 				D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,
+				7EDECB9129D58C6C00182C82 /* NetworkError.swift in Sources */,
 				D088CDE02667E1FC00F96ED3 /* SetDraw.swift in Sources */,
+				7EDECB8B29D58AFC00182C82 /* NetworkingManagerModels.swift in Sources */,
+				7EDECB9829D5901400182C82 /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

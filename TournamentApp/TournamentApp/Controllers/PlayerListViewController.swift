@@ -22,6 +22,7 @@ class PlayerListViewController: BaseViewController {
     var playerList: [Player] = [Player]()
     private var page: Int = 1
     private let limit: Int = 20
+    private let apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()
     
     // MARK: - Life Cycle
     
@@ -159,25 +160,26 @@ class PlayerListViewController: BaseViewController {
     }
     
     private func fetchData() {
-        ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
+        apiCaller.getPlayerList(from: page, with: limit) { [weak self] (result) in
+            guard let self else { return }
             switch result {
             case .success(let model):
-                self?.playerList = model
-                self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                self?.page += 1
+                self.playerList = model
+                self.playerList.sort{ $0.getPoints() > $1.getPoints() }
+                self.page += 1
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.tableView.isHidden = false
-                    self?.spinner.stopAnimating()
-                    self?.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                    self.spinner.stopAnimating()
+                    self.refresher.endRefreshing()
                 }
             case .failure(let error):
-                self?.playerList.removeAll()
+                self.playerList.removeAll()
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                    self?.tableView.isHidden = false
-                    self?.spinner.stopAnimating()
-                    self?.refresher.endRefreshing()
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                    self.spinner.stopAnimating()
+                    self.refresher.endRefreshing()
                     UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                 }
             }
@@ -185,12 +187,10 @@ class PlayerListViewController: BaseViewController {
     }
     
     private func fetchMoreData() {
-        ApiCaller.shared.getPlayerList(from: self.page, with: self.limit) { [weak self] (result) in
+        apiCaller.getPlayerList(from: page, with: limit) { [weak self] (result) in
             switch result {
             case .success(let model):
-                guard let strongSelf = self else {
-                    return
-                }
+                guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
                     if model.count > 0 {
                         self?.playerList = strongSelf.playerList + model
