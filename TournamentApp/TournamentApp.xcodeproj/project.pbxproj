@@ -67,7 +67,6 @@
 		D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088CDD52667DF7200F96ED3 /* DataResponse.swift */; };
 		D088CDE02667E1FC00F96ED3 /* SetDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088CDDF2667E1FC00F96ED3 /* SetDraw.swift */; };
 		D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6932658225D0011EEA9 /* AppDelegate.swift */; };
-		D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D094F6952658225D0011EEA9 /* SceneDelegate.swift */; };
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
 		D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F6992658225D0011EEA9 /* Main.storyboard */; };
 		D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F69E2658225F0011EEA9 /* LaunchScreen.storyboard */; };
@@ -145,7 +144,6 @@
 		D088CDDF2667E1FC00F96ED3 /* SetDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDraw.swift; sourceTree = "<group>"; };
 		D094F6902658225D0011EEA9 /* TournamentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TournamentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D094F6932658225D0011EEA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D094F6952658225D0011EEA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D094F69A2658225D0011EEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D094F69C2658225F0011EEA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D094F69F2658225F0011EEA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -510,7 +508,6 @@
 			isa = PBXGroup;
 			children = (
 				D094F6932658225D0011EEA9 /* AppDelegate.swift */,
-				D094F6952658225D0011EEA9 /* SceneDelegate.swift */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -678,7 +675,6 @@
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
 				7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */,
-				D094F6962658225D0011EEA9 /* SceneDelegate.swift in Sources */,
 				7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */,
 				7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */,
 				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
