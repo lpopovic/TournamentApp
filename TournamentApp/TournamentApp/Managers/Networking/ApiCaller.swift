@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireURLCache5
 
 final class ApiCaller {
     
@@ -94,7 +93,7 @@ final class ApiCaller {
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void) {
         self.sessionManager.request(NetworkApiPath.players + "/\(id)", method: .get, headers: headers)
             .validate(statusCode: 200..<300)
-            .responseJSON (completionHandler: { (response) in
+            .responseJSON { (response) in
                 switch response.result {
                 case .success:
                     guard let data = response.data else {
@@ -127,7 +126,7 @@ final class ApiCaller {
                         completion(.failure(error))
                     }
                 }
-            }, autoClearCache: true).cache(maxAge: self.cacheAge)
+            }
     }
     
     func postCreatePlayer(firstName: String,
@@ -218,9 +217,7 @@ final class ApiCaller {
                     }
                     do {
                         let result = try JSONDecoder().decode(DefaultResponse.self, from: data)
-                        
-                        self.sessionManager.clearCache(url: NetworkApiPath.players + "/\(id)")
-                        
+                                                
                         completion(.success(result))
                         
                     } catch let error {

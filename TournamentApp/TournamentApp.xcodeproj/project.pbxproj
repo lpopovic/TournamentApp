@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,9 @@
 		7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAA29D5B0F100182C82 /* PlayerService.swift */; };
 		7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAC29D5B40800182C82 /* ApiParameter.swift */; };
 		7EDECBAF29D5C4FA00182C82 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */; };
+		7EDECBB629D5D64800182C82 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7EDECBB529D5D64800182C82 /* SDWebImage */; };
+		7EDECBB929D5D66B00182C82 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7EDECBB829D5D66B00182C82 /* Alamofire */; };
+		7EDECBBB29D5D83900182C82 /* Extensions+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBBA29D5D83900182C82 /* Extensions+UIImageView.swift */; };
 		D01E7729265E99C800FA65FE /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7728265E99C800FA65FE /* Match.swift */; };
 		D01E7777265EEC8F00FA65FE /* PlayerDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E7776265EEC8F00FA65FE /* PlayerDataTests.swift */; };
 		D01E777C265EF0E900FA65FE /* PlayerDetailDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E777B265EF0E900FA65FE /* PlayerDetailDataTests.swift */; };
@@ -67,7 +70,6 @@
 		D094F69D2658225F0011EEA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D094F69C2658225F0011EEA9 /* Assets.xcassets */; };
 		D094F6B92658292E0011EEA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F6992658225D0011EEA9 /* Main.storyboard */; };
 		D094F6BB265829350011EEA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D094F69E2658225F0011EEA9 /* LaunchScreen.storyboard */; };
-		DE8FE1C904D2EA822F05B356 /* Pods_TournamentApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,9 +102,7 @@
 		7EDECBAA29D5B0F100182C82 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		7EDECBAC29D5B40800182C82 /* ApiParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiParameter.swift; sourceTree = "<group>"; };
 		7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiPath.swift; sourceTree = "<group>"; };
-		9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.debug.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.debug.xcconfig"; sourceTree = "<group>"; };
-		A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TournamentApp.release.xcconfig"; path = "Target Support Files/Pods-TournamentApp/Pods-TournamentApp.release.xcconfig"; sourceTree = "<group>"; };
-		CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TournamentApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EDECBBA29D5D83900182C82 /* Extensions+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIImageView.swift"; sourceTree = "<group>"; };
 		D01E7728265E99C800FA65FE /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		D01E7762265EEB2E00FA65FE /* TournamentAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TournamentAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01E7766265EEB2E00FA65FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,22 +162,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE8FE1C904D2EA822F05B356 /* Pods_TournamentApp.framework in Frameworks */,
+				7EDECBB929D5D66B00182C82 /* Alamofire in Frameworks */,
+				7EDECBB629D5D64800182C82 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35068793BE7E39020A42AD5C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */,
-				A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,8 +406,6 @@
 				D094F6922658225D0011EEA9 /* TournamentApp */,
 				D01E7763265EEB2E00FA65FE /* TournamentAppTests */,
 				D094F6912658225D0011EEA9 /* Products */,
-				35068793BE7E39020A42AD5C /* Pods */,
-				E20C8D669A093C8E7C2639B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -499,6 +489,7 @@
 				D03943D22659C2170088A386 /* Extensions+String.swift */,
 				D0375641265AE36B009EE660 /* Extensions+Date.swift */,
 				7EDECBA129D59D0600182C82 /* Extensions+Data.swift */,
+				7EDECBBA29D5D83900182C82 /* Extensions+UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -530,14 +521,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E20C8D669A093C8E7C2639B2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CE744BBC5735B6DD421CA297 /* Pods_TournamentApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -563,17 +546,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D094F6A42658225F0011EEA9 /* Build configuration list for PBXNativeTarget "TournamentApp" */;
 			buildPhases = (
-				6AEF5D74EB2F245C8AADDED7 /* [CP] Check Pods Manifest.lock */,
 				D094F68C2658225D0011EEA9 /* Sources */,
 				D094F68D2658225D0011EEA9 /* Frameworks */,
 				D094F68E2658225D0011EEA9 /* Resources */,
-				020C01141877FB02CE93CAA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TournamentApp;
+			packageProductDependencies = (
+				7EDECBB529D5D64800182C82 /* SDWebImage */,
+				7EDECBB829D5D66B00182C82 /* Alamofire */,
+			);
 			productName = TournamentApp;
 			productReference = D094F6902658225D0011EEA9 /* TournamentApp.app */;
 			productType = "com.apple.product-type.application";
@@ -606,6 +591,10 @@
 				Base,
 			);
 			mainGroup = D094F6872658225D0011EEA9;
+			packageReferences = (
+				7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				7EDECBB729D5D66B00182C82 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = D094F6912658225D0011EEA9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -641,48 +630,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		020C01141877FB02CE93CAA6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TournamentApp/Pods-TournamentApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TournamentApp/Pods-TournamentApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TournamentApp/Pods-TournamentApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6AEF5D74EB2F245C8AADDED7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TournamentApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		D01E775E265EEB2E00FA65FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -715,6 +662,7 @@
 				D03943A8265991AF0088A386 /* Player.swift in Sources */,
 				7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */,
 				7EDECB9C29D590DB00182C82 /* NetworkingManagerAlamofire.swift in Sources */,
+				7EDECBBB29D5D83900182C82 /* Extensions+UIImageView.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */,
 				7EDECB8F29D58C4600182C82 /* ResultBasic.swift in Sources */,
@@ -943,7 +891,6 @@
 		};
 		D094F6A52658225F0011EEA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CB585D487C6112846E21092 /* Pods-TournamentApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -964,7 +911,6 @@
 		};
 		D094F6A62658225F0011EEA9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A107DB1641B9BC82EC851CAB /* Pods-TournamentApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1014,6 +960,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		7EDECBB729D5D66B00182C82 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7EDECBB529D5D64800182C82 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		7EDECBB829D5D66B00182C82 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EDECBB729D5D66B00182C82 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D094F6882658225D0011EEA9 /* Project object */;
 }

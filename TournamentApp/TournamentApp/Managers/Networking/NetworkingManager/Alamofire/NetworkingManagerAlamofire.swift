@@ -7,8 +7,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireURLCache5
-
 
 // MARK: - NetworkingManagerAlamofire
 
@@ -85,7 +83,7 @@ extension NetworkingManagerAlamofire: NetworkingManagerProvider {
             parameters: parameters,
             encoding: setAlamofireEncoding(when: encoding),
             headers: setAlamofireHeaders(when: headers))
-        .validate()
+            .validate()
         
         return request
     }

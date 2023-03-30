@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class PlayerInfoTableCell: UITableViewCell {
     
@@ -78,11 +77,9 @@ class PlayerInfoTableCell: UITableViewCell {
         self.dateOfBirthLabel.text = "\(model.getStringDateOfBirth() ?? "Date of birth undefined")"
         self.pointsLabel.text = "Scored points: \(model.getPoints().formatedWithSeparator)"
         self.isProfessionalLabel.text = "Professional athlete: \(model.getStringIsProfessional())"
-        self.photoImageView.sd_setImage(
+        self.photoImageView.setImage(
             with: URL(string: model.profileImageUrl ?? ""),
-            placeholderImage: UIImage(systemName: "photo"),
-            completed: nil
-        )
+            placeholderImage: UIImage(systemName: "photo"))
     }
     
 }

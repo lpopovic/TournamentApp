@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 protocol PlayerAddEditViewControllerDelegate: AnyObject{
     func playerIsCreated()
@@ -183,11 +182,9 @@ class PlayerAddEditViewController: BaseViewController {
             return
         }
         
-        self.photoImageView.sd_setImage(
+        self.photoImageView.setImage(
             with: URL(string: player.profileImageUrl ?? ""),
-            placeholderImage: placeholderImage,
-            completed: nil
-        )
+            placeholderImage: placeholderImage)
         self.firstNameTextField.text = player.firstName
         self.lastNameTextField.text = player.lastName
         self.datePickerTextField.text = "\(player.getStringDateOfBirth() ?? "")"
