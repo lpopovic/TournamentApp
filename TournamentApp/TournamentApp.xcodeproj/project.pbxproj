@@ -142,6 +142,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7EDECB8129D583BF00182C82 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D088CDDF2667E1FC00F96ED3 /* SetDraw.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		D01E7763265EEB2E00FA65FE /* TournamentAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,11 +315,12 @@
 			children = (
 				D094F6B1265827E20011EEA9 /* Startup */,
 				D094F6AD2658234B0011EEA9 /* Resources */,
-				D094F6AE2658236A0011EEA9 /* Extensions */,
 				D094F6AF265824100011EEA9 /* Managers */,
 				D094F6A9265822A30011EEA9 /* Models */,
 				D094F6AA265822AF0011EEA9 /* Views */,
 				D094F6AC265822BA0011EEA9 /* Controllers */,
+				D094F6AE2658236A0011EEA9 /* Extensions */,
+				7EDECB8129D583BF00182C82 /* Utilities */,
 				D094F6B2265828310011EEA9 /* Supporting Files */,
 			);
 			path = TournamentApp;
@@ -372,7 +381,6 @@
 				D03943BF2659A8B40088A386 /* Extensions+Int.swift */,
 				D03943D22659C2170088A386 /* Extensions+String.swift */,
 				D0375641265AE36B009EE660 /* Extensions+Date.swift */,
-				D088CDDF2667E1FC00F96ED3 /* SetDraw.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
