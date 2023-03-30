@@ -23,6 +23,7 @@ class PlayerListViewController: BaseViewController {
     private var page: Int = 1
     private let limit: Int = 20
     private let apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()
+    private let alertController: UIAlertController.Type = UIAlertController.self
     
     // MARK: - Life Cycle
     
@@ -148,7 +149,7 @@ class PlayerListViewController: BaseViewController {
             nvc.pushViewController(vc, animated: true)
            
         } else {
-            UIAlertController.showAlertUserMessage(self, title: nil, message: "There is not enough players, please load more.")
+            alertController.showAlertUserMessage(self, title: nil, message: "There is not enough players, please load more.")
         }
     }
     
@@ -180,7 +181,7 @@ class PlayerListViewController: BaseViewController {
                     self.tableView.isHidden = false
                     self.spinner.stopAnimating()
                     self.refresher.endRefreshing()
-                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
+                    self.alertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                 }
             }
         }
@@ -188,9 +189,9 @@ class PlayerListViewController: BaseViewController {
     
     private func fetchMoreData() {
         apiCaller.getPlayerList(from: page, with: limit) { [weak self] (result) in
+            guard let strongSelf = self else { return }
             switch result {
             case .success(let model):
-                guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
                     if model.count > 0 {
                         self?.playerList = strongSelf.playerList + model
@@ -208,7 +209,7 @@ class PlayerListViewController: BaseViewController {
                     self?.tableView.tableFooterView = nil
                     self?.tableView.tableFooterView?.isHidden = true
                     self?.tableView.reloadData()
-                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
+                    self?.alertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
                 }
             }
         }
