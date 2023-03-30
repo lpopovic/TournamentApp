@@ -18,23 +18,27 @@ class HomeViewController: BaseViewController {
     // MARK: - Variable
     
     static let storyboardIdentifier = "HomeViewController"
+    public let viewModel = HomeViewModel()
+    private let hapticsManager: HapticsManager = .shared
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Welcome"
-        
-        self.setupShowPlayerListButton()
-        self.setupImageView()
-        self.setupNameOfTournomentButton()
-        
+        self.setupViews()
     }
     
     // MARK: - UI
     
+    private func setupViews() {
+        self.title = viewModel.navigationBarTitle
+        self.setupShowPlayerListButton()
+        self.setupImageView()
+        self.setupNameOfTournomentButton()
+    }
+    
     private func setupShowPlayerListButton() {
-        self.showPlayerListButton.setTitle("See list of players", for: .normal)
+        self.showPlayerListButton.setTitle(viewModel.playerListButtonTitle, for: .normal)
         self.showPlayerListButton.setTitleColor(.systemBlue, for: .normal)
         self.showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         self.showPlayerListButton.titleLabel?.textAlignment = .center
@@ -43,11 +47,11 @@ class HomeViewController: BaseViewController {
     
     private func setupImageView() {
         self.imageView.contentMode = .scaleAspectFit
-        self.imageView.image = UIImage.LocalImage.serbianOpenLogo.value
+        self.imageView.image = viewModel.serbianOpenLogoImage.value
     }
     
     private func setupNameOfTournomentButton() {
-        self.nameOfTournomentButton.setTitle("Serbian Open", for: .normal)
+        self.nameOfTournomentButton.setTitle(viewModel.nameOfTournomentTitle, for: .normal)
         self.nameOfTournomentButton.setTitleColor(.label, for: .normal)
         self.nameOfTournomentButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         self.nameOfTournomentButton.titleLabel?.numberOfLines = 1
@@ -58,19 +62,14 @@ class HomeViewController: BaseViewController {
     // MARK: - Actions
     
     @objc private func didTap(_ sender: UIButton) {
-        HapticsManager.shared.vibrateForSelection()
+        self.hapticsManager.vibrateForSelection()
         self.pushPlayerListViewController()
-        
     }
     
     private func pushPlayerListViewController() {
+        viewModel.showPlayerListScreen?()
         let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
-        
-        guard let nvc = self.navigationController else {
-            return
-        }
+        guard let nvc = self.navigationController else { return }
         nvc.pushViewController(vc, animated: true)
     }
-    
-    
 }

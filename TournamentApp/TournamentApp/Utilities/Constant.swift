@@ -18,3 +18,6 @@ enum GlobalConstants {
     }
 
 }
+
+public typealias NoArgsClosure = () -> Void
+public typealias VoidReturnClosure<T> = (T) -> Void

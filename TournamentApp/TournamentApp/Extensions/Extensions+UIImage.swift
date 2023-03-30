@@ -8,19 +8,6 @@
 import UIKit
 
 extension UIImage {
-    enum LocalImage {
-        case serbianOpenLogo
-        
-        var value: UIImage? {
-            get {
-                switch self {
-                case .serbianOpenLogo:
-                    return UIImage(named: "serbianOpenLogo")
-                }
-            }
-        }
-    }
-    
     enum JPEGQuality: CGFloat {
         case lowest  = 0
         case low     = 0.25
@@ -32,7 +19,18 @@ extension UIImage {
     func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
         return jpegData(compressionQuality: jpegQuality.rawValue)
     }
-
 }
 
+enum LocalImage {
+    case serbianOpenLogo
+    
+    var value: UIImage? {
+        get {
+            switch self {
+            case .serbianOpenLogo:
+                return UIImage(named: "serbianOpenLogo")
+            }
+        }
+    }
+}
 
