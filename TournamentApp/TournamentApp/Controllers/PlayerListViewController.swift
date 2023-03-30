@@ -9,31 +9,28 @@ import UIKit
 
 class PlayerListViewController: BaseViewController {
     
-    // MARK: - IBOutlet
+    // MARK: - Properties
+    
+    static let storyboardIdentifier = "PlayerListViewController"
+    
+    // MARK: IBOutlet
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    private var refresher : UIRefreshControl!
-    private var spinnerTableView: UIActivityIndicatorView!
+    private var refresher: UIRefreshControl!
     
-    // MARK: - Variable
+    // MARK: Variable
     
-    static let storyboardIdentifier = "PlayerListViewController"
-    var playerList: [Player] = [Player]()
-    private var page: Int = 1
-    private let limit: Int = 20
-    private let apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()
+    private let viewModel = PlayerListViewModel()
+    private let hapticsManager: HapticsManager = .shared
     private let alertController: UIAlertController.Type = UIAlertController.self
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupVC()
-        self.setupTableView()
-        self.setupSpinner()
-        self.setupRefreshControl()
-        
+        self.setupViewModel()
+        self.setupViews()
         self.getInitPlayerList()
     }
     
@@ -42,14 +39,51 @@ class PlayerListViewController: BaseViewController {
         self.spinner.center = self.view.center
     }
     
-    // MARK: - UI
+    // MARK: - Private methods
+    
+    private func setupViewModel() {
+        viewModel.hideProgress = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.refresher.endRefreshing()
+            }
+        }
+        viewModel.showProgress = { [weak self]  in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.spinner.startAnimating()
+            }
+        }
+        viewModel.reloadListView = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        viewModel.onSelectItem = { [weak self] item in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.pushPlayerViewController(with: item)
+            }
+        }
+    }
+    
+    // MARK: UI
+    
+    private func setupViews() {
+        self.setupVC()
+        self.setupSpinner()
+        self.setupTableView()
+        self.setupRefreshControl()
+    }
     
     private func setupVC() {
-        self.title = "Player List"
+        self.title = viewModel.navigationTitle
         self.view.backgroundColor = .systemBackground
         
         let drawButton = UIBarButtonItem(
-            title: "Draw",
+            title: viewModel.drawButtonTitle,
             style: .done,
             target: self,
             action: #selector(didTapAddDrawButton)
@@ -66,15 +100,13 @@ class PlayerListViewController: BaseViewController {
         self.spinner.tintColor = .label
         self.spinner.hidesWhenStopped = true
         self.spinner.style = .large
-        
-        self.spinnerTableView = UIActivityIndicatorView(style: .large)
-        self.spinnerTableView.color = .label
     }
     
     private func setupRefreshControl() {
         self.refresher = UIRefreshControl()
         self.tableView.addSubview(refresher)
-        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
+        self.refresher.attributedTitle = NSAttributedString(string: viewModel.refreshViewTitle,
+                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
         self.refresher.tintColor = .label
         self.refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
     }
@@ -84,36 +116,31 @@ class PlayerListViewController: BaseViewController {
                                 forCellReuseIdentifier: PlayerTableViewCell.identifier)
         self.tableView.separatorColor = .label
         self.tableView.backgroundColor = .systemBackground
-        self.tableView.isHidden = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
     }
     
-    // MARK: - Actions
+    // MARK: Actions
     
     @objc private func didTapAddPlayerButton() {
-        HapticsManager.shared.vibrateForSelection()
-        self.pushPlayerAddEditViewController()
+        DispatchQueue.main.async { [weak self] in
+            self?.hapticsManager.vibrateForSelection()
+            self?.pushPlayerAddEditViewController()
+        }
     }
     
     @objc private func didTapAddDrawButton() {
-        HapticsManager.shared.vibrateForSelection()
+        hapticsManager.vibrateForSelection()
         self.pushTournamentBracketViewController()
-        
     }
     
-    private func didTapTableViewCell(with model: Player) {
+    private func pushPlayerViewController(with model: Player) {
         guard let vc = storyboardMain.instantiateViewController(
             withIdentifier: PlayerViewController.storyboardIdentifier
         ) as? PlayerViewController else { return }
-        
         vc.playerId = model.id
         vc.delegate = self
-        
-        guard let nvc = self.navigationController else {
-            return
-        }
+        guard let nvc = self.navigationController else { return }
         nvc.pushViewController(vc, animated: true)
     }
     
@@ -129,111 +156,35 @@ class PlayerListViewController: BaseViewController {
     }
     
     func pushTournamentBracketViewController() {
-        var playersForDraw: [Player] = []
-        
-        for item in self.playerList {
-            if playersForDraw.count == 32 {
-                break
-            } else if item.tournament_id == nil {
-                playersForDraw.append(item)
-            }
-        }
-        
-        if playersForDraw.count == 32 {
-            
-            guard let nvc = self.navigationController,  let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier) as? TournamentBracketViewController else {
-                return
-            }
-            
-            vc.playerList = playersForDraw
-            nvc.pushViewController(vc, animated: true)
-           
-        } else {
-            alertController.showAlertUserMessage(self, title: nil, message: "There is not enough players, please load more.")
-        }
+        guard let playersForDraw: [Player] = viewModel.getItemsForBracket(),
+              let nvc = self.navigationController,
+              let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier) as? TournamentBracketViewController
+        else { return }
+        vc.playerList = playersForDraw
+        nvc.pushViewController(vc, animated: true)
     }
-    
     
     @objc private func didSwipeRefresh() {
-        self.refresher.beginRefreshing()
-        self.page = 1
-        self.fetchData()
-    }
-    
-    private func fetchData() {
-        apiCaller.getPlayerList(from: page, with: limit) { [weak self] (result) in
-            guard let self else { return }
-            switch result {
-            case .success(let model):
-                self.playerList = model
-                self.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                self.page += 1
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.tableView.isHidden = false
-                    self.spinner.stopAnimating()
-                    self.refresher.endRefreshing()
-                }
-            case .failure(let error):
-                self.playerList.removeAll()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.tableView.isHidden = false
-                    self.spinner.stopAnimating()
-                    self.refresher.endRefreshing()
-                    self.alertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
-                }
-            }
-        }
-    }
-    
-    private func fetchMoreData() {
-        apiCaller.getPlayerList(from: page, with: limit) { [weak self] (result) in
-            guard let strongSelf = self else { return }
-            switch result {
-            case .success(let model):
-                DispatchQueue.main.async {
-                    if model.count > 0 {
-                        self?.playerList = strongSelf.playerList + model
-                        self?.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                        self?.page += 1
-                        self?.tableView.reloadData()
-                    }
-                    self?.spinnerTableView.stopAnimating()
-                    self?.tableView.tableFooterView = nil
-                    self?.tableView.tableFooterView?.isHidden = true
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self?.spinnerTableView.stopAnimating()
-                    self?.tableView.tableFooterView = nil
-                    self?.tableView.tableFooterView?.isHidden = true
-                    self?.tableView.reloadData()
-                    self?.alertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
-                }
-            }
-        }
+        self.viewModel.fetchInitData()
     }
     
     private func getInitPlayerList() {
-        self.spinner.startAnimating()
-        self.page = 1
-        self.fetchData()
+        self.viewModel.fetchInitData()
     }
-    
 }
+
+// MARK: - Delegates
+// MARK: UITableViewDataSource
 
 extension PlayerListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playerList.count
+        return viewModel.numberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier) as? PlayerTableViewCell else {
-            return UITableViewCell()
-        }
-        let model = self.playerList[indexPath.row]
-        let rank = indexPath.row + 1
+        guard let (model, rank) = viewModel.getItem(at: indexPath.row),
+              let cell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier) as? PlayerTableViewCell
+        else { return UITableViewCell() }
         cell.configure(with: model, rank)
         return cell
     }
@@ -242,65 +193,44 @@ extension PlayerListViewController: UITableViewDataSource {
         let lastSectionIndex = tableView.numberOfSections - 1
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         
-        if indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex && !self.spinnerTableView.isAnimating {
-            
-            self.spinnerTableView.startAnimating()
-            self.spinnerTableView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-            
-            self.tableView.tableFooterView = self.spinnerTableView
-            self.tableView.tableFooterView?.isHidden = false
-            
-            self.fetchMoreData()
+        if indexPath.section == lastSectionIndex,
+            indexPath.row == lastRowIndex,
+           !self.viewModel.isMoreLoading {
+            self.viewModel.fetchMoreData()
         }
     }
-    
 }
+
+// MARK: UITableViewDelegate
 
 extension PlayerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.didTapTableViewCell(with: self.playerList[indexPath.row])
-        HapticsManager.shared.vibrateForSelection()
+        self.viewModel.didSelectItem(at: indexPath.row)
+        hapticsManager.vibrateForSelection()
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 }
 
+// MARK: PlayerViewControllerDelegate
+
 extension PlayerListViewController: PlayerViewControllerDelegate {
     func playerIsUpdated(with id: Int, player: PlayerDetail) {
-        if let index = self.playerList.firstIndex(where: { $0.id == id }) {
-            let item = self.playerList[index]
-            guard item.firstName != player.firstName ||
-                    item.lastName != player.lastName ||
-                    item.points != player.points
-            else { return }
-            
-            DispatchQueue.main.async {
-                self.playerList[index] = Player(id: id,
-                                                firstName: player.firstName,
-                                                lastName: player.lastName,
-                                                points: player.points,
-                                                tournament_id: player.tournament_id)
-                self.playerList.sort{ $0.getPoints() > $1.getPoints() }
-                self.tableView.reloadData()
-                
-                let indexPath = IndexPath(row: index, section: 0)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                
-                
-            }
-            
+        viewModel.playerIsUpdated(with: id, player: player) { [weak self] index in
+            guard let self else { return }
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
-        
     }
     
     func playerIsDeleted(with id: Int) {
-        self.playerList = self.playerList.filter{ $0.id != id }
-        self.tableView.reloadData()
+        viewModel.playerIsDeleted(id)
     }
-    
 }
+
+// MARK: PlayerAddEditViewControllerDelegate
 
 extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
     func playerIsEdited(player: PlayerDetail) { }
