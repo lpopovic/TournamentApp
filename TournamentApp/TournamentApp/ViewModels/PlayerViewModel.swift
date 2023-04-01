@@ -13,7 +13,7 @@ final class PlayerViewModel {
     
     let playerId: Int
     private(set) var playerDetailInfo: PlayerDetail?
-    private(set) var isPlayerEdit = false
+    private var isPlayerEdit = false
     
     // MARK: Service
     

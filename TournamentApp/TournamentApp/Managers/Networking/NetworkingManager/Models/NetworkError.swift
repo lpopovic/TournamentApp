@@ -29,3 +29,17 @@ extension NetworkError: LocalizedError {
         }
     }
 }
+
+enum AppError {
+    case runtimeError(message: String)
+}
+
+// MARK: - LocalizedError
+extension AppError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .runtimeError(let message):
+            return message
+        }
+    }
+}

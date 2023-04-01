@@ -20,9 +20,8 @@ protocol HapticsManagerProvider {
 }
 
 final class HapticsManager: HapticsManagerProvider {
-    static let shared = HapticsManager()
     
-    private init () {}
+    init () {}
     
     public func vibrateForSelection() {
         DispatchQueue.main.async {

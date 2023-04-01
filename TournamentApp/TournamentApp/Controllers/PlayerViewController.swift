@@ -22,7 +22,6 @@ class PlayerViewController: BaseViewController {
     // MARK: Private
     // Variable
     private let viewModel: PlayerViewModel
-    private let apiCaller: ApiCallerProvider = ApiCaller.shared
     private let hapticsManager: HapticsManagerProvider
     private let localImage: LocalImage.Type = LocalImage.self
     
@@ -183,14 +182,16 @@ class PlayerViewController: BaseViewController {
     }
     
     @objc private func didTapEditButton() {
-        pushPlayerAddEditViewController()
+        pushPlayerAddEditViewController(viewModel.playerId, viewModel.playerDetailInfo)
         hapticsManager.vibrateForSelection()
     }
     
-    private func pushPlayerAddEditViewController() {
-        let playerAddEditViewController = PlayerAddEditViewController.instantiate(for: .edit,
-                                                                                  playerId: viewModel.playerId,
-                                                                                  playerDetailInfo: viewModel.playerDetailInfo,
+    private func pushPlayerAddEditViewController(_ playerId: Int?, _ playerDetailInfo: PlayerDetail?) {
+        let viewModel = PlayerAddEditViewModel(typeOfVC: .edit,
+                                               playerId: playerId,
+                                               playerDetailInfo: playerDetailInfo)
+        let playerAddEditViewController = PlayerAddEditViewController.instantiate(viewModel: viewModel,
+                                                                                  hapticsManager: hapticsManager,
                                                                                   delegate: self)
         navigationController?.pushViewController(playerAddEditViewController, animated: true)
     }

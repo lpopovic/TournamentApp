@@ -171,9 +171,11 @@ class PlayerListViewController: BaseViewController {
     }
     
     private func pushPlayerAddEditViewController() {
-        let playerAddEditViewController = PlayerAddEditViewController.instantiate(for: .add, delegate: self)
-        guard let nvc = self.navigationController else { return }
-        nvc.pushViewController(playerAddEditViewController, animated: true)
+        let viewModel = PlayerAddEditViewModel(typeOfVC: .add)
+        let playerAddEditViewController = PlayerAddEditViewController.instantiate(viewModel: viewModel,
+                                                                                  hapticsManager: hapticsManager,
+                                                                                  delegate: self)
+        navigationController?.pushViewController(playerAddEditViewController, animated: true)
     }
     
     func pushTournamentBracketViewController() {

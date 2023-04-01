@@ -98,7 +98,7 @@ class TournamentBracketViewController: BaseViewController {
         let winnerPlayer = self.playerList[winnerPlayerIndex]
         
         UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
-        HapticsManager.shared.vibrate(for: .success)
+        HapticsManager().vibrate(for: .success)
     }
     
 }

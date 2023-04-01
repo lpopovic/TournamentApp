@@ -24,6 +24,7 @@
 		7ED679B729D88BD3007990AC /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679B629D88BD3007990AC /* PlayerViewModel.swift */; };
 		7ED679B929D897A1007990AC /* LocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679B829D897A1007990AC /* LocalImage.swift */; };
 		7ED679BB29D8A751007990AC /* ConfirmAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679BA29D8A751007990AC /* ConfirmAlert.swift */; };
+		7ED679BD29D8CA4D007990AC /* PlayerAddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */; };
 		7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */; };
 		7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */; };
 		7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */; };
@@ -116,6 +117,7 @@
 		7ED679B629D88BD3007990AC /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		7ED679B829D897A1007990AC /* LocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImage.swift; sourceTree = "<group>"; };
 		7ED679BA29D8A751007990AC /* ConfirmAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAlert.swift; sourceTree = "<group>"; };
+		7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewModel.swift; sourceTree = "<group>"; };
 		7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerParameterEncoding.swift; sourceTree = "<group>"; };
 		7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerHTTPMethod.swift; sourceTree = "<group>"; };
 		7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProvider.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */,
 				7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */,
 				7ED679B629D88BD3007990AC /* PlayerViewModel.swift */,
+				7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
 				7E451BE629D85E4E0027827E /* StoryboardInstantiable.swift in Sources */,
+				7ED679BD29D8CA4D007990AC /* PlayerAddEditViewModel.swift in Sources */,
 				7EDECB9329D58DC100182C82 /* TokenRefresher.swift in Sources */,
 				D03943C02659A8B40088A386 /* Extensions+Int.swift in Sources */,
 				7E451BDD29D72B6C0027827E /* Coordinator.swift in Sources */,
