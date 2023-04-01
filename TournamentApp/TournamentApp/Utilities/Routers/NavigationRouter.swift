@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class NavigationRouter: NSObject {
+public class ModalNavigationRouter: NSObject {
 
   // MARK: - Instance Properties
   public unowned let parentViewController: UIViewController
@@ -24,7 +24,7 @@ public class NavigationRouter: NSObject {
 }
 
 // MARK: - Router
-extension NavigationRouter: Router {
+extension ModalNavigationRouter: Router {
 
   public func present(_ viewController: UIViewController,
                       animated: Bool,
@@ -81,7 +81,7 @@ extension NavigationRouter: Router {
 }
 
 // MARK: - UINavigationControllerDelegate
-extension NavigationRouter: UINavigationControllerDelegate {
+extension ModalNavigationRouter: UINavigationControllerDelegate {
 
   public func navigationController(
     _ navigationController: UINavigationController,

@@ -83,6 +83,7 @@ class PlayerListViewController: BaseViewController {
             guard let self else { return }
             DispatchQueue.main.async {
                 self.presentAlert(with: ErrorAlert(message: message))
+                self.hapticsManager.vibrate(for: .error)
             }
         }
     }
@@ -163,9 +164,10 @@ class PlayerListViewController: BaseViewController {
     // MARK: Other
     
     private func pushPlayerViewController(with model: Player) {
-        let playerViewController = PlayerViewController.instantiate(for: model.id, delegate: self)
-        guard let navigationController = self.navigationController else { return }
-        navigationController.pushViewController(playerViewController, animated: true)
+        let playerViewController = PlayerViewController.instantiate(viewModel: PlayerViewModel(playerId: model.id),
+                                                                    hapticsManager: hapticsManager,
+                                                                    delegate: self)
+        navigationController?.pushViewController(playerViewController, animated: true)
     }
     
     private func pushPlayerAddEditViewController() {

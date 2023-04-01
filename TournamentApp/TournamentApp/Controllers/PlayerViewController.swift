@@ -14,32 +14,45 @@ protocol PlayerViewControllerDelegate: AnyObject {
 
 class PlayerViewController: BaseViewController {
     
-    // MARK: - IBOutlet
+    // MARK: - Properties
+    // MARK: Public
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var tableView: UITableView!
-    var refresher: UIRefreshControl!
-    
-    // MARK: - Variable
-    
-    var playerId: Int?
-    var playerDetailInfo: PlayerDetail?
     weak var delegate: PlayerViewControllerDelegate?
-    var isPlayerEdit = false
+    
+    // MARK: Private
+    // Variable
+    private let viewModel: PlayerViewModel
     private let apiCaller: ApiCallerProvider = ApiCaller.shared
-    private let hapticsManager: HapticsManager = .shared
+    private let hapticsManager: HapticsManagerProvider
+    private let localImage: LocalImage.Type = LocalImage.self
+    
+    // IBOutlet
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
+    @IBOutlet private weak var tableView: UITableView!
+    private lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        return refreshControl
+    }()
+    
+    // MARK: - Initialization
+    
+    init?(coder: NSCoder, viewModel: PlayerViewModel, hapticsManager: HapticsManagerProvider) {
+        self.viewModel = viewModel
+        self.hapticsManager = hapticsManager
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Use `init(coder::)` to initialize an `PlayerViewController` instance.")
+    }
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Player"
-        self.setupSpinner()
-        self.setupTableView()
-        self.setupRefreshControl()
-        
-        self.spinner.startAnimating()
-        self.fetchData()
+        setupViews()
+        setupViewModel()
+        viewModel.fetchData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,20 +62,72 @@ class PlayerViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        if self.isMovingFromParent,
-            self.isPlayerEdit == true,
-            let id = self.playerId,
-            let player = self.playerDetailInfo {
-            self.delegate?.playerIsUpdated(with: id, player: player)
+        if self.isMovingFromParent {
+            viewModel.checkIfDataWasUpdated()
         }
     }
     
-    // MARK: - UI
+    // MARK: - Private methods
     
-    func setupNavigationButtons() {
-        if let player = self.playerDetailInfo,
-            player.tournament_id == GlobalConstants.tournomentId {
+    private func setupViewModel() {
+        viewModel.showProgress = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.spinner.startAnimating()
+            }
+        }
+        viewModel.hideProgress = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.refresher.endRefreshing()
+            }
+        }
+        viewModel.showNavigationBar = {[weak self] show in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.setupNavigationButtons(show)
+            }
+        }
+        viewModel.onError = { [weak self] message in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.presentAlert(with: ErrorAlert(message: message))
+                self.hapticsManager.vibrate(for: .error)
+            }
+        }
+        viewModel.onDelete = { [weak self] message in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.showAlertForSuccessDeletedPlayer(with: message)
+                self.hapticsManager.vibrate(for: .success)
+            }
+        }
+        viewModel.reloadListView = { [weak self] in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        viewModel.playerWasUpdated = {[weak self] player in
+            guard let self else { return }
+            self.delegate?.playerIsUpdated(with: self.viewModel.playerId,
+                                           player: player)
+        }
+    }
+    
+    // MARK: UI
+    
+    private func setupViews() {
+        title = "Player"
+        setupSpinner()
+        setupTableView()
+        setupRefreshControl()
+        setupViewModel()
+    }
+    
+    func setupNavigationButtons(_ show: Bool) {
+        if show {
             let deleteButton = UIBarButtonItem(
                 title: "Delete",
                 style: .done,
@@ -70,170 +135,112 @@ class PlayerViewController: BaseViewController {
                 action: #selector(didTapDeleteButton)
             )
             let editButton = UIBarButtonItem(
-                image: UIImage(systemName: "pencil"),
+                image: localImage.pencil.value,
                 style: .done,
                 target: self,
-                action:#selector(didTapEditButton)
+                action: #selector(didTapEditButton)
             )
             navigationItem.rightBarButtonItems = [deleteButton, editButton]
+        } else {
+            navigationItem.rightBarButtonItems = []
         }
-        
     }
     
     private func setupSpinner() {
-        self.spinner.tintColor = .label
-        self.spinner.hidesWhenStopped = true
-        self.spinner.style = .large
+        spinner.tintColor = .label
+        spinner.hidesWhenStopped = true
+        spinner.style = .large
     }
     
     private func setupRefreshControl() {
-        self.refresher = UIRefreshControl()
-        self.tableView.addSubview(refresher)
-        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh",
-                                                            attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
-        self.refresher.tintColor = .label
-        self.refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh",
+                                                       attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
+        refresher.tintColor = .label
+        refresher.addTarget(self,
+                            action: #selector(didSwipeRefresh),
+                            for: .valueChanged)
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib(nibName: PlayerInfoTableCell.identifier, bundle: nil),
-                                forCellReuseIdentifier: PlayerInfoTableCell.identifier)
-        self.tableView.register(UINib(nibName: BioTableViewCell.identifier, bundle: nil),
-                                forCellReuseIdentifier: BioTableViewCell.identifier)
-        self.tableView.separatorColor = .clear
-        self.tableView.backgroundColor = .secondarySystemBackground
+        tableView.register(UINib(nibName: PlayerInfoTableCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: PlayerInfoTableCell.identifier)
+        tableView.register(UINib(nibName: BioTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: BioTableViewCell.identifier)
+        tableView.separatorColor = .clear
+        tableView.backgroundColor = .secondarySystemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
-        self.tableView.isHidden = true
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.addSubview(refresher)
     }
     
-    // MARK: - Actions
+    // MARK: Actions
     
     @objc private func didTapDeleteButton() {
-        self.showDialogForDeletePlayer()
+        showDialogForDeletePlayer()
         hapticsManager.vibrateForSelection()
     }
     
     @objc private func didTapEditButton() {
+        pushPlayerAddEditViewController()
         hapticsManager.vibrateForSelection()
-        self.pushPlayerAddEditViewController()
     }
     
     private func pushPlayerAddEditViewController() {
         let playerAddEditViewController = PlayerAddEditViewController.instantiate(for: .edit,
-                                                                                  playerId: playerId,
-                                                                                  playerDetailInfo: playerDetailInfo,
+                                                                                  playerId: viewModel.playerId,
+                                                                                  playerDetailInfo: viewModel.playerDetailInfo,
                                                                                   delegate: self)
-        guard let nvc = self.navigationController else { return }
-        nvc.pushViewController(playerAddEditViewController, animated: true)
+        navigationController?.pushViewController(playerAddEditViewController, animated: true)
     }
     
     @objc private func didSwipeRefresh() {
-        self.refresher.beginRefreshing()
-        self.fetchData()
+        refresher.beginRefreshing()
+        viewModel.fetchData(didSwipeRefresh: true)
     }
-    
-    func fetchData() {
-        guard let id = self.playerId else {
-            return
-        }
-        apiCaller.getDetailPlayer(with: id) { [weak self] (result) in
-            switch result {
-            case.success(let model):
-                self?.playerDetailInfo = model
-                DispatchQueue.main.async {
-                    self?.spinner.stopAnimating()
-                    self?.tableView.isHidden = false
-                    self?.tableView.reloadData()
-                    self?.setupNavigationButtons()
-                    self?.refresher.endRefreshing()
-                }
-            case .failure(let error):
-                self?.playerDetailInfo = nil
-                DispatchQueue.main.async {
-                    UIAlertController.showAlertUserMessage(self, title: nil, message: error.localizedDescription)
-                    self?.spinner.stopAnimating()
-                    self?.tableView.isHidden = false
-                    self?.tableView.reloadData()
-                    self?.refresher.endRefreshing()
-                }
-            }
-        }
-    }
-    
-    func fetchDeleteData() {
-        guard let id = self.playerId else {
-            return
-        }
-        self.spinner.startAnimating()
-        apiCaller.deletePlayer(with: id) {[weak self] (result) in
-            self?.spinner.stopAnimating()
-            switch result {
-            case .success(let message):
-                let action = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-                    self?.delegate?.playerIsDeleted(with: id)
-                    self?.closeViewController()
-                })
-                
-                UIAlertController.showAlertUserMessage(
-                    self,
-                    title: "Successfully",
-                    message: message,
-                    action: action
-                )
-                self?.hapticsManager.vibrate(for: .success)
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    UIAlertController.showAlertUserMessage(
-                        self,
-                        title: nil,
-                        message: error.localizedDescription
-                    )
-                    self?.hapticsManager.vibrate(for: .error)
-                }
-            }
-        }
-    }
-    
+   
     func showDialogForDeletePlayer() {
-        let alert = UIAlertController(title: "Are you sure?", message: "You can't undo this action.", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [weak self] _ in
-            self?.fetchDeleteData()
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true)
+        let alert = ConfirmAlert(title: "Are you sure?",
+                                 message: "You can't undo this action.",
+                                 completion: { [weak self] confirm in
+            guard let self, confirm else { return }
+            self.viewModel.fetchDeleteData()
+        })
+        presentAlert(with: alert)
+    }
+    
+    func showAlertForSuccessDeletedPlayer(with message: String) {
+        let action = { [weak self] in
+            guard let self else { return }
+            self.delegate?.playerIsDeleted(with: self.viewModel.playerId)
+            self.closeViewController()
+        }
+        let alert = DefaultAlert(title: "Successfully", message: message, completion: action)
+        presentAlert(with: alert)
     }
 }
 
 extension PlayerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.playerDetailInfo != nil ? 2 : 0
+        return self.viewModel.playerDetailInfo != nil ? 2 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerInfoTableCell.identifier) as? PlayerInfoTableCell,
-                  let model = self.playerDetailInfo else {
+                  let model = viewModel.playerDetailInfo else {
                 return UITableViewCell()
             }
             cell.configure(with: model)
-            
             return cell
-            
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BioTableViewCell.identifier) as? BioTableViewCell,
-                  let model = self.playerDetailInfo else {
+                  let model = viewModel.playerDetailInfo else {
                 return UITableViewCell()
             }
             cell.configure(with: "Bio", bio: model.description)
-            
             return cell
         default:
             return UITableViewCell()
@@ -251,21 +258,22 @@ extension PlayerViewController: UITableViewDelegate {
 }
 
 extension PlayerViewController: PlayerAddEditViewControllerDelegate {
-    func playerIsCreated() {}
-    
     func playerIsEdited(player: PlayerDetail) {
-        self.isPlayerEdit = true
-        self.playerDetailInfo = player
-        self.tableView.reloadData()
+        viewModel.updated(player)
     }
+    
+    func playerIsCreated() {}
 }
 
 // MARK: - StoryboardInstantiable
 extension PlayerViewController: StoryboardInstantiable {
-    public class func instantiate(for playerId: Int, delegate: PlayerViewControllerDelegate?) -> PlayerViewController {
-        let viewController = instanceFromStoryboard()
-        viewController.playerId = playerId
-        viewController.delegate = delegate
-        return viewController
+    public class func instantiate(viewModel: PlayerViewModel,
+                                  hapticsManager: HapticsManagerProvider,
+                                  delegate: PlayerViewControllerDelegate?) -> PlayerViewController {
+        let playerViewController = instanceFromStoryboard(nil) { coder -> PlayerViewController? in
+            PlayerViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
+        }
+        playerViewController.delegate = delegate
+        return playerViewController
     }
 }

@@ -169,5 +169,4 @@ final class PlayerListViewModel {
             }
         }
     }
-
 }
