@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class AppDelegateRouter: AnyObject {
+public class AppDelegateRouter: NSObject {
     
     let window: UIWindow
     
@@ -17,12 +17,12 @@ public class AppDelegateRouter: AnyObject {
 }
 
 extension AppDelegateRouter: Router {
-    func present(_ viewController: UIViewController,
+    public func present(_ viewController: UIViewController,
                       animated: Bool,
                       onDismissed: (()->Void)?) {
     window.rootViewController = viewController
     window.makeKeyAndVisible()
   }
     
-   func dismiss(animated: Bool) { }
+    public func dismiss(animated: Bool) { }
 }

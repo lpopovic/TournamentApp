@@ -81,8 +81,7 @@ extension NavigationRouter: Router {
 }
 
 // MARK: - UINavigationControllerDelegate
-extension ModalNavigationRouter:
-  UINavigationControllerDelegate {
+extension NavigationRouter: UINavigationControllerDelegate {
 
   public func navigationController(
     _ navigationController: UINavigationController,

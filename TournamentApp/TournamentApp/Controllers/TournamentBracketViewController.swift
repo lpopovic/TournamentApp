@@ -18,7 +18,6 @@ class TournamentBracketViewController: BaseViewController {
     @IBOutlet weak var viewInScrollWidth: NSLayoutConstraint!
     
     // MARK: - Variable
-    static let storyboardIdentifier = "TournamentBracketViewController"
     var playerList: [Player] = [Player]()
     private var matchInEachBracket: [[Match]] = []
     private let numberOfMatchInEachBracketData: [Int] = [16,8,4,2,1]
@@ -181,5 +180,14 @@ extension TournamentBracketViewController : UITableViewDataSource {
 extension TournamentBracketViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(cellHeight + separatorSize[tableView.tag])
+    }
+}
+
+// MARK: - StoryboardInstantiable
+extension TournamentBracketViewController: StoryboardInstantiable {
+    public class func instantiate(playerList: [Player]) -> TournamentBracketViewController {
+        let viewController = instanceFromStoryboard()
+        viewController.playerList = playerList
+        return viewController
     }
 }

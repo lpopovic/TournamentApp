@@ -10,9 +10,7 @@ import UIKit
 class PlayerListViewController: BaseViewController {
     
     // MARK: - Properties
-    
-    static let storyboardIdentifier = "PlayerListViewController"
-    
+        
     // MARK: IBOutlet
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -135,33 +133,23 @@ class PlayerListViewController: BaseViewController {
     }
     
     private func pushPlayerViewController(with model: Player) {
-        guard let vc = storyboardMain.instantiateViewController(
-            withIdentifier: PlayerViewController.storyboardIdentifier
-        ) as? PlayerViewController else { return }
-        vc.playerId = model.id
-        vc.delegate = self
+        let playerViewController = PlayerViewController.instantiate(for: model.id, delegate: self)
         guard let nvc = self.navigationController else { return }
-        nvc.pushViewController(vc, animated: true)
+        nvc.pushViewController(playerViewController, animated: true)
     }
     
     private func pushPlayerAddEditViewController() {
-        guard let vc = self.storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
-        vc.typeOfVC = .add
-        vc.delegate = self
-        
-        guard let nvc = self.navigationController else {
-            return
-        }
-        nvc.pushViewController(vc, animated: true)
+        let playerAddEditViewController = PlayerAddEditViewController.instantiate(for: .add, delegate: self)
+        guard let nvc = self.navigationController else { return }
+        nvc.pushViewController(playerAddEditViewController, animated: true)
     }
     
     func pushTournamentBracketViewController() {
         guard let playersForDraw: [Player] = viewModel.getItemsForBracket(),
-              let nvc = self.navigationController,
-              let vc = storyboardMain.instantiateViewController(withIdentifier: TournamentBracketViewController.storyboardIdentifier) as? TournamentBracketViewController
+              let nvc = self.navigationController
         else { return }
-        vc.playerList = playersForDraw
-        nvc.pushViewController(vc, animated: true)
+        let tournamentBracketViewController = TournamentBracketViewController.instantiate(playerList: playersForDraw)
+        nvc.pushViewController(tournamentBracketViewController, animated: true)
     }
     
     @objc private func didSwipeRefresh() {
@@ -238,4 +226,12 @@ extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
     func playerIsCreated() {
         self.getInitPlayerList()
     }
+}
+
+// MARK: - StoryboardInstantiable
+extension PlayerListViewController: StoryboardInstantiable {
+  public class func instantiate() -> PlayerListViewController {
+    let viewController = instanceFromStoryboard()
+    return viewController
+  }
 }

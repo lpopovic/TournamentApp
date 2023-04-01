@@ -503,3 +503,18 @@ extension PlayerAddEditViewController: UITextFieldDelegate {
         return false
     }
 }
+
+// MARK: - StoryboardInstantiable
+extension PlayerAddEditViewController: StoryboardInstantiable {
+    public class func instantiate(for type: TypeViewController,
+                                  playerId: Int? = nil,
+                                  playerDetailInfo: PlayerDetail? = nil,
+                                  delegate: PlayerAddEditViewControllerDelegate?) -> PlayerAddEditViewController {
+        let viewController = instanceFromStoryboard()
+        viewController.typeOfVC = type
+        viewController.delegate = delegate
+        viewController.playerId = playerId
+        viewController.playerDetailInfo = playerDetailInfo
+        return viewController
+    }
+}

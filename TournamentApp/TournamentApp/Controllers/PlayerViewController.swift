@@ -22,7 +22,6 @@ class PlayerViewController: BaseViewController {
     
     // MARK: - Variable
     
-    static let storyboardIdentifier = "PlayerViewController"
     var playerId: Int?
     var playerDetailInfo: PlayerDetail?
     weak var delegate: PlayerViewControllerDelegate?
@@ -124,16 +123,12 @@ class PlayerViewController: BaseViewController {
     }
     
     private func pushPlayerAddEditViewController() {
-        guard let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerAddEditViewController.storyboardIdentifier) as? PlayerAddEditViewController else { return }
-        vc.typeOfVC = .edit
-        vc.playerId = self.playerId
-        vc.playerDetailInfo = self.playerDetailInfo
-        vc.delegate = self
-        
-        guard let nvc = self.navigationController else {
-            return
-        }
-        nvc.pushViewController(vc, animated: true)
+        let playerAddEditViewController = PlayerAddEditViewController.instantiate(for: .edit,
+                                                                                  playerId: playerId,
+                                                                                  playerDetailInfo: playerDetailInfo,
+                                                                                  delegate: self)
+        guard let nvc = self.navigationController else { return }
+        nvc.pushViewController(playerAddEditViewController, animated: true)
     }
     
     @objc private func didSwipeRefresh() {
@@ -262,5 +257,15 @@ extension PlayerViewController: PlayerAddEditViewControllerDelegate {
         self.isPlayerEdit = true
         self.playerDetailInfo = player
         self.tableView.reloadData()
+    }
+}
+
+// MARK: - StoryboardInstantiable
+extension PlayerViewController: StoryboardInstantiable {
+    public class func instantiate(for playerId: Int, delegate: PlayerViewControllerDelegate?) -> PlayerViewController {
+        let viewController = instanceFromStoryboard()
+        viewController.playerId = playerId
+        viewController.delegate = delegate
+        return viewController
     }
 }

@@ -17,7 +17,6 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Variable
     
-    static let storyboardIdentifier = "HomeViewController"
     public let viewModel = HomeViewModel()
     private let hapticsManager: HapticsManager = .shared
     
@@ -68,8 +67,17 @@ class HomeViewController: BaseViewController {
     
     private func pushPlayerListViewController() {
         viewModel.showPlayerListScreen?()
-        let vc = storyboardMain.instantiateViewController(withIdentifier: PlayerListViewController.storyboardIdentifier)
+        let playerListViewController = PlayerListViewController.instantiate()
         guard let nvc = self.navigationController else { return }
-        nvc.pushViewController(vc, animated: true)
+        nvc.pushViewController(playerListViewController, animated: true)
     }
 }
+
+// MARK: - StoryboardInstantiable
+extension HomeViewController: StoryboardInstantiable {
+  public class func instantiate() -> HomeViewController {
+    let viewController = instanceFromStoryboard()
+    return viewController
+  }
+}
+
