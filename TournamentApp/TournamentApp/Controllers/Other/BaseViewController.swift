@@ -9,9 +9,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    // MARK: - Variable
-    let storyboardMain = UIStoryboard(name: "Main", bundle: nil)
-    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {

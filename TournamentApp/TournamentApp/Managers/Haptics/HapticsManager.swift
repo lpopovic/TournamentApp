@@ -8,7 +8,18 @@
 import UIKit
 import Foundation
 
-final class HapticsManager {
+
+enum HapticVibrateType {
+    case success
+    case error
+}
+
+protocol HapticsManagerProvider {
+    func vibrateForSelection()
+    func vibrate(for type: HapticVibrateType)
+}
+
+final class HapticsManager: HapticsManagerProvider {
     static let shared = HapticsManager()
     
     private init () {}
@@ -21,11 +32,22 @@ final class HapticsManager {
         }
     }
     
-    public func vibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
-        DispatchQueue.main.async {
+    public func vibrate(for type: HapticVibrateType) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
             let generator = UINotificationFeedbackGenerator()
             generator.prepare()
-            generator.notificationOccurred(type)
+            let value = self.createFeedbackType(when: type)
+            generator.notificationOccurred(value)
+        }
+    }
+    
+    private func createFeedbackType(when hapticVibrate: HapticVibrateType) -> UINotificationFeedbackGenerator.FeedbackType {
+        switch hapticVibrate {
+        case .success:
+            return .success
+        case .error:
+            return .error
         }
     }
 }

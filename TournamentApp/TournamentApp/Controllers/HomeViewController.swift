@@ -8,76 +8,107 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
-
-    // MARK: - IBOutlet
     
-    @IBOutlet weak var showPlayerListButton: UIButton!
-    @IBOutlet weak var nameOfTournomentButton: UIButton!
-    @IBOutlet weak var imageView: UIImageView!
+    // MARK: - Properties
     
-    // MARK: - Variable
+    // MARK: Private
     
-    public let viewModel = HomeViewModel()
-    private let hapticsManager: HapticsManager = .shared
+    // Variable
+    private let viewModel: HomeViewModel
+    private let hapticsManager: HapticsManagerProvider
+    
+    // IBOutlet
+    @IBOutlet private weak var showPlayerListButton: UIButton!
+    @IBOutlet private weak var nameOfTournomentButton: UIButton!
+    @IBOutlet private weak var imageView: UIImageView!
+    
+    // MARK: - Initialization
+    
+    init?(coder: NSCoder, viewModel: HomeViewModel, hapticsManager: HapticsManagerProvider) {
+        self.viewModel = viewModel
+        self.hapticsManager = hapticsManager
+        
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Use `init(coder:image:)` to initialize an `HomeViewController` instance.")
+    }
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupViews()
+        setupViews()
     }
     
-    // MARK: - UI
+    // MARK: - Private methods
+    // MARK: UI
     
     private func setupViews() {
-        self.title = viewModel.navigationBarTitle
-        self.setupShowPlayerListButton()
-        self.setupImageView()
-        self.setupNameOfTournomentButton()
+        title = viewModel.navigationBarTitle
+        setupShowPlayerListButton()
+        setupImageView()
+        setupNameOfTournomentButton()
     }
     
     private func setupShowPlayerListButton() {
-        self.showPlayerListButton.setTitle(viewModel.playerListButtonTitle, for: .normal)
-        self.showPlayerListButton.setTitleColor(.systemBlue, for: .normal)
-        self.showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
-        self.showPlayerListButton.titleLabel?.textAlignment = .center
-        self.showPlayerListButton.addTarget(self, action: #selector(didTap(_:)), for: .touchUpInside)
+        showPlayerListButton.setTitle(viewModel.playerListButtonTitle,
+                                      for: .normal)
+        showPlayerListButton.setTitleColor(.systemBlue,
+                                           for: .normal)
+        showPlayerListButton.titleLabel?.font = .systemFont(ofSize: 18,
+                                                            weight: .bold)
+        showPlayerListButton.titleLabel?.textAlignment = .center
+        showPlayerListButton.addTarget(self,
+                                       action: #selector(didTapNameOfTournomentButton(_:)),
+                                       for: .touchUpInside)
     }
     
     private func setupImageView() {
-        self.imageView.contentMode = .scaleAspectFit
-        self.imageView.image = viewModel.serbianOpenLogoImage.value
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = viewModel.serbianOpenLogoImage.value
     }
     
     private func setupNameOfTournomentButton() {
-        self.nameOfTournomentButton.setTitle(viewModel.nameOfTournomentTitle, for: .normal)
-        self.nameOfTournomentButton.setTitleColor(.label, for: .normal)
-        self.nameOfTournomentButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        self.nameOfTournomentButton.titleLabel?.numberOfLines = 1
-        self.nameOfTournomentButton.titleLabel?.textAlignment = .center
-        self.nameOfTournomentButton.addTarget(self, action: #selector(didTap(_:)), for: .touchUpInside)
+        nameOfTournomentButton.setTitle(viewModel.nameOfTournomentTitle,
+                                        for: .normal)
+        nameOfTournomentButton.setTitleColor(.label,
+                                             for: .normal)
+        nameOfTournomentButton.titleLabel?.font = .systemFont(ofSize: 20,
+                                                              weight: .bold)
+        nameOfTournomentButton.titleLabel?.numberOfLines = 1
+        nameOfTournomentButton.titleLabel?.textAlignment = .center
+        nameOfTournomentButton.addTarget(self,
+                                         action: #selector(didTapNameOfTournomentButton(_:)),
+                                         for: .touchUpInside)
     }
     
-    // MARK: - Actions
+    // MARK: Actions
     
-    @objc private func didTap(_ sender: UIButton) {
-        self.hapticsManager.vibrateForSelection()
-        self.pushPlayerListViewController()
+    @objc private func didTapNameOfTournomentButton(_ sender: UIButton) {
+        hapticsManager.vibrateForSelection()
+        pushPlayerListViewController()
     }
+    
+    // MARK: Other
     
     private func pushPlayerListViewController() {
-        viewModel.showPlayerListScreen?()
         let playerListViewController = PlayerListViewController.instantiate()
-        guard let nvc = self.navigationController else { return }
-        nvc.pushViewController(playerListViewController, animated: true)
+        navigationController?.pushViewController(playerListViewController,
+                                                 animated: true)
     }
 }
 
-// MARK: - StoryboardInstantiable
+// MARK: - Delegates
+// MARK: StoryboardInstantiable
 extension HomeViewController: StoryboardInstantiable {
-  public class func instantiate() -> HomeViewController {
-    let viewController = instanceFromStoryboard()
-    return viewController
-  }
+    public class func instantiate(viewModel: HomeViewModel,
+                                  hapticsManager: HapticsManagerProvider) -> HomeViewController {
+        let homeViewController = instanceFromStoryboard(nil) { coder -> HomeViewController? in
+            HomeViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
+        }
+        return homeViewController
+    }
 }
 

@@ -8,10 +8,15 @@
 import Foundation
 
 final class HomeViewModel {
+    
+    // MARK: - Properties
+    
+    //MARK: Public
     let navigationBarTitle = "Welcome"
     let playerListButtonTitle = "See list of players"
     let nameOfTournomentTitle = "Serbian Open"
     let serbianOpenLogoImage: LocalImage = .serbianOpenLogo
     
+    // MARK: Handlers
     var showPlayerListScreen: NoArgsClosure?
 }
