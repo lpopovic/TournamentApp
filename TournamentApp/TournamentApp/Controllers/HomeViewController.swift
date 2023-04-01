@@ -27,12 +27,11 @@ class HomeViewController: BaseViewController {
     init?(coder: NSCoder, viewModel: HomeViewModel, hapticsManager: HapticsManagerProvider) {
         self.viewModel = viewModel
         self.hapticsManager = hapticsManager
-        
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("Use `init(coder:image:)` to initialize an `HomeViewController` instance.")
+        fatalError("Use `init(coder::)` to initialize an `HomeViewController` instance.")
     }
     
     // MARK: - Life Cycle
@@ -94,7 +93,8 @@ class HomeViewController: BaseViewController {
     // MARK: Other
     
     private func pushPlayerListViewController() {
-        let playerListViewController = PlayerListViewController.instantiate()
+        let playerListViewController = PlayerListViewController.instantiate(viewModel: PlayerListViewModel(),
+                                                                            hapticsManager: hapticsManager)
         navigationController?.pushViewController(playerListViewController,
                                                  animated: true)
     }

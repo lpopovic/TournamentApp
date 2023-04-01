@@ -15,14 +15,15 @@ final class PlayerListViewModel {
     let drawButtonTitle = "Draw"
     let refreshViewTitle = "Pull to refresh"
     
-    private(set) var playerList: [Player] = [Player]()
-    private(set) var isMoreLoading: Bool = false
+    private var playerList = [Player]()
+    private var isMoreLoading = false
+    private var detectEmptyResponse = false
     private var page: Int = 1
     private let limit: Int = 20
     
     // MARK: Service
     
-    private let apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()
+    private let apiCaller: PlayerNetworkServiceProvider
     
     // MARK: Handlers
     
@@ -33,11 +34,19 @@ final class PlayerListViewModel {
     var onSwipeRefresh: NoArgsClosure?
     var onSelectItem: VoidReturnClosure<Player>?
 
+    // MARK: - Initialization
+
+    init(apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()) {
+        self.apiCaller = apiCaller
+    }
+    
     // MARK: - Public methods
     
     func fetchInitData() {
         showProgress?()
         page = 1
+        isMoreLoading = false
+        detectEmptyResponse = false
         apiGetPlayerList { [weak self] result in
             guard let self else { return }
             self.hideProgress?()
@@ -117,6 +126,12 @@ final class PlayerListViewModel {
         }
     }
     
+    func checkIfCanLoadMore() -> Bool {
+        guard !isMoreLoading, playerList.count >= limit, !detectEmptyResponse
+        else { return false }
+        return true
+    }
+    
     // MARK: - Private methods
     
     private func apiGetPlayerList(completion: @escaping VoidReturnClosure<ResultBasic>) {
@@ -144,8 +159,11 @@ final class PlayerListViewModel {
                     self.playerList = self.playerList + model
                     self.playerList.sort{ $0.getPoints() > $1.getPoints() }
                     self.page += 1
+                    completion(.success)
+                } else {
+                    self.detectEmptyResponse = true
+                    completion(.failure(NetworkError.runtimeError(message: "Empty list!")))
                 }
-                completion(.success)
             case .failure(let error):
                 completion(.failure(error.localizedDescription))
             }

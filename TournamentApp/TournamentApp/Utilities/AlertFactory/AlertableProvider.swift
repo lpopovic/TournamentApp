@@ -5,7 +5,7 @@
 //  Created by Lazar Popovic on 1.4.23..
 //
 
-import UIKit
+import Foundation
 
 protocol AlertableProvider {
     func presentAlert(
@@ -15,7 +15,7 @@ protocol AlertableProvider {
     )
 }
 
-extension UIViewController: AlertableProvider {
+extension BaseViewController: AlertableProvider {
     func presentAlert(
         with alert: Alert,
         animated: Bool = true,
