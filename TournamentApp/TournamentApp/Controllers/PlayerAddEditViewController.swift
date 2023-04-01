@@ -27,8 +27,8 @@ class PlayerAddEditViewController: BaseViewController {
     let datePicker = UIDatePicker()
     var imagePicker: ImagePickerView!
     var activeTextField : UITextField!
-    let placeholderImage = UIImage(systemName: "photo")
-    let addImage = UIImage(systemName: "person.fill")
+    let placeholderImage: LocalImage = .photo
+    let addImage: LocalImage = .personFill
     
     // MARK: - Variable
     
@@ -130,7 +130,7 @@ class PlayerAddEditViewController: BaseViewController {
     }
     
     private func setupPhotoImageView() {
-        self.photoImageView.image = addImage
+        self.photoImageView.image = addImage.value
         self.photoImageView.clipsToBounds = true
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.layer.borderColor = UIColor.label.cgColor
@@ -184,7 +184,7 @@ class PlayerAddEditViewController: BaseViewController {
         
         self.photoImageView.setImage(
             with: URL(string: player.profileImageUrl ?? ""),
-            placeholderImage: placeholderImage)
+            placeholderImage: placeholderImage.value)
         self.firstNameTextField.text = player.firstName
         self.lastNameTextField.text = player.lastName
         self.datePickerTextField.text = "\(player.getStringDateOfBirth() ?? "")"
@@ -291,7 +291,7 @@ class PlayerAddEditViewController: BaseViewController {
                 String.Validation.isNotEmpty(value: description).value == true &&
                 String.Validation.isPositiveNumber(value: points).value == true &&
                 String.Validation.isDate(value: dateOfBirth).value == true &&
-                photoImage != addImage {
+                photoImage != addImage.value {
             completion(true,"")
         } else {
             if  !String.Validation.isText(value: firstName).value {
@@ -304,7 +304,7 @@ class PlayerAddEditViewController: BaseViewController {
                 completion(false,"Description is not valid.")
             } else if !String.Validation.isPositiveNumber(value: points).value {
                 completion(false, "Set valid positive number.")
-            } else if photoImage == addImage {
+            } else if photoImage == addImage.value {
                 completion(false, "Add Photo.")
             }
             

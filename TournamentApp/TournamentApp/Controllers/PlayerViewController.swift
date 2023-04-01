@@ -18,7 +18,7 @@ class PlayerViewController: BaseViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    var refresher : UIRefreshControl!
+    var refresher: UIRefreshControl!
     
     // MARK: - Variable
     
@@ -27,6 +27,8 @@ class PlayerViewController: BaseViewController {
     var playerDetailInfo: PlayerDetail?
     weak var delegate: PlayerViewControllerDelegate?
     var isPlayerEdit = false
+    private let apiCaller: ApiCallerProvider = ApiCaller.shared
+    private let hapticsManager: HapticsManager = .shared
     
     // MARK: - Life Cycle
     
@@ -49,7 +51,10 @@ class PlayerViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        if self.isMovingFromParent, self.isPlayerEdit == true, let id = self.playerId, let player = self.playerDetailInfo {
+        if self.isMovingFromParent,
+            self.isPlayerEdit == true,
+            let id = self.playerId,
+            let player = self.playerDetailInfo {
             self.delegate?.playerIsUpdated(with: id, player: player)
         }
     }
@@ -57,7 +62,8 @@ class PlayerViewController: BaseViewController {
     // MARK: - UI
     
     func setupNavigationButtons() {
-        if let player = self.playerDetailInfo, player.tournament_id == GlobalConstants.tournomentId {
+        if let player = self.playerDetailInfo,
+            player.tournament_id == GlobalConstants.tournomentId {
             let deleteButton = UIBarButtonItem(
                 title: "Delete",
                 style: .done,
@@ -84,7 +90,8 @@ class PlayerViewController: BaseViewController {
     private func setupRefreshControl() {
         self.refresher = UIRefreshControl()
         self.tableView.addSubview(refresher)
-        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
+        self.refresher.attributedTitle = NSAttributedString(string: "Pull to refresh",
+                                                            attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
         self.refresher.tintColor = .label
         self.refresher.addTarget(self, action: #selector(didSwipeRefresh), for: .valueChanged)
     }
@@ -108,11 +115,11 @@ class PlayerViewController: BaseViewController {
     
     @objc private func didTapDeleteButton() {
         self.showDialogForDeletePlayer()
-        HapticsManager.shared.vibrateForSelection()
+        hapticsManager.vibrateForSelection()
     }
     
     @objc private func didTapEditButton() {
-        HapticsManager.shared.vibrateForSelection()
+        hapticsManager.vibrateForSelection()
         self.pushPlayerAddEditViewController()
     }
     
@@ -138,7 +145,7 @@ class PlayerViewController: BaseViewController {
         guard let id = self.playerId else {
             return
         }
-        ApiCaller.shared.getDetailPlayer(with: id) { [weak self] (result) in
+        apiCaller.getDetailPlayer(with: id) { [weak self] (result) in
             switch result {
             case.success(let model):
                 self?.playerDetailInfo = model
@@ -167,7 +174,7 @@ class PlayerViewController: BaseViewController {
             return
         }
         self.spinner.startAnimating()
-        ApiCaller.shared.deletePlayer(with: id) {[weak self] (result) in
+        apiCaller.deletePlayer(with: id) {[weak self] (result) in
             self?.spinner.stopAnimating()
             switch result {
             case .success(let message):
@@ -182,7 +189,7 @@ class PlayerViewController: BaseViewController {
                     message: message,
                     action: action
                 )
-                HapticsManager.shared.vibrate(for: .success)
+                self?.hapticsManager.vibrate(for: .success)
             case .failure(let error):
                 DispatchQueue.main.async {
                     UIAlertController.showAlertUserMessage(
@@ -190,7 +197,7 @@ class PlayerViewController: BaseViewController {
                         title: nil,
                         message: error.localizedDescription
                     )
-                    HapticsManager.shared.vibrate(for: .error)
+                    self?.hapticsManager.vibrate(for: .error)
                 }
             }
         }
@@ -236,11 +243,7 @@ extension PlayerViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
-        
-        
     }
-    
-    
 }
 
 extension PlayerViewController: UITableViewDelegate {
@@ -260,6 +263,4 @@ extension PlayerViewController: PlayerAddEditViewControllerDelegate {
         self.playerDetailInfo = player
         self.tableView.reloadData()
     }
-    
-    
 }

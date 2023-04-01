@@ -240,3 +240,22 @@ final class ApiCaller {
             }
     }
 }
+
+extension ApiCaller: ApiCallerProvider { }
+
+protocol ApiCallerProvider {
+    func deletePlayer(with id: Int, completion: @escaping (Result<String, Error>) -> Void)
+    func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, Error>) -> Void)
+    func postCreatePlayer(firstName: String,
+                          lastName: String,
+                          description: String,
+                          points: String,
+                          dateOfBirth: String,
+                          isProfessional: Int,
+                          profileImageUrl: Data,
+                          completion: @escaping (Result<DefaultResponse, Error>) -> Void)
+    func putDetailPlayer(with id: Int,
+                         paramsToUpdate: [String: Any],
+                         profileImageUrl: Data?,
+                         completion: @escaping (Result<DefaultResponse, Error>) -> Void)
+}
