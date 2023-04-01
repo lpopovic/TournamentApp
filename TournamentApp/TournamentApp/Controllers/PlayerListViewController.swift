@@ -179,11 +179,11 @@ class PlayerListViewController: BaseViewController {
     }
     
     func pushTournamentBracketViewController() {
-        guard let playersForDraw: [Player] = viewModel.getItemsForBracket(),
-              let nvc = self.navigationController
+        guard let playersForDraw = viewModel.getItemsForBracket()
         else { return }
-        let tournamentBracketViewController = TournamentBracketViewController.instantiate(playerList: playersForDraw)
-        nvc.pushViewController(tournamentBracketViewController, animated: true)
+        let tournamentBracketViewController = TournamentBracketViewController.instantiate(playerList: playersForDraw,
+                                                                                          hapticsManager: hapticsManager)
+        navigationController?.pushViewController(tournamentBracketViewController, animated: true)
     }
 }
 

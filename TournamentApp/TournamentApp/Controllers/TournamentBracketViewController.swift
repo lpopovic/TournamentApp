@@ -18,16 +18,29 @@ class TournamentBracketViewController: BaseViewController {
     @IBOutlet weak var viewInScrollWidth: NSLayoutConstraint!
     
     // MARK: - Variable
-    var playerList: [Player] = [Player]()
+    private var playerList: [Player]
     private var matchInEachBracket: [[Match]] = []
     private let numberOfMatchInEachBracketData: [Int] = [16,8,4,2,1]
     private var drawPositionForPlayers: [[Int]] = []
-    
+    private let hapticsManager: HapticsManagerProvider
     private var separatorSize = [Int]()
     private var cellWidth = 0
-    private var cellHeight = 80
-    private var cellsGap = 0
-    private var levelHeight = 60
+    private let cellHeight = 80
+    private let cellsGap = 0
+    private let levelHeight = 60
+    
+    
+    // MARK: - Initialization
+    
+    init?(coder: NSCoder, playerList: [Player], hapticsManager: HapticsManagerProvider) {
+        self.playerList = playerList
+        self.hapticsManager = hapticsManager
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Use `init(coder::)` to initialize an `TournamentBracketViewController` instance.")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +111,7 @@ class TournamentBracketViewController: BaseViewController {
         let winnerPlayer = self.playerList[winnerPlayerIndex]
         
         UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
-        HapticsManager().vibrate(for: .success)
+        hapticsManager.vibrate(for: .success)
     }
     
 }
@@ -185,9 +198,10 @@ extension TournamentBracketViewController: UITableViewDelegate {
 
 // MARK: - StoryboardInstantiable
 extension TournamentBracketViewController: StoryboardInstantiable {
-    public class func instantiate(playerList: [Player]) -> TournamentBracketViewController {
-        let viewController = instanceFromStoryboard()
-        viewController.playerList = playerList
-        return viewController
+    public class func instantiate(playerList: [Player], hapticsManager: HapticsManagerProvider) -> TournamentBracketViewController {
+        let tournamentBracketViewController = instanceFromStoryboard(nil) { coder -> TournamentBracketViewController? in
+            TournamentBracketViewController(coder: coder, playerList: playerList, hapticsManager: hapticsManager)
+        }
+        return tournamentBracketViewController
     }
 }
