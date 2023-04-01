@@ -30,7 +30,7 @@
 		7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB9F29D5911C00182C82 /* OAuth2HandlerAlamofire.swift */; };
 		7EDECBA229D59D0600182C82 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA129D59D0600182C82 /* Extensions+Data.swift */; };
 		7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA429D5A7E400182C82 /* NetworkRoutable.swift */; };
-		7EDECBA829D5B06500182C82 /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA729D5B06500182C82 /* PlayerRouter.swift */; };
+		7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBA729D5B06500182C82 /* PlayerNetworkRouter.swift */; };
 		7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAA29D5B0F100182C82 /* PlayerService.swift */; };
 		7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAC29D5B40800182C82 /* ApiParameter.swift */; };
 		7EDECBAF29D5C4FA00182C82 /* NetworkApiPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */; };
@@ -113,7 +113,7 @@
 		7EDECB9F29D5911C00182C82 /* OAuth2HandlerAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2HandlerAlamofire.swift; sourceTree = "<group>"; };
 		7EDECBA129D59D0600182C82 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
 		7EDECBA429D5A7E400182C82 /* NetworkRoutable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoutable.swift; sourceTree = "<group>"; };
-		7EDECBA729D5B06500182C82 /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		7EDECBA729D5B06500182C82 /* PlayerNetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNetworkRouter.swift; sourceTree = "<group>"; };
 		7EDECBAA29D5B0F100182C82 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		7EDECBAC29D5B40800182C82 /* ApiParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiParameter.swift; sourceTree = "<group>"; };
 		7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkApiPath.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		7EDECBA629D5B03100182C82 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				7EDECBA729D5B06500182C82 /* PlayerRouter.swift */,
+				7EDECBA729D5B06500182C82 /* PlayerNetworkRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -703,7 +703,7 @@
 				7EAD534329D5DA8C0098B9B3 /* WebImageProvider.swift in Sources */,
 				D03756A9265D9E7A009EE660 /* TournamentTableViewCell.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
-				7EDECBA829D5B06500182C82 /* PlayerRouter.swift in Sources */,
+				7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
 				7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */,
