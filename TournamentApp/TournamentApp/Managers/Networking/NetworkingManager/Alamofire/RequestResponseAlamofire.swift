@@ -10,7 +10,6 @@ import Alamofire
 
 extension DataRequest {
     private func response(from responseData: AFDataResponse<Any>) -> ResultBasic {
-      
         guard case .success(_) = responseData.result else {
             return .failure(error(from: responseData))
         }
@@ -26,6 +25,27 @@ extension DataRequest {
         }
         if responseObject.success {
             return .success
+        } else {
+            return .failure(NetworkError.runtimeError(message: responseObject.message))
+        }
+    }
+    
+    private func response(from responseData: AFDataResponse<Any>) -> ResultObject<String> {
+        guard case .success(_) = responseData.result else {
+            return .failure(error(from: responseData))
+        }
+        if let error = responseData.error {
+            return .failure(NetworkError.runtimeError(message: error.localizedDescription))
+        }
+        guard let data = responseData.data else {
+            return .failure(NetworkError.general)
+        }
+        guard let responseObject = try? JSONDecoder().decode(DefaultResponse.self, from: data)
+        else {
+            return .failure(NetworkError.mapping)
+        }
+        if responseObject.success {
+            return .success(responseObject.message)
         } else {
             return .failure(NetworkError.runtimeError(message: responseObject.message))
         }
@@ -91,6 +111,12 @@ extension DataRequest {
 }
 
 extension DataRequest: RequestResponseProvider {
+    func response(completion: @escaping (ResultObject<String>) -> ()) {
+        responseJSON { [weak self] response in
+            guard let self else { return }
+            completion(self.response(from: response))
+        }
+    }
     func response(completion: @escaping (ResultBasic) -> ()) {
         responseJSON { [weak self] response in
             guard let self else { return }

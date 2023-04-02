@@ -8,6 +8,7 @@
 import Foundation
 
 protocol RequestResponseProvider {
+    func response(completion: @escaping (ResultObject<String>) -> ())
     func response(completion: @escaping (ResultBasic) -> ())
     func responseObject<T: Decodable>(completion: @escaping (Result<T, NetworkError>) -> ())
     func responseArray<T: Decodable>(completion: @escaping (Result<[T], NetworkError>) -> ())

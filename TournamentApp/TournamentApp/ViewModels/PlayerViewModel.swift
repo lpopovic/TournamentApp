@@ -17,7 +17,7 @@ final class PlayerViewModel {
     
     // MARK: Service
     
-    private let apiCaller: ApiCallerProvider
+    private let apiCaller: PlayerNetworkServiceProvider
     
     // MARK: Handlers
     
@@ -34,7 +34,7 @@ final class PlayerViewModel {
     // MARK: - Initialization
 
     init(playerId: Int,
-         apiCaller: ApiCallerProvider) {
+         apiCaller: PlayerNetworkServiceProvider) {
         self.playerId = playerId
         self.apiCaller = apiCaller
     }

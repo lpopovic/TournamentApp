@@ -46,7 +46,7 @@ final class PlayerAddEditViewModel {
         let typeOfVC: TypeViewController
         let playerId: Int?
         let playerDetailInfo: PlayerDetail?
-        let apiCaller: ApiCallerProvider
+        let apiCaller: PlayerNetworkServiceProvider
     }
     
     private let typeOfVC: TypeViewController
@@ -55,7 +55,7 @@ final class PlayerAddEditViewModel {
     
     // MARK: Service
     
-    private let apiCaller: ApiCallerProvider
+    private let apiCaller: PlayerNetworkServiceProvider
     
     // MARK: Handlers
     
@@ -70,7 +70,7 @@ final class PlayerAddEditViewModel {
     init(typeOfVC: TypeViewController,
          playerId: Int? = nil,
          playerDetailInfo: PlayerDetail? = nil,
-         apiCaller: ApiCallerProvider) {
+         apiCaller: PlayerNetworkServiceProvider) {
         self.typeOfVC = typeOfVC
         self.playerId = playerId
         self.playerDetailInfo = playerDetailInfo
@@ -232,8 +232,8 @@ final class PlayerAddEditViewModel {
             guard let self else { return }
             self.hideProgress?()
             switch result {
-            case .success(let model):
-                self.onSuccessfullyCreated?(model.message)
+            case .success(let message):
+                self.onSuccessfullyCreated?(message)
             case .failure(let error):
                 self.onError?(error.localizedDescription)
             }
@@ -246,8 +246,8 @@ final class PlayerAddEditViewModel {
             guard let self else { return }
             self.hideProgress?()
             switch result {
-            case .success(let model):
-                completion(.success(model.message))
+            case .success(let message):
+                completion(.success(message))
             case .failure(let error):
                 completion(.failure(error))
             }

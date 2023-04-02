@@ -27,8 +27,10 @@ final class NetworkingManagerAlamofire {
     // MARK: Private properties
     
     private let cacheAge = 30
-    private lazy var sessionManager: Session = {
-       AF
+    private let sessionManager: Session = {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.timeoutIntervalForRequest = 30
+        return Session(configuration: configuration)
     }()
     
     // MARK: Initialization
@@ -86,5 +88,23 @@ extension NetworkingManagerAlamofire: NetworkingManagerProvider {
             .validate()
         
         return request
+    }
+    
+    func upload(imageData: Data, _ requestable: NetworkRoutable) -> RequestResponseProvider {
+        sessionManager.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(imageData, withName: ApiParameter.profileImageUrl.rawValue, fileName: "tmp.jpg", mimeType: "image/jpg")
+            if let params = requestable.parameters {
+                for (key, value) in params {
+                    if let dataValue = "\(value)".data(using: .utf8) {
+                        multipartFormData.append(dataValue, withName: key)
+                    }
+                }
+            }
+        },
+        to: requestable.url,
+        usingThreshold: UInt64.init(),
+        method: setAlamofireHttpMethod(when: requestable.method),
+        headers: setAlamofireHeaders(when: requestable.headers))
+        .validate()
     }
 }

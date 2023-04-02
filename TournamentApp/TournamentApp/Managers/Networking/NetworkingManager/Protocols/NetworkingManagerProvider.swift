@@ -15,6 +15,7 @@ protocol NetworkingManagerProvider {
         encoding: ApiParameterEncoding,
         headers: ApiHTTPHeaders?) -> RequestResponseProvider
     func request(_ requestable: NetworkRoutable) -> RequestResponseProvider
+    func upload(imageData: Data, _ requestable: NetworkRoutable) -> RequestResponseProvider
 }
 
 extension NetworkingManagerProvider {

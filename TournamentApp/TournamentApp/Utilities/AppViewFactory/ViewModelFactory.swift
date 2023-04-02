@@ -12,7 +12,7 @@ protocol ViewModelFactoryProvider {
     func makePlayerListViewModel(_ playerNetworkService: PlayerNetworkServiceProvider) -> PlayerListViewModel
     func makeTournamentBracketViewModel(_ players: [Player]) -> TournamentBracketViewModel
     func makePlayerAddEditViewModel(_ dependencies: PlayerAddEditViewModel.Dependencies) -> PlayerAddEditViewModel
-    func makePlayerViewModel(_ playerId: Int, _ apiCaller: ApiCallerProvider) -> PlayerViewModel 
+    func makePlayerViewModel(_ playerId: Int, _ apiCaller: PlayerNetworkServiceProvider) -> PlayerViewModel 
 }
 
 
@@ -33,7 +33,7 @@ class ViewModelFactory: ViewModelFactoryProvider {
         PlayerAddEditViewModel(dependencies: dependencies)
     }
     
-    func makePlayerViewModel(_ playerId: Int, _ apiCaller: ApiCallerProvider) -> PlayerViewModel {
+    func makePlayerViewModel(_ playerId: Int, _ apiCaller: PlayerNetworkServiceProvider) -> PlayerViewModel {
         PlayerViewModel(playerId: playerId, apiCaller: apiCaller)
     }
 }

@@ -153,9 +153,7 @@ final class ApiCaller {
                 if let dataValue = "\(value)".data(using: .utf8) {
                     multipartFormData.append(dataValue, withName: key)
                 }
-                
             }
-            
         }, to: NetworkApiPath.players, usingThreshold: UInt64.init(), method: .post, headers: postHeader)
         .validate(statusCode: 200..<300)
         .responseJSON { (response) in

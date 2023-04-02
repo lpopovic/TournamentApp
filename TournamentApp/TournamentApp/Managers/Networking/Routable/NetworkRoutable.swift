@@ -39,14 +39,7 @@ extension NetworkRoutable {
     var encoding: ApiParameterEncoding {
         .URLEncoding
     }
-    
-    var headers: ApiHTTPHeaders? {
-        let headers = [
-            "x-tournament-id": "\(GlobalConstants.tournomentId)",
-            "Accept": "application/json"]
-        return headers
-    }
-    
+
     var parameters: ApiParameters? {
         nil
     }

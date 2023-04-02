@@ -31,6 +31,7 @@
 		7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */; };
 		7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CE29D99883007990AC /* ViewModelFactory.swift */; };
 		7ED679D129D99FF5007990AC /* TournamentBracketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */; };
+		7ED679D329D9B7DB007990AC /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679D229D9B7DB007990AC /* AppError.swift */; };
 		7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */; };
 		7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */; };
 		7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */; };
@@ -130,6 +131,7 @@
 		7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewControllerFactory.swift; sourceTree = "<group>"; };
 		7ED679CE29D99883007990AC /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentBracketViewModel.swift; sourceTree = "<group>"; };
+		7ED679D229D9B7DB007990AC /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerParameterEncoding.swift; sourceTree = "<group>"; };
 		7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerHTTPMethod.swift; sourceTree = "<group>"; };
 		7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProvider.swift; sourceTree = "<group>"; };
@@ -291,6 +293,15 @@
 				7ED679CE29D99883007990AC /* ViewModelFactory.swift */,
 			);
 			path = AppViewFactory;
+			sourceTree = "<group>";
+		};
+		7ED679D429DA1E72007990AC /* OldNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				D039438426584DBB0088A386 /* ApiCaller.swift */,
+				7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */,
+			);
+			path = OldNetworking;
 			sourceTree = "<group>";
 		};
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
@@ -474,11 +485,10 @@
 		D039438026584C8B0088A386 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7ED679D429DA1E72007990AC /* OldNetworking */,
 				7EDECBA929D5B0DC00182C82 /* Services */,
 				7EDECBA329D5A7D400182C82 /* Routable */,
 				7EDECB8229D58A3600182C82 /* NetworkingManager */,
-				D039438426584DBB0088A386 /* ApiCaller.swift */,
-				7EDECBAE29D5C4FA00182C82 /* NetworkApiPath.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -575,6 +585,7 @@
 				D01E7728265E99C800FA65FE /* Match.swift */,
 				D03943C22659AB680088A386 /* DefaultResponse.swift */,
 				D088CDD52667DF7200F96ED3 /* DataResponse.swift */,
+				7ED679D229D9B7DB007990AC /* AppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -794,6 +805,7 @@
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
 				7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */,
 				7E451BF729D87F3F0027827E /* ErrorAlert.swift in Sources */,
+				7ED679D329D9B7DB007990AC /* AppError.swift in Sources */,
 				7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,

@@ -62,7 +62,7 @@ extension TournamentCoordinator {
         let viewModelDependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: .add,
                                                                         playerId: nil,
                                                                         playerDetailInfo: nil,
-                                                                        apiCaller: appDIContainer.apiCaller)
+                                                                        apiCaller: appDIContainer.playerNetworkService)
         let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
         let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
                                                                                                hapticsManager: appDIContainer.hapticsManager,
@@ -74,7 +74,7 @@ extension TournamentCoordinator {
     private func showPlayerViewController(playerId: Int,
                                           _ delegate: PlayerViewControllerDelegate?,
                                           _ animated: Bool = true) {
-        let viewModel = factoryViewModel.makePlayerViewModel(playerId, appDIContainer.apiCaller)
+        let viewModel = factoryViewModel.makePlayerViewModel(playerId, appDIContainer.playerNetworkService)
         let playerViewControllerDependencies = PlayerViewController.Dependencies(viewModel: viewModel,
                                                                                  hapticsManager: appDIContainer.hapticsManager,
                                                                                  delegate: delegate)
@@ -94,7 +94,7 @@ extension TournamentCoordinator {
         let viewModelDependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: .edit,
                                                                         playerId: playerId,
                                                                         playerDetailInfo: playerDetailInfo,
-                                                                        apiCaller: appDIContainer.apiCaller)
+                                                                        apiCaller: appDIContainer.playerNetworkService)
         let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
         let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
                                                                                                hapticsManager: appDIContainer.hapticsManager,
