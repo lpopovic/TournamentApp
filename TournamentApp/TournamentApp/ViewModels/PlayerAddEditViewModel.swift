@@ -42,6 +42,13 @@ final class PlayerAddEditViewModel {
         let isProfessional: Bool
     }
     
+    struct Dependencies {
+        let typeOfVC: TypeViewController
+        let playerId: Int?
+        let playerDetailInfo: PlayerDetail?
+        let apiCaller: ApiCallerProvider
+    }
+    
     private let typeOfVC: TypeViewController
     private let playerId: Int?
     private let playerDetailInfo: PlayerDetail?
@@ -63,11 +70,18 @@ final class PlayerAddEditViewModel {
     init(typeOfVC: TypeViewController,
          playerId: Int? = nil,
          playerDetailInfo: PlayerDetail? = nil,
-         apiCaller: ApiCallerProvider = ApiCaller.shared) {
+         apiCaller: ApiCallerProvider) {
         self.typeOfVC = typeOfVC
         self.playerId = playerId
         self.playerDetailInfo = playerDetailInfo
         self.apiCaller = apiCaller
+    }
+    
+    convenience init(dependencies: Dependencies) {
+        self.init(typeOfVC: dependencies.typeOfVC,
+                  playerId: dependencies.playerId,
+                  playerDetailInfo: dependencies.playerDetailInfo,
+                  apiCaller: dependencies.apiCaller)
     }
     
     // MARK: - Public methods

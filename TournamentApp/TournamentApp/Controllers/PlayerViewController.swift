@@ -187,13 +187,7 @@ class PlayerViewController: BaseViewController {
     }
     
     private func pushPlayerAddEditViewController(_ playerId: Int?, _ playerDetailInfo: PlayerDetail?) {
-        let viewModel = PlayerAddEditViewModel(typeOfVC: .edit,
-                                               playerId: playerId,
-                                               playerDetailInfo: playerDetailInfo)
-        let playerAddEditViewController = PlayerAddEditViewController.instantiate(viewModel: viewModel,
-                                                                                  hapticsManager: hapticsManager,
-                                                                                  delegate: self)
-        navigationController?.pushViewController(playerAddEditViewController, animated: true)
+        viewModel.showEditPlayerScreen?((playerId, playerDetailInfo))
     }
     
     @objc private func didSwipeRefresh() {
@@ -268,6 +262,11 @@ extension PlayerViewController: PlayerAddEditViewControllerDelegate {
 
 // MARK: - StoryboardInstantiable
 extension PlayerViewController: StoryboardInstantiable {
+    struct Dependencies {
+        let viewModel: PlayerViewModel
+        let hapticsManager: HapticsManagerProvider
+        let delegate: PlayerViewControllerDelegate?
+    }
     public class func instantiate(viewModel: PlayerViewModel,
                                   hapticsManager: HapticsManagerProvider,
                                   delegate: PlayerViewControllerDelegate?) -> PlayerViewController {
@@ -277,4 +276,13 @@ extension PlayerViewController: StoryboardInstantiable {
         playerViewController.delegate = delegate
         return playerViewController
     }
+    
+    public class func instantiate(with dependencies: Dependencies) -> PlayerViewController {
+        let playerViewController = instanceFromStoryboard(nil) { coder -> PlayerViewController? in
+            PlayerViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
+        }
+        playerViewController.delegate = dependencies.delegate
+        return playerViewController
+    }
+
 }

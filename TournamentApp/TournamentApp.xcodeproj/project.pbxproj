@@ -30,6 +30,7 @@
 		7ED679CA29D98596007990AC /* AppMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679C929D98596007990AC /* AppMainCoordinator.swift */; };
 		7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */; };
 		7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CE29D99883007990AC /* ViewModelFactory.swift */; };
+		7ED679D129D99FF5007990AC /* TournamentBracketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */; };
 		7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */; };
 		7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */; };
 		7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */; };
@@ -128,6 +129,7 @@
 		7ED679C929D98596007990AC /* AppMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainCoordinator.swift; sourceTree = "<group>"; };
 		7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewControllerFactory.swift; sourceTree = "<group>"; };
 		7ED679CE29D99883007990AC /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentBracketViewModel.swift; sourceTree = "<group>"; };
 		7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerParameterEncoding.swift; sourceTree = "<group>"; };
 		7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerHTTPMethod.swift; sourceTree = "<group>"; };
 		7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProvider.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */,
 				7ED679B629D88BD3007990AC /* PlayerViewModel.swift */,
 				7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */,
+				7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				7EDECB9E29D5910D00182C82 /* RequestResponseAlamofire.swift in Sources */,
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
 				7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */,
+				7ED679D129D99FF5007990AC /* TournamentBracketViewModel.swift in Sources */,
 				7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,

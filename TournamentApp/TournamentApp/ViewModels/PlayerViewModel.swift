@@ -10,7 +10,7 @@ import Foundation
 final class PlayerViewModel {
    
     // MARK: - Properties
-    
+    typealias EditPlayerRequest = (playerId: Int?, playerDetailInfo: PlayerDetail?)
     let playerId: Int
     private(set) var playerDetailInfo: PlayerDetail?
     private var isPlayerEdit = false
@@ -28,12 +28,13 @@ final class PlayerViewModel {
     var onError: VoidReturnClosure<String>?
     var onDelete: VoidReturnClosure<String>?
     var showNavigationBar: VoidReturnClosure<Bool>?
+    var showEditPlayerScreen: VoidReturnClosure<EditPlayerRequest>?
 
 
     // MARK: - Initialization
 
     init(playerId: Int,
-         apiCaller: ApiCallerProvider = ApiCaller.shared) {
+         apiCaller: ApiCallerProvider) {
         self.playerId = playerId
         self.apiCaller = apiCaller
     }

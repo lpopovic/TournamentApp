@@ -18,7 +18,7 @@ class TournamentBracketViewController: BaseViewController {
     @IBOutlet weak var viewInScrollWidth: NSLayoutConstraint!
     
     // MARK: - Variable
-    private var playerList: [Player]
+    private let viewModel: TournamentBracketViewModel
     private var matchInEachBracket: [[Match]] = []
     private let numberOfMatchInEachBracketData: [Int] = [16,8,4,2,1]
     private var drawPositionForPlayers: [[Int]] = []
@@ -32,8 +32,8 @@ class TournamentBracketViewController: BaseViewController {
     
     // MARK: - Initialization
     
-    init?(coder: NSCoder, playerList: [Player], hapticsManager: HapticsManagerProvider) {
-        self.playerList = playerList
+    init?(coder: NSCoder, viewModel: TournamentBracketViewModel, hapticsManager: HapticsManagerProvider) {
+        self.viewModel = viewModel
         self.hapticsManager = hapticsManager
         super.init(coder: coder)
     }
@@ -46,7 +46,7 @@ class TournamentBracketViewController: BaseViewController {
         super.viewDidLoad()
         title = "Draw"
         
-        let result = SetDraw.shared.setDrawForPlayer(for: numberOfMatchInEachBracketData, with: &playerList)
+        let result = SetDraw.shared.setDrawForPlayer(for: numberOfMatchInEachBracketData, with: &viewModel.playerList)
         self.drawPositionForPlayers = result.drawPositionForPlayers
         self.matchInEachBracket = result.matchInEachBracket
         
@@ -108,7 +108,7 @@ class TournamentBracketViewController: BaseViewController {
     
     @objc private func didTapAddDWinnerButton() {
         let winnerPlayerIndex = self.drawPositionForPlayers[self.numberOfMatchInEachBracketData.count][0] - 1
-        let winnerPlayer = self.playerList[winnerPlayerIndex]
+        let winnerPlayer = self.viewModel.playerList[winnerPlayerIndex]
         
         UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
         hapticsManager.vibrate(for: .success)
@@ -198,9 +198,13 @@ extension TournamentBracketViewController: UITableViewDelegate {
 
 // MARK: - StoryboardInstantiable
 extension TournamentBracketViewController: StoryboardInstantiable {
-    public class func instantiate(playerList: [Player], hapticsManager: HapticsManagerProvider) -> TournamentBracketViewController {
+    struct Dependencies {
+        let viewModel: TournamentBracketViewModel
+        let hapticsManager: HapticsManagerProvider
+    }
+    public class func instantiate(with dependencies: Dependencies) -> TournamentBracketViewController {
         let tournamentBracketViewController = instanceFromStoryboard(nil) { coder -> TournamentBracketViewController? in
-            TournamentBracketViewController(coder: coder, playerList: playerList, hapticsManager: hapticsManager)
+            TournamentBracketViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
         }
         return tournamentBracketViewController
     }

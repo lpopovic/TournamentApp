@@ -164,26 +164,15 @@ class PlayerListViewController: BaseViewController {
     // MARK: Other
     
     private func pushPlayerViewController(with model: Player) {
-        let playerViewController = PlayerViewController.instantiate(viewModel: PlayerViewModel(playerId: model.id),
-                                                                    hapticsManager: hapticsManager,
-                                                                    delegate: self)
-        navigationController?.pushViewController(playerViewController, animated: true)
+        viewModel.showPlayerScreen?(model.id)
     }
     
     private func pushPlayerAddEditViewController() {
-        let viewModel = PlayerAddEditViewModel(typeOfVC: .add)
-        let playerAddEditViewController = PlayerAddEditViewController.instantiate(viewModel: viewModel,
-                                                                                  hapticsManager: hapticsManager,
-                                                                                  delegate: self)
-        navigationController?.pushViewController(playerAddEditViewController, animated: true)
+        viewModel.showAddPlayerScreen?()
     }
     
     func pushTournamentBracketViewController() {
-        guard let playersForDraw = viewModel.getItemsForBracket()
-        else { return }
-        let tournamentBracketViewController = TournamentBracketViewController.instantiate(playerList: playersForDraw,
-                                                                                          hapticsManager: hapticsManager)
-        navigationController?.pushViewController(tournamentBracketViewController, animated: true)
+        viewModel.pushTournamentBracketViewController()
     }
 }
 

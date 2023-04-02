@@ -33,6 +33,9 @@ final class PlayerListViewModel {
     var reloadListView: NoArgsClosure?
     var onSwipeRefresh: NoArgsClosure?
     var onSelectItem: VoidReturnClosure<Player>?
+    var showTournamentBracketScreen: VoidReturnClosure<[Player]>?
+    var showAddPlayerScreen: NoArgsClosure?
+    var showPlayerScreen: VoidReturnClosure<Int>?
 
     // MARK: - Initialization
 
@@ -108,7 +111,21 @@ final class PlayerListViewModel {
         onSelectItem?(playerList[index])
     }
     
-    func getItemsForBracket() -> [Player]? {
+    func checkIfCanLoadMore() -> Bool {
+        guard !isMoreLoading, playerList.count >= limit, !detectEmptyResponse
+        else { return false }
+        return true
+    }
+    
+    func pushTournamentBracketViewController() {
+        guard let playersForDraw = getItemsForBracket()
+        else { return }
+        showTournamentBracketScreen?(playersForDraw)
+    }
+    
+    // MARK: - Private methods
+    
+    private func getItemsForBracket() -> [Player]? {
         var playersForDraw = [Player]()
         for item in playerList {
             if playersForDraw.count == 32 {
@@ -125,14 +142,6 @@ final class PlayerListViewModel {
             return nil
         }
     }
-    
-    func checkIfCanLoadMore() -> Bool {
-        guard !isMoreLoading, playerList.count >= limit, !detectEmptyResponse
-        else { return false }
-        return true
-    }
-    
-    // MARK: - Private methods
     
     private func apiGetPlayerList(completion: @escaping VoidReturnClosure<ResultBasic>) {
         apiCaller.getPlayerList(from: page, with: limit) { [weak self] result in

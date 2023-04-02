@@ -19,7 +19,7 @@ final class ApiCaller {
         "x-tournament-id": "\(GlobalConstants.tournomentId)",
         "Accept": "application/json",
     ]
-    static let shared = ApiCaller()
+  
     init () {}
     
     enum ApiError: LocalizedError {

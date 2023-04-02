@@ -55,6 +55,7 @@ class PlayerAddEditViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupViewModel()
         viewModel.checkIfNeededToEditInputs { [weak self] data in
             self?.initialDataForEditInputs(data)
         }
@@ -338,13 +339,16 @@ extension PlayerAddEditViewController: UITextFieldDelegate {
 // MARK: - StoryboardInstantiable
 
 extension PlayerAddEditViewController: StoryboardInstantiable {
-    public class func instantiate(viewModel: PlayerAddEditViewModel,
-                                  hapticsManager: HapticsManagerProvider,
-                                  delegate: PlayerAddEditViewControllerDelegate?) -> PlayerAddEditViewController {
+    struct Dependencies {
+        let viewModel: PlayerAddEditViewModel
+        let hapticsManager: HapticsManagerProvider
+        let delegate: PlayerAddEditViewControllerDelegate?
+    }
+    public class func instantiate(with dependencies: Dependencies) -> PlayerAddEditViewController {
         let playerAddEditViewController = instanceFromStoryboard(nil) { coder -> PlayerAddEditViewController? in
-            PlayerAddEditViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
+            PlayerAddEditViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
         }
-        playerAddEditViewController.delegate = delegate
+        playerAddEditViewController.delegate = dependencies.delegate
         return playerAddEditViewController
     }
 }
