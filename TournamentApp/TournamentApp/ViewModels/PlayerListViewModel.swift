@@ -36,7 +36,7 @@ final class PlayerListViewModel {
 
     // MARK: - Initialization
 
-    init(apiCaller: PlayerNetworkServiceProvider = PlayerNetworkService()) {
+    init(apiCaller: PlayerNetworkServiceProvider) {
         self.apiCaller = apiCaller
     }
     

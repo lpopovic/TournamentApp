@@ -13,19 +13,22 @@ protocol PlayerNetworkServiceProvider {
 }
 
 class PlayerNetworkService: PlayerNetworkServiceProvider {
+    private let networkSessionManager: NetworkingManagerProvider
+    private let playerNetworkRouter: PlayerNetworkRouter.Type = PlayerNetworkRouter.self
+    
+    init(networkSessionManager: NetworkingManagerProvider) {
+        self.networkSessionManager = networkSessionManager
+    }
+    
     func getAllPlayerList(completion: @escaping (Result<[Player], NetworkError>) -> Void) {
-        PlayerNetworkRouter
-            .getAllPlayerList
-            .request
+        networkSessionManager.request(playerNetworkRouter.getAllPlayerList)
             .responseArray(completion: completion)
     }
     
     func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], NetworkError>) -> Void) {
         let parameter = [ApiParameter.limit.rawValue: "\(limit)",
                          ApiParameter.page.rawValue: "\(page)"]
-        PlayerNetworkRouter
-            .getPlayerList(parameter)
-            .request
+        networkSessionManager.request(playerNetworkRouter.getPlayerList(parameter))
             .responseArray(completion: completion)
     }
 }

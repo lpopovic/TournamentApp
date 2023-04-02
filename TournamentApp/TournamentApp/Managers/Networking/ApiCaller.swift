@@ -10,7 +10,6 @@ import Alamofire
 
 final class ApiCaller {
     
-    static let shared = ApiCaller()
     private let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 30
@@ -20,9 +19,8 @@ final class ApiCaller {
         "x-tournament-id": "\(GlobalConstants.tournomentId)",
         "Accept": "application/json",
     ]
-    private let cacheAge = 30
-    
-    private init () {}
+    static let shared = ApiCaller()
+    init () {}
     
     enum ApiError: LocalizedError {
         case failedToGetData,

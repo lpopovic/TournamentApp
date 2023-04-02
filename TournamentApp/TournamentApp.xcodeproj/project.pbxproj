@@ -25,6 +25,11 @@
 		7ED679B929D897A1007990AC /* LocalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679B829D897A1007990AC /* LocalImage.swift */; };
 		7ED679BB29D8A751007990AC /* ConfirmAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679BA29D8A751007990AC /* ConfirmAlert.swift */; };
 		7ED679BD29D8CA4D007990AC /* PlayerAddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */; };
+		7ED679C329D8F5E3007990AC /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679C229D8F5E3007990AC /* AppDependencyContainer.swift */; };
+		7ED679C829D98495007990AC /* TournamentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679C729D98495007990AC /* TournamentCoordinator.swift */; };
+		7ED679CA29D98596007990AC /* AppMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679C929D98596007990AC /* AppMainCoordinator.swift */; };
+		7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */; };
+		7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED679CE29D99883007990AC /* ViewModelFactory.swift */; };
 		7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */; };
 		7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */; };
 		7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */; };
@@ -118,6 +123,11 @@
 		7ED679B829D897A1007990AC /* LocalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImage.swift; sourceTree = "<group>"; };
 		7ED679BA29D8A751007990AC /* ConfirmAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmAlert.swift; sourceTree = "<group>"; };
 		7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewModel.swift; sourceTree = "<group>"; };
+		7ED679C229D8F5E3007990AC /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
+		7ED679C729D98495007990AC /* TournamentCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCoordinator.swift; sourceTree = "<group>"; };
+		7ED679C929D98596007990AC /* AppMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainCoordinator.swift; sourceTree = "<group>"; };
+		7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewControllerFactory.swift; sourceTree = "<group>"; };
+		7ED679CE29D99883007990AC /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		7EDECB8329D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerParameterEncoding.swift; sourceTree = "<group>"; };
 		7EDECB8529D58A8200182C82 /* NetworkingManagerHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerHTTPMethod.swift; sourceTree = "<group>"; };
 		7EDECB8729D58AA500182C82 /* NetworkingManagerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManagerProvider.swift; sourceTree = "<group>"; };
@@ -254,9 +264,36 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		7ED679C129D8F5C8007990AC /* AppDependencyContainer */ = {
+			isa = PBXGroup;
+			children = (
+				7ED679C229D8F5E3007990AC /* AppDependencyContainer.swift */,
+			);
+			path = AppDependencyContainer;
+			sourceTree = "<group>";
+		};
+		7ED679C629D9836E007990AC /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				7ED679C929D98596007990AC /* AppMainCoordinator.swift */,
+				7ED679C729D98495007990AC /* TournamentCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		7ED679CB29D997CB007990AC /* AppViewFactory */ = {
+			isa = PBXGroup;
+			children = (
+				7ED679CC29D997FD007990AC /* AppViewControllerFactory.swift */,
+				7ED679CE29D99883007990AC /* ViewModelFactory.swift */,
+			);
+			path = AppViewFactory;
+			sourceTree = "<group>";
+		};
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7ED679CB29D997CB007990AC /* AppViewFactory */,
 				7E451BF829D87F500027827E /* AlertFactory */,
 				7E451BDE29D72B930027827E /* Routers */,
 				7E451BDB29D72B210027827E /* Coordinator */,
@@ -513,6 +550,8 @@
 			children = (
 				D094F6B1265827E20011EEA9 /* Startup */,
 				D094F6AD2658234B0011EEA9 /* Resources */,
+				7ED679C129D8F5C8007990AC /* AppDependencyContainer */,
+				7ED679C629D9836E007990AC /* Coordinators */,
 				D094F6AF265824100011EEA9 /* Managers */,
 				D094F6A9265822A30011EEA9 /* Models */,
 				D094F6AA265822AF0011EEA9 /* Views */,
@@ -752,6 +791,7 @@
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
 				7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */,
 				7E451BF729D87F3F0027827E /* ErrorAlert.swift in Sources */,
+				7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
 				7E451BF029D87F2F0027827E /* AlertFactory.swift in Sources */,
@@ -764,6 +804,7 @@
 				D03943A8265991AF0088A386 /* Player.swift in Sources */,
 				7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */,
 				7E451BE429D85B1B0027827E /* AppDelegateRouter.swift in Sources */,
+				7ED679CA29D98596007990AC /* AppMainCoordinator.swift in Sources */,
 				7EDECB9C29D590DB00182C82 /* NetworkingManagerAlamofire.swift in Sources */,
 				7EDECBBB29D5D83900182C82 /* Extensions+UIImageView.swift in Sources */,
 				7E451BE029D72BAD0027827E /* Router.swift in Sources */,
@@ -774,12 +815,14 @@
 				7EDECB8829D58AA500182C82 /* NetworkingManagerProvider.swift in Sources */,
 				7EDECB9E29D5910D00182C82 /* RequestResponseAlamofire.swift in Sources */,
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
+				7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */,
 				7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
 				7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */,
 				7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */,
+				7ED679C829D98495007990AC /* TournamentCoordinator.swift in Sources */,
 				7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */,
 				7E451BF629D87F3F0027827E /* DefaultAlert.swift in Sources */,
 				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
@@ -793,6 +836,7 @@
 				7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
+				7ED679C329D8F5E3007990AC /* AppDependencyContainer.swift in Sources */,
 				D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */,
 				D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,

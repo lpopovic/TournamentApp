@@ -51,15 +51,3 @@ extension NetworkRoutable {
         nil
     }
 }
-
-// MARK: - Request
-
-extension NetworkRoutable {
-    private var sessionManager: NetworkingManagerProvider {
-        NetworkingManagerAlamofire()
-    }
-    
-    var request: RequestResponseProvider {
-        sessionManager.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
-    }
-}

@@ -93,20 +93,21 @@ class HomeViewController: BaseViewController {
     // MARK: Other
     
     private func pushPlayerListViewController() {
-        let playerListViewController = PlayerListViewController.instantiate(viewModel: PlayerListViewModel(),
-                                                                            hapticsManager: hapticsManager)
-        navigationController?.pushViewController(playerListViewController,
-                                                 animated: true)
+        viewModel.showPlayerListScreen?()
     }
 }
 
 // MARK: - Delegates
 // MARK: StoryboardInstantiable
 extension HomeViewController: StoryboardInstantiable {
-    public class func instantiate(viewModel: HomeViewModel,
-                                  hapticsManager: HapticsManagerProvider) -> HomeViewController {
+    struct Dependencies {
+        let viewModel: HomeViewModel
+        let hapticsManager: HapticsManagerProvider
+    }
+    
+    public class func instantiate(with dependencies: Dependencies) -> HomeViewController {
         let homeViewController = instanceFromStoryboard(nil) { coder -> HomeViewController? in
-            HomeViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
+            HomeViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
         }
         return homeViewController
     }

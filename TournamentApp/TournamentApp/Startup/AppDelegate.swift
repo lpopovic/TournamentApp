@@ -10,15 +10,14 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    public lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    public lazy var appDIContainer = AppDependencyContainer()
+    public lazy var router = AppDelegateRouter(window: window!)
+    public lazy var appMainCoordinator = AppMainCoordinator(router: router, appDIContainer: appDIContainer)
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let homeViewController = HomeViewController.instantiate(viewModel: HomeViewModel(), hapticsManager: HapticsManager())
-        let navigationViewController = NavigationViewController(rootViewController: homeViewController)
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationViewController
-        window?.makeKeyAndVisible()
+        appMainCoordinator.present(animated: true, onDismissed: nil)
         return true
     }
 }

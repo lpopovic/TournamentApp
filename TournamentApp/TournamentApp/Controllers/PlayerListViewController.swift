@@ -256,10 +256,14 @@ extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
 
 // MARK: - StoryboardInstantiable
 extension PlayerListViewController: StoryboardInstantiable {
-    public class func instantiate(viewModel: PlayerListViewModel,
-                                  hapticsManager: HapticsManagerProvider) -> PlayerListViewController {
+    struct Dependencies {
+        let viewModel: PlayerListViewModel
+        let hapticsManager: HapticsManagerProvider
+    }
+    
+    public class func instantiate(with dependencies: Dependencies) -> PlayerListViewController {
         let playerListViewController = instanceFromStoryboard(nil) { coder -> PlayerListViewController? in
-            PlayerListViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
+            PlayerListViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
         }
         return playerListViewController
     }

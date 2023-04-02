@@ -14,4 +14,16 @@ protocol NetworkingManagerProvider {
         parameters: ApiParameters?,
         encoding: ApiParameterEncoding,
         headers: ApiHTTPHeaders?) -> RequestResponseProvider
+    func request(_ requestable: NetworkRoutable) -> RequestResponseProvider
+}
+
+extension NetworkingManagerProvider {
+    func request(_ requestable: NetworkRoutable) -> RequestResponseProvider {
+        request(requestable.url,
+                method: requestable.method,
+                parameters: requestable.parameters,
+                encoding: requestable.encoding,
+                headers: requestable.headers)
+    }
+
 }
