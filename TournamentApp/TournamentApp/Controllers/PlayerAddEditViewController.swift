@@ -293,7 +293,7 @@ class PlayerAddEditViewController: BaseViewController {
         let action: NoArgsClosure = { [weak self] in
             guard let self else { return }
             self.delegate?.playerIsEdited(player: player)
-            self.closeViewController()
+            self.viewModel.onCloseRequestScreen?(self)
         }
         let alert = DefaultAlert(title: "Successfully", message: message, completion: action)
         presentAlert(with: alert)
@@ -303,7 +303,7 @@ class PlayerAddEditViewController: BaseViewController {
         let action: NoArgsClosure = { [weak self] in
             guard let self else { return }
             self.delegate?.playerIsCreated()
-            self.closeViewController()
+            self.viewModel.onCloseRequestScreen?(self)
         }
         let alert = DefaultAlert(title: "Successfully", message: message, completion: action)
         presentAlert(with: alert)

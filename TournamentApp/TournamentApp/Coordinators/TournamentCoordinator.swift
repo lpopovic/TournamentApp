@@ -40,7 +40,7 @@ extension TournamentCoordinator {
             self?.showTournamentBracketViewController(for: players, true)
         }
         viewModel.showAddPlayerScreen = { [weak self] in
-            self?.showPlayerAddViewController(playerListViewController as? PlayerAddEditViewControllerDelegate)
+            self?.showPlayerAddViewController(for: playerListViewController)
         }
         viewModel.showPlayerScreen = { [weak self] playerId in
             self?.showPlayerViewController(playerId: playerId,
@@ -57,18 +57,25 @@ extension TournamentCoordinator {
         router.present(playerListViewController, animated: animated)
     }
     
-    private func showPlayerAddViewController(_ delegate: PlayerAddEditViewControllerDelegate?,
+    private func showPlayerAddViewController(for parentViewController: BaseViewController,
                                              _ animated: Bool = true) {
         let viewModelDependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: .add,
                                                                         playerId: nil,
                                                                         playerDetailInfo: nil,
                                                                         apiCaller: appDIContainer.playerNetworkService)
         let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
+      
+        let delegate = parentViewController as? PlayerAddEditViewControllerDelegate
         let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
                                                                                                hapticsManager: appDIContainer.hapticsManager,
                                                                                                delegate: delegate)
         let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(with: playerAddEditViewControllerDependencies)
-        router.present(playerAddEditViewController, animated: animated)
+        
+        let modalNavigationRouter = ModalNavigationRouter(parentViewController: parentViewController)
+        modalNavigationRouter.present(playerAddEditViewController, animated: animated)
+        viewModel.onCloseRequestScreen = { screen in
+            modalNavigationRouter.dismiss(screen, animated: true)
+        }
     }
     
     private func showPlayerViewController(playerId: Int,
@@ -84,6 +91,9 @@ extension TournamentCoordinator {
                                                playerDetailInfo: request.playerDetailInfo,
                                                playerViewController as? PlayerAddEditViewControllerDelegate)
         }
+        viewModel.onCloseRequestScreen = { [weak self] screen in
+            self?.onCloseRequest(screen)
+        }
         router.present(playerViewController, animated: animated)
     }
     
@@ -96,10 +106,19 @@ extension TournamentCoordinator {
                                                                         playerDetailInfo: playerDetailInfo,
                                                                         apiCaller: appDIContainer.playerNetworkService)
         let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
+        viewModel.onCloseRequestScreen = { [weak self] screen in
+            self?.onCloseRequest(screen)
+        }
         let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
                                                                                                hapticsManager: appDIContainer.hapticsManager,
                                                                                                delegate: delegate)
         let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(with: playerAddEditViewControllerDependencies)
         router.present(playerAddEditViewController, animated: animated)
+    }
+}
+
+extension TournamentCoordinator {
+    private func onCloseRequest(_ viewController: BaseViewController, _ animated: Bool = true) {
+        router.dismiss(viewController, animated: animated)
     }
 }

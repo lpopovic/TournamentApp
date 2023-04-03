@@ -64,6 +64,8 @@ final class PlayerAddEditViewModel {
     var onError: VoidReturnClosure<String>?
     var onSuccessfullyCreated: VoidReturnClosure<String>?
     var onSuccessfullyUpdated: VoidReturnClosure<UpdatedResponse>?
+    var onCloseRequestScreen: VoidReturnClosure<BaseViewController>?
+
     
     // MARK: - Initialization
     

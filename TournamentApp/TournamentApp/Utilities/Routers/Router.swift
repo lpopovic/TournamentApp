@@ -14,14 +14,17 @@ public protocol Router: AnyObject {
                  animated: Bool,
                  onDismissed: NoArgsClosure?)
     func dismiss(animated: Bool)
+    func dismiss(_ viewController: UIViewController, animated: Bool)
 }
 
 extension Router {
-    
     public func present(_ viewController: UIViewController,
                         animated: Bool) {
         present(viewController,
                 animated: animated,
                 onDismissed: nil)
     }
+    
+    public func dismiss(_ viewController: UIViewController, animated: Bool) { }
+
 }

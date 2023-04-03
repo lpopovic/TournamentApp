@@ -39,9 +39,15 @@ extension NavigationRouter: Router {
             return
         }
         performOnDismissed(for: routerRootController)
-        navigationController.popToViewController(
-            routerRootController,
-            animated: animated)
+        navigationController.popToViewController(routerRootController, animated: animated)
+    }
+    
+    public func dismiss(_ viewController: UIViewController, animated: Bool) {
+        if viewController == routerRootController {
+            dismiss(animated: animated)
+        } else if navigationController.viewControllers.last == viewController {
+            navigationController.popViewController(animated: animated)
+        }
     }
     
     private func performOnDismissed(for

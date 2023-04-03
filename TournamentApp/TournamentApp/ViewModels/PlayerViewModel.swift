@@ -29,7 +29,7 @@ final class PlayerViewModel {
     var onDelete: VoidReturnClosure<String>?
     var showNavigationBar: VoidReturnClosure<Bool>?
     var showEditPlayerScreen: VoidReturnClosure<EditPlayerRequest>?
-
+    var onCloseRequestScreen: VoidReturnClosure<BaseViewController>?
 
     // MARK: - Initialization
 

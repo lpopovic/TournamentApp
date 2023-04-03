@@ -209,7 +209,7 @@ class PlayerViewController: BaseViewController {
         let action = { [weak self] in
             guard let self else { return }
             self.delegate?.playerIsDeleted(with: self.viewModel.playerId)
-            self.closeViewController()
+            self.viewModel.onCloseRequestScreen?(self)
         }
         let alert = DefaultAlert(title: "Successfully", message: message, completion: action)
         presentAlert(with: alert)
