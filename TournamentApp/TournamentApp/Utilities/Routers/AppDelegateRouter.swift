@@ -18,11 +18,11 @@ public class AppDelegateRouter: NSObject {
 
 extension AppDelegateRouter: Router {
     public func present(_ viewController: UIViewController,
-                      animated: Bool,
-                      onDismissed: (()->Void)?) {
-    window.rootViewController = viewController
-    window.makeKeyAndVisible()
-  }
+                        animated: Bool,
+                        onDismissed: (()->Void)?) {
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+    }
     
     public func dismiss(animated: Bool) { }
 }
