@@ -17,8 +17,8 @@
 		7E451BEE29D87F2D0027827E /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BED29D87F2D0027827E /* Alert.swift */; };
 		7E451BF029D87F2F0027827E /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BEF29D87F2F0027827E /* AlertFactory.swift */; };
 		7E451BF629D87F3F0027827E /* DefaultAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BF329D87F3F0027827E /* DefaultAlert.swift */; };
-		7E451BF729D87F3F0027827E /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BF429D87F3F0027827E /* ErrorAlert.swift */; };
 		7EA9000529DB059D008E45B1 /* ModalNavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9000429DB059D008E45B1 /* ModalNavigationRouter.swift */; };
+		7EA9000C29DD86B1008E45B1 /* ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9000B29DD86B1008E45B1 /* ErrorAlert.swift */; };
 		7EAD534329D5DA8C0098B9B3 /* WebImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534229D5DA8C0098B9B3 /* WebImageProvider.swift */; };
 		7EAD534629D5E02B0098B9B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */; };
 		7EAD534829D5E46B0098B9B3 /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */; };
@@ -118,8 +118,8 @@
 		7E451BED29D87F2D0027827E /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		7E451BEF29D87F2F0027827E /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		7E451BF329D87F3F0027827E /* DefaultAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAlert.swift; sourceTree = "<group>"; };
-		7E451BF429D87F3F0027827E /* ErrorAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		7EA9000429DB059D008E45B1 /* ModalNavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationRouter.swift; sourceTree = "<group>"; };
+		7EA9000B29DD86B1008E45B1 /* ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlert.swift; sourceTree = "<group>"; };
 		7EAD534229D5DA8C0098B9B3 /* WebImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageProvider.swift; sourceTree = "<group>"; };
 		7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				7E451BF329D87F3F0027827E /* DefaultAlert.swift */,
-				7E451BF429D87F3F0027827E /* ErrorAlert.swift */,
 				7ED679BA29D8A751007990AC /* ConfirmAlert.swift */,
+				7EA9000B29DD86B1008E45B1 /* ErrorAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -808,7 +808,6 @@
 				D03756A9265D9E7A009EE660 /* TournamentTableViewCell.swift in Sources */,
 				D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */,
 				7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */,
-				7E451BF729D87F3F0027827E /* ErrorAlert.swift in Sources */,
 				7ED679D329D9B7DB007990AC /* AppError.swift in Sources */,
 				7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
@@ -853,6 +852,7 @@
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */,
 				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
+				7EA9000C29DD86B1008E45B1 /* ErrorAlert.swift in Sources */,
 				7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */,
 				D039438526584DBB0088A386 /* ApiCaller.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,

@@ -1,31 +1,30 @@
 //
 //  ErrorAlert.swift
-//  HRManager
+//  TournamentApp
 //
-//  Created by Mladen Stojanovic on 1.3.21..
-//  Copyright © 2021 HTEC. All rights reserved.
+//  Created by Lazar Popovic on 5.4.23..
 //
 
 import UIKit
 
 struct ErrorAlert: Alert {
-	var title: String? = "ERROR"
-	var message: String?
-	var completion: NoArgsClosure?
-	
-	init(message: String?, completion: NoArgsClosure? = nil) {
-		self.completion = completion
-		self.message = message
-	}
-	
-	func getActions() -> [UIAlertAction] {
-		[
-			UIAlertAction(
+    var title: String? = "ERROR"
+    var message: String?
+    var completion: NoArgsClosure?
+    
+    init(message: String?, completion: NoArgsClosure? = nil) {
+        self.completion = completion
+        self.message = message
+    }
+    
+    func getActions() -> [UIAlertAction] {
+        [
+            UIAlertAction(
                 title: "OK",
                 style: .default
             ) { _ in
-				self.completion?()
-			}
-		]
-	}
+                self.completion?()
+            }
+        ]
+    }
 }
