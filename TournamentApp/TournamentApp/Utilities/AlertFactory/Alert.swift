@@ -1,9 +1,8 @@
 //
 //  Alert.swift
-//  HRManager
+//  TournamentApp
 //
-//  Created by Lazar Popovic on 1.11.21..
-//  Copyright © 2021 HTEC. All rights reserved.
+//  Created by Lazar Popovic on 5.4.23..
 //
 
 import UIKit
