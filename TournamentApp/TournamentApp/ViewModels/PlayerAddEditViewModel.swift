@@ -120,33 +120,33 @@ final class PlayerAddEditViewModel {
               let points = inputFields.points,
               let dateOfBirth = inputFields.dateOfBirth,
               let photoImage = inputFields.photoImage,
-              String.Validation.isNotEmpty(value: firstName).value,
-              String.Validation.isNotEmpty(value: lastName).value,
-              String.Validation.isNotEmpty(value: description).value,
-              String.Validation.isNotEmpty(value: points).value,
-              String.Validation.isNotEmpty(value: dateOfBirth).value
+              Validation.isNotEmpty(value: firstName).value,
+              Validation.isNotEmpty(value: lastName).value,
+              Validation.isNotEmpty(value: description).value,
+              Validation.isNotEmpty(value: points).value,
+              Validation.isNotEmpty(value: dateOfBirth).value
         else {
             completion(.failure(AppError.runtimeError(message: "Fill all fields!")))
             return
         }
         
-        if String.Validation.isText(value: firstName).value == true,
-           String.Validation.isLastNameText(value: lastName).value == true,
-           String.Validation.isNotEmpty(value: description).value == true,
-           String.Validation.isPositiveNumber(value: points).value == true,
-           String.Validation.isDate(value: dateOfBirth).value == true,
+        if Validation.isText(value: firstName).value == true,
+           Validation.isLastNameText(value: lastName).value == true,
+           Validation.isNotEmpty(value: description).value == true,
+           Validation.isPositiveNumber(value: points).value == true,
+           Validation.isDate(value: dateOfBirth).value == true,
            photoImage != PropertyConstants.addImage.value {
             completion(.success)
         } else {
-            if !String.Validation.isText(value: firstName).value {
+            if !Validation.isText(value: firstName).value {
                 completion(.failure(AppError.runtimeError(message: "First name is not valid.")))
-            } else if !String.Validation.isLastNameText(value: lastName).value {
+            } else if !Validation.isLastNameText(value: lastName).value {
                 completion(.failure(AppError.runtimeError(message: "Last name is not valid.")))
-            } else  if !String.Validation.isDate(value: dateOfBirth).value {
+            } else  if !Validation.isDate(value: dateOfBirth).value {
                 completion(.failure(AppError.runtimeError(message: "Date of birth is not valid.")))
-            } else if !String.Validation.isNotEmpty(value: description).value {
+            } else if !Validation.isNotEmpty(value: description).value {
                 completion(.failure(AppError.runtimeError(message: "Description is not valid.")))
-            } else if !String.Validation.isPositiveNumber(value: points).value {
+            } else if !Validation.isPositiveNumber(value: points).value {
                 completion(.failure(AppError.runtimeError(message: "Set valid positive number.")))
             } else if photoImage == PropertyConstants.addImage.value {
                 completion(.failure(AppError.runtimeError(message: "Add Photo.")))
