@@ -8,14 +8,9 @@
 import Foundation
 
 extension Date {
-    func getDateOfBirthFormatString(dateFormat: String = Date.dateOfBirthFormat) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
-        return dateFormatter.string(from: self)
+    func toString(withFormat format: AppDateFormatter) -> String? {
+        format.string(from: self)
     }
-    
-    static let dateOfBirthFormat: String = "YYYY-MM-dd"
-    static let dateOfBirthFullFormat: String = "yyyy-MM-dd HH:mm:ss"
     
     static func getCurrentDate()-> Date {
          var now = Date()

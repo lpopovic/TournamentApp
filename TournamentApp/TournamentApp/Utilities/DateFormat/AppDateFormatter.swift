@@ -16,7 +16,7 @@ enum AppDateFormatter {
     var format: String {
         switch self {
         case .reverseShortDate:
-            return "YYYY-MM-DD"
+            return "YYYY-MM-dd"
         case .shortDate:
             return "dd-MM-YYYY"
         case .dateAndTime:
@@ -30,6 +30,7 @@ enum AppDateFormatter {
         
     private var formatter: DateFormatter {
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
         return dateFormatter
     }
     

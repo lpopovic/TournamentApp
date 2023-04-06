@@ -8,13 +8,8 @@
 import Foundation
 
 extension String {
-    func toDate(withFormat format: String = Date.dateOfBirthFullFormat)-> Date?{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        let date = dateFormatter.date(from: self)
-        
-        return date
-        
+    func toDate(withFormat format: AppDateFormatter) -> Date? {
+        format.date(from: self)
     }
     
     enum Validation {
@@ -44,7 +39,7 @@ extension String {
                     return !value.isEmpty && value.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
                     
                 case .isDate(let value):
-                    return !value.isEmpty && value.toDate(withFormat: Date.dateOfBirthFormat) != nil
+                    return !value.isEmpty && value.toDate(withFormat: .reverseShortDate) != nil
                 }
             }
         }

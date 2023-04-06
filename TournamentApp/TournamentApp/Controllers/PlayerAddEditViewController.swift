@@ -245,7 +245,7 @@ class PlayerAddEditViewController: BaseViewController {
     }
     
     @objc private func doneDatePicker(){
-        datePickerTextField.text = datePicker.date.getDateOfBirthFormatString()
+        datePickerTextField.text = datePicker.date.toString(withFormat: .reverseShortDate)
         view.endEditing(true)
     }
     

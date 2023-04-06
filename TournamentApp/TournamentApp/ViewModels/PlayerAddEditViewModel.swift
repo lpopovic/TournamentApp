@@ -161,7 +161,7 @@ final class PlayerAddEditViewModel {
               let pointsText = inputFields.points,
               let points = Int(pointsText),
               let dateOfBirthText = inputFields.dateOfBirth,
-              let dateOfBirth = dateOfBirthText.toDate(withFormat: Date.dateOfBirthFormat),
+              let dateOfBirth = dateOfBirthText.toDate(withFormat: .reverseShortDate),
               let _ = inputFields.photoImage,
               let player = playerDetailInfo,
               let playerId = playerId
@@ -176,8 +176,8 @@ final class PlayerAddEditViewModel {
         if points != player.points {
             apiParameters[.points] = points
         }
-        if dateOfBirth != player.dateOfBirth?.toDate() {
-            apiParameters[.dateOfBirth] = dateOfBirth.getDateOfBirthFormatString()
+        if dateOfBirth != player.getDateDateOfBirth() {
+            apiParameters[.dateOfBirth] = dateOfBirth.toString(withFormat: .reverseShortDate)
         }
         if isProfessional != player.isProfessional {
             apiParameters[.isProfessional] = isProfessional
@@ -196,7 +196,7 @@ final class PlayerAddEditViewModel {
                     firstName: firstName,
                     lastName: lastName,
                     points: points,
-                    dateOfBirth: dateOfBirth.getDateOfBirthFormatString(dateFormat: Date.dateOfBirthFullFormat),
+                    dateOfBirth: dateOfBirth.toString(withFormat: .reverseShortDate),
                     profileImageUrl: player.profileImageUrl,
                     isProfessional: isProfessional,
                     tournament_id: player.tournament_id,

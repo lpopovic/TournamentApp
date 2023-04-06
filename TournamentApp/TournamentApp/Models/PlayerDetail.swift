@@ -43,19 +43,24 @@ struct PlayerDetail: Codable {
 
 extension PlayerDetail {
     func getStringIsProfessional() -> String {
-        if let isProfessional = self.isProfessional {
+        if let isProfessional = isProfessional {
             return isProfessional.boolValue ? "yes" : "no"
         } else {
             return "undefined"
         }
     }
     
+    func getDateDateOfBirth() -> Date? {
+        guard let dateOfBirth = dateOfBirth,
+              let date = dateOfBirth.toDate(withFormat: .dateAndTime)
+        else { return nil }
+        return date
+    }
+    
     func getStringDateOfBirth() -> String? {
-        if let dateOfBirth = self.dateOfBirth, let date = dateOfBirth.toDate() {
-            return date.getDateOfBirthFormatString()
-        } else {
-            return nil
-        }
+        guard let date: Date = getDateDateOfBirth()
+        else { return nil }
+        return date.toString(withFormat: .reverseShortDate)
     }
     
     func getPoints() -> Int {
