@@ -109,8 +109,8 @@ class TournamentBracketViewController: BaseViewController {
     @objc private func didTapAddDWinnerButton() {
         let winnerPlayerIndex = self.drawPositionForPlayers[self.numberOfMatchInEachBracketData.count][0] - 1
         let winnerPlayer = self.viewModel.playerList[winnerPlayerIndex]
-        
-        UIAlertController.showAlertUserMessage(self, title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
+        let alert = DefaultAlert(title: "Winner", message: "\(winnerPlayer.firstName) \(winnerPlayer.lastName)")
+        presentAlert(with: alert)
         hapticsManager.vibrate(for: .success)
     }
     
