@@ -12,12 +12,13 @@ public protocol Coordinator: AnyObject {
   var children: [Coordinator] { get set }
   var router: Router { get }
 
-  func present(animated: Bool, onDismissed: (() -> Void)?)
+  func present(animated: Bool, onDismissed: NoArgsClosure?)
   func dismiss(animated: Bool)
   func presentChild(_ child: Coordinator,
                     animated: Bool,
-                    onDismissed: (() -> Void)?)
+                    onDismissed: NoArgsClosure?)
 }
+
 extension Coordinator {
 
   public func dismiss(animated: Bool) {
@@ -26,7 +27,7 @@ extension Coordinator {
 
   public func presentChild(_ child: Coordinator,
                            animated: Bool,
-                           onDismissed: (() -> Void)? = nil) {
+                           onDismissed: NoArgsClosure? = nil) {
     children.append(child)
     child.present(animated: animated, onDismissed: { [weak self, weak child] in
       guard let self = self, let child = child else { return }
