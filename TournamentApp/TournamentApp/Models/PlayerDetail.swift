@@ -15,7 +15,7 @@ struct PlayerDetail: Codable {
     let dateOfBirth: String?
     let profileImageUrl: String?
     let isProfessional: Int?
-    let tournament_id: Int?
+    let tournamentId: Int?
     let description: String?
     
     
@@ -26,7 +26,7 @@ struct PlayerDetail: Codable {
          dateOfBirth: String? = nil,
          profileImageUrl: String? = nil,
          isProfessional: Int? = nil,
-         tournament_id: Int? = nil,
+         tournamentId: Int? = nil,
          description: String? = nil)
     {
         self.id = id
@@ -36,8 +36,20 @@ struct PlayerDetail: Codable {
         self.dateOfBirth = dateOfBirth
         self.profileImageUrl = profileImageUrl
         self.isProfessional = isProfessional
-        self.tournament_id = tournament_id
+        self.tournamentId = tournamentId
         self.description = description
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        case tournamentId = "tournament_id"
+        case id
+        case firstName
+        case lastName
+        case points
+        case dateOfBirth
+        case profileImageUrl
+        case isProfessional
+        case description
     }
 }
 

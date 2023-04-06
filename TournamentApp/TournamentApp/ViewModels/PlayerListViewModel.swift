@@ -100,7 +100,7 @@ final class PlayerListViewModel {
                                         firstName: player.firstName,
                                         lastName: player.lastName,
                                         points: player.points,
-                                        tournament_id: player.tournament_id)
+                                        tournament_id: player.tournamentId)
         self.playerList.sort{ $0.getPoints() > $1.getPoints() }
         reloadListView?()
         completion?(index)

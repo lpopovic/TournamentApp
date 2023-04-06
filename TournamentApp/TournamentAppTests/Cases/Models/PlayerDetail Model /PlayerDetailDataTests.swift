@@ -106,9 +106,9 @@ class PlayerDetailDataTests: XCTestCase {
     }
     
     func testPlayerDetailModel_whenInitialized_tournamentId() {
-        guard let tournament_id = self.sut.tournament_id else {
+        guard let tournament_id = self.sut.tournamentId else {
             
-            XCTAssertNil(self.sut.tournament_id)
+            XCTAssertNil(self.sut.tournamentId)
             
             return
         }

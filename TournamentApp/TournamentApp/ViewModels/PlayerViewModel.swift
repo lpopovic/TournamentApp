@@ -90,7 +90,7 @@ final class PlayerViewModel {
     private func setupNavigationActions() {
         let showButtons: Bool
         if let player = playerDetailInfo,
-           player.tournament_id == GlobalConstants.tournomentId {
+           player.tournamentId == GlobalConstants.tournomentId {
             showButtons = true
         } else {
             showButtons = false

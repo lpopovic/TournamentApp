@@ -199,7 +199,7 @@ final class PlayerAddEditViewModel {
                     dateOfBirth: dateOfBirth.toString(withFormat: .reverseShortDate),
                     profileImageUrl: player.profileImageUrl,
                     isProfessional: isProfessional,
-                    tournament_id: player.tournament_id,
+                    tournamentId: player.tournamentId,
                     description: description)
                 self.onSuccessfullyUpdated?((message, player))
             case .failure(let error):
