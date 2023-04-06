@@ -11,4 +11,5 @@ import Foundation
 
 typealias ApiPath = String
 typealias ApiHTTPHeaders = [String: String]
-typealias ApiParameters = [String: Any]
+typealias ApiParameters = [ApiParameter: Any]
+typealias Parameters = [String: Any]

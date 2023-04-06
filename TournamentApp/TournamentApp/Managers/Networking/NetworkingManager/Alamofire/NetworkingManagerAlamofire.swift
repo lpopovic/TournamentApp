@@ -82,7 +82,7 @@ extension NetworkingManagerAlamofire: NetworkingManagerProvider {
         let request = sessionManager.request(
             url,
             method: setAlamofireHttpMethod(when: method),
-            parameters: parameters,
+            parameters: params(parameters),
             encoding: setAlamofireEncoding(when: encoding),
             headers: setAlamofireHeaders(when: headers))
             .validate()
@@ -91,9 +91,10 @@ extension NetworkingManagerAlamofire: NetworkingManagerProvider {
     }
     
     func upload(imageData: Data, _ requestable: NetworkRoutable) -> RequestResponseProvider {
-        sessionManager.upload(multipartFormData: { (multipartFormData) in
+        let parameters = params(requestable.parameters)
+       return sessionManager.upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(imageData, withName: ApiParameter.profileImageUrl.rawValue, fileName: "tmp.jpg", mimeType: "image/jpg")
-            if let params = requestable.parameters {
+            if let params = parameters {
                 for (key, value) in params {
                     if let dataValue = "\(value)".data(using: .utf8) {
                         multipartFormData.append(dataValue, withName: key)

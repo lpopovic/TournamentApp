@@ -16,6 +16,7 @@ protocol NetworkingManagerProvider {
         headers: ApiHTTPHeaders?) -> RequestResponseProvider
     func request(_ requestable: NetworkRoutable) -> RequestResponseProvider
     func upload(imageData: Data, _ requestable: NetworkRoutable) -> RequestResponseProvider
+    func params(_ apiParameters: ApiParameters?) -> Parameters?
 }
 
 extension NetworkingManagerProvider {
@@ -25,6 +26,15 @@ extension NetworkingManagerProvider {
                 parameters: requestable.parameters,
                 encoding: requestable.encoding,
                 headers: requestable.headers)
+    }
+    
+    func params(_ apiParameters: ApiParameters?) -> Parameters? {
+        guard let apiParameters = apiParameters else { return nil }
+        var params = Parameters()
+        for (key, value) in apiParameters {
+            params[key.rawValue] = value
+        }
+        return params
     }
 
 }

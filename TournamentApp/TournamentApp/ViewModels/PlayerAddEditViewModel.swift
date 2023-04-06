@@ -167,27 +167,27 @@ final class PlayerAddEditViewModel {
               let playerId = playerId
         else { return }
         let isProfessional = inputFields.isProfessional ? 1 : 0
-        var paramsToUpdate: [String: Any] = [:]
-        paramsToUpdate.updateValue(firstName, forKey: ApiCaller.ApiParameters.firstName.rawValue)
-        paramsToUpdate.updateValue(lastName, forKey: ApiCaller.ApiParameters.lastName.rawValue)
+        var apiParameters = ApiParameters()
+        apiParameters[.firstName] = firstName
+        apiParameters[.lastName] = lastName
         if description != player.description {
-            paramsToUpdate.updateValue(description, forKey: ApiCaller.ApiParameters.description.rawValue)
+            apiParameters[.description] = description
         }
         if points != player.points {
-            paramsToUpdate.updateValue(points, forKey: ApiCaller.ApiParameters.points.rawValue)
+            apiParameters[.points] = points
         }
-        if dateOfBirth != player.dateOfBirth?.toDate()  {
-            paramsToUpdate.updateValue(dateOfBirth.getDateOfBirthFormatString(), forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
+        if dateOfBirth != player.dateOfBirth?.toDate() {
+            apiParameters[.dateOfBirth] = dateOfBirth.getDateOfBirthFormatString()
         }
-        if isProfessional != player.isProfessional  {
-            paramsToUpdate.updateValue(dateOfBirth, forKey: ApiCaller.ApiParameters.dateOfBirth.rawValue)
+        if isProfessional != player.isProfessional {
+            apiParameters[.isProfessional] = isProfessional
         }
-        guard !paramsToUpdate.isEmpty
+        guard !apiParameters.isEmpty
         else {
             onError?("You didn't change anything")
             return
         }
-        startFetchPutData(for: playerId, with: paramsToUpdate) { [weak self] result in
+        startFetchPutData(for: playerId, with: apiParameters) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let message):
@@ -242,7 +242,7 @@ final class PlayerAddEditViewModel {
         }
     }
     
-    private func startFetchPutData(for id: Int, with params: [String: Any], completion: @escaping VoidReturnClosure<ResultObject<String>>) {
+    private func startFetchPutData(for id: Int, with params: ApiParameters, completion: @escaping VoidReturnClosure<ResultObject<String>>) {
         showProgress?()
         apiCaller.putDetailPlayer(with: id, paramsToUpdate: params, profileImageUrl: nil) { [weak self] (result) in
             guard let self else { return }

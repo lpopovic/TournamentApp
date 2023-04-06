@@ -12,7 +12,6 @@ final class AppDependencyContainer {
     // MARK: - Properties
 
     // Long-lived dependencies
-    let apiCaller: ApiCaller
     let networkingManager: NetworkingManagerProvider
     let factoryAppViewController: AppViewControllerFactory
     let factoryViewModel: ViewModelFactory
@@ -22,9 +21,6 @@ final class AppDependencyContainer {
     }()
     
     public init() {
-        func makeApiCaller() -> ApiCaller {
-            return ApiCaller()
-        }
         func makeNetworkingManager() -> NetworkingManagerProvider {
           return NetworkingManagerAlamofire()
         }
@@ -37,7 +33,6 @@ final class AppDependencyContainer {
         func makeHapticsManager() -> HapticsManager {
             HapticsManager()
         }
-        self.apiCaller = makeApiCaller()
         self.networkingManager = makeNetworkingManager()
         self.factoryAppViewController = makeFactoryAppViewController()
         self.factoryViewModel = makeFactoryViewModel()

@@ -43,8 +43,8 @@ extension PlayerNetworkService: PlayerNetworkServiceProvider {
     }
     
     func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], NetworkError>) -> Void) {
-        let parameters = [ApiParameter.limit.rawValue: "\(limit)",
-                         ApiParameter.page.rawValue: "\(page)"]
+        let parameters: ApiParameters = [.limit: "\(limit)",
+                                         .page: "\(page)"]
         let networkRoutable = PlayerNetworkRouter.getPlayerList(parameters)
         networkSessionManager.request(networkRoutable)
             .responseArray(completion: completion)
@@ -70,14 +70,12 @@ extension PlayerNetworkService: PlayerNetworkServiceProvider {
                           isProfessional: Int,
                           profileImageUrl: Data,
                           completion: @escaping (ResultObject<String>) -> Void) {
-        let parameters: ApiParameters = [
-            ApiParameter.firstName.rawValue: firstName,
-            ApiParameter.lastName.rawValue: lastName,
-            ApiParameter.description.rawValue: description,
-            ApiParameter.points.rawValue: points,
-            ApiParameter.dateOfBirth.rawValue: dateOfBirth,
-            ApiParameter.isProfessional.rawValue: isProfessional,
-        ]
+        let parameters: ApiParameters = [.firstName: firstName,
+                                         .lastName: lastName,
+                                         .description: description,
+                                         .points: points,
+                                         .dateOfBirth: dateOfBirth,
+                                         .isProfessional: isProfessional]
         let networkRoutable = PlayerNetworkRouter.postCreatePlayer(parameters)
         networkSessionManager.upload(imageData: profileImageUrl, networkRoutable)
             .response(completion: completion)
