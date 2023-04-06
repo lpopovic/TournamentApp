@@ -22,16 +22,13 @@ Text of task can be see on this [link](https://github.com/HTEC-interview/ios-laz
 <img src="https://github.com/HTEC-interview/ios-lazarp/blob/main/Preview/GIF_PREVIEW_01.gif" width="240"/> 
 
 ## Build and Runtime Requirements
-+ Xcode 12.2 or later
++ Xcode 14.0 or later
 + Swift 5 or later
 + iOS 13.0 or later
-+ [CocoaPods](http://cocoapods.org/) 
 
 ## How to run 
 1. Clone this repo
-1. Open shell window and navigate to project folder/ TournamentApp
-1. Run `pod install`
-1. Open `TournamentApp.xcworkspace`
+1. Open `TournamentApp.xcodeproj`
 1. Run the project on selected device or simulator
 
 ## Contact
