@@ -13,13 +13,29 @@ final class PlayerViewModel {
     
     typealias EditPlayerRequest = (playerId: Int?, playerDetailInfo: PlayerDetail?)
     
-    enum TableSection: String {
-        case base = "baseKey"
+    enum TableSection {
+        case base
+        
+        var key: String {
+            switch self {
+            case .base:
+                return "baseKey"
+            }
+        }
     }
     
-    enum TableRow: String, CaseIterable {
+    enum TableRow  {
         case playerInfo
         case bio
+        
+        var key: String {
+            switch self {
+            case .playerInfo:
+                return "playerInfoKey"
+            case .bio:
+                return "bioKey"
+            }
+        }
     }
     
     let playerId: Int
@@ -112,7 +128,7 @@ final class PlayerViewModel {
     
     private func createBioTableViewCellRow() -> TableField<BioTableViewCell>? {
         guard let player = playerDetailInfo else { return nil }
-        let bioTableViewCellModel = BioTableViewCellModel(key: TableRow.bio.rawValue,
+        let bioTableViewCellModel = BioTableViewCellModel(key: TableRow.bio.key,
                                                           title: "Bio",
                                                           bio: player.description)
         let bioTableViewCellRow: TableField<BioTableViewCell> = TableField(model: bioTableViewCellModel,
@@ -122,7 +138,7 @@ final class PlayerViewModel {
     
     private func createPlayerInfoRow() -> TableField<PlayerInfoTableCell>? {
         guard let player = playerDetailInfo else { return nil }
-        let playerInfoRowModel = PlayerInfoTableCellModel(key: TableRow.playerInfo.rawValue,
+        let playerInfoRowModel = PlayerInfoTableCellModel(key: TableRow.playerInfo.key,
                                                           nameText: "\(player.firstName) \(player.lastName)",
                                                           dateOfBirthText: player.getStringDateOfBirth(),
                                                           pointsText: player.getPoints().formatedWithSeparator,
@@ -136,7 +152,7 @@ final class PlayerViewModel {
     private func setTableSections() {
         tableSections.removeAll()
         let rows = createRows()
-        let section = TableGroup(key: TableSection.base.rawValue, rows: rows)
+        let section = TableGroup(key: TableSection.base.key, rows: rows)
         tableSections.append(section)
         reloadListView?()
     }
