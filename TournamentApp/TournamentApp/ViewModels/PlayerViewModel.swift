@@ -22,6 +22,13 @@ final class PlayerViewModel {
                 return "baseKey"
             }
         }
+        
+        var rows: [TableRow] {
+            switch self {
+            case .base:
+                return [.playerInfo, .bio]
+            }
+        }
     }
     
     enum TableRow  {
@@ -115,13 +122,20 @@ final class PlayerViewModel {
     
     // MARK: Private methods
     
-    private func createRows() -> [TableGroup.Row] {
+    private func createRows(for section: TableSection) -> [TableGroup.Row] {
         var rows = [TableGroup.Row]()
-        if let row = createPlayerInfoRow() {
-            rows.append(row)
-        }
-        if let row = createBioTableViewCellRow() {
-            rows.append(row)
+        section.rows.forEach { [weak self] rowType in
+            guard let self else { return }
+            switch rowType {
+            case .bio:
+                if let row = self.createBioTableViewCellRow() {
+                    rows.append(row)
+                }
+            case .playerInfo:
+                if let row = self.createPlayerInfoRow() {
+                    rows.append(row)
+                }
+            }
         }
         return rows
     }
@@ -147,12 +161,19 @@ final class PlayerViewModel {
         return playerInfoRow
     }
     
+    private func createTableGroup(for section: TableSection) -> TableGroup {
+        let rows = createRows(for: section)
+        let tableGroup = TableGroup(key: section.key, rows: rows)
+        return tableGroup
+    }
+    
     private func setTableSections() {
+        defer {
+            reloadListView?()
+        }
         tableSections.removeAll()
-        let rows = createRows()
-        let section = TableGroup(key: TableSection.base.key, rows: rows)
+        let section = createTableGroup(for: .base)
         tableSections.append(section)
-        reloadListView?()
     }
     
     private func setupNavigationActions() {

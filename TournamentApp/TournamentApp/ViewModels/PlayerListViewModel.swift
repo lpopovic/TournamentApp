@@ -161,11 +161,13 @@ final class PlayerListViewModel {
     }
     
     private func setTableSections() {
+        defer {
+            reloadListView?()
+        }
         tableSections.removeAll()
         let rows = createRows()
         let section = TableGroup(key: TableSection.base.key, rows: rows)
         tableSections.append(section)
-        reloadListView?()
     }
     
     private func getItemsForBracket() -> [Player]? {
