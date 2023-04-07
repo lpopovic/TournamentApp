@@ -223,14 +223,14 @@ final class PlayerAddEditViewModel {
             return
         }
         let isProfessional = inputFields.isProfessional ? 1 : 0
+        let parameters: ApiParameters = [.firstName: firstName,
+                                         .lastName: lastName,
+                                         .description: description,
+                                         .points: points,
+                                         .dateOfBirth: dateOfBirth,
+                                         .isProfessional: isProfessional]
         showProgress?()
-        apiCaller.postCreatePlayer(firstName: firstName,
-                                          lastName: lastName,
-                                          description: description,
-                                          points: points,
-                                          dateOfBirth: dateOfBirth,
-                                          isProfessional: isProfessional,
-                                          profileImageUrl: photoImageData) { [weak self] (result) in
+        apiCaller.postCreatePlayer(parameters, profileImageUrl: photoImageData) { [weak self] (result) in
             guard let self else { return }
             self.hideProgress?()
             switch result {
@@ -242,9 +242,9 @@ final class PlayerAddEditViewModel {
         }
     }
     
-    private func startFetchPutData(for id: Int, with params: ApiParameters, completion: @escaping VoidReturnClosure<ResultObject<String>>) {
+    private func startFetchPutData(for id: Int, with parameters: ApiParameters, completion: @escaping VoidReturnClosure<ResultObject<String>>) {
         showProgress?()
-        apiCaller.putDetailPlayer(with: id, paramsToUpdate: params, profileImageUrl: nil) { [weak self] (result) in
+        apiCaller.putDetailPlayer(with: id, parameters, profileImageUrl: nil) { [weak self] (result) in
             guard let self else { return }
             self.hideProgress?()
             switch result {

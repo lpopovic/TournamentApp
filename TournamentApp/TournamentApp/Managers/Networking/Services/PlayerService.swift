@@ -12,16 +12,11 @@ protocol PlayerNetworkServiceProvider {
     func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], NetworkError>) -> Void)
     func deletePlayer(with id: Int, completion: @escaping (ResultObject<String>) -> Void)
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, NetworkError>) -> Void)
-    func postCreatePlayer(firstName: String,
-                          lastName: String,
-                          description: String,
-                          points: String,
-                          dateOfBirth: String,
-                          isProfessional: Int,
+    func postCreatePlayer(_ parameters: ApiParameters,
                           profileImageUrl: Data,
                           completion: @escaping (ResultObject<String>) -> Void)
     func putDetailPlayer(with id: Int,
-                         paramsToUpdate: ApiParameters,
+                         _ parameters: ApiParameters,
                          profileImageUrl: Data?,
                          completion: @escaping (ResultObject<String>) -> Void)
 }
@@ -62,27 +57,14 @@ extension PlayerNetworkService: PlayerNetworkServiceProvider {
             .responseObject(completion: completion)
     }
     
-    func postCreatePlayer(firstName: String,
-                          lastName: String,
-                          description: String,
-                          points: String,
-                          dateOfBirth: String,
-                          isProfessional: Int,
-                          profileImageUrl: Data,
-                          completion: @escaping (ResultObject<String>) -> Void) {
-        let parameters: ApiParameters = [.firstName: firstName,
-                                         .lastName: lastName,
-                                         .description: description,
-                                         .points: points,
-                                         .dateOfBirth: dateOfBirth,
-                                         .isProfessional: isProfessional]
+    func postCreatePlayer(_ parameters: ApiParameters, profileImageUrl: Data, completion: @escaping (ResultObject<String>) -> Void) {
         let networkRoutable = PlayerNetworkRouter.postCreatePlayer(parameters)
         networkSessionManager.upload(imageData: profileImageUrl, networkRoutable)
             .response(completion: completion)
     }
     
-    func putDetailPlayer(with id: Int, paramsToUpdate: ApiParameters, profileImageUrl: Data?, completion: @escaping (ResultObject<String>) -> Void) {
-        let networkRoutable = PlayerNetworkRouter.putDetailPlayer("\(id)", paramsToUpdate)
+    func putDetailPlayer(with id: Int, _ parameters: ApiParameters, profileImageUrl: Data?, completion: @escaping (ResultObject<String>) -> Void) {
+        let networkRoutable = PlayerNetworkRouter.putDetailPlayer("\(id)", parameters)
         networkSessionManager.request(networkRoutable)
             .response(completion: completion)
     }
