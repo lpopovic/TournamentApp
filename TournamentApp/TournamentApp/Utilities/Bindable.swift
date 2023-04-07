@@ -15,14 +15,14 @@ extension Bindable {
     
     func weak<Args>(_ method: @escaping ((Function) -> ((Args) -> Void))) -> ((Args) -> Void) {
         return { [weak self] arg in
-            guard let `self` = self else { return }
+            guard let self else { return }
             method(self)(arg)
         }
     }
     
     func weak(_ method: @escaping ((Function) -> (() -> Void))) -> (() -> Void) {
         return { [weak self]  in
-            guard let `self` = self else { return }
+            guard let self else { return }
             method(self)()
         }
     }

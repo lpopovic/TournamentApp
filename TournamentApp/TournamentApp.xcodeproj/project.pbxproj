@@ -24,6 +24,22 @@
 		7EA9001829DF4BE7008E45B1 /* NotificationCentarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9001729DF4BE7008E45B1 /* NotificationCentarManager.swift */; };
 		7EA9001C29DF4C3E008E45B1 /* NotificationCentarManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9001B29DF4C3E008E45B1 /* NotificationCentarManagerTests.swift */; };
 		7EA9001E29E0176D008E45B1 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9001D29E0176D008E45B1 /* Bindable.swift */; };
+		7EA9002129E01824008E45B1 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002029E01824008E45B1 /* TableViewManager.swift */; };
+		7EA9002629E01857008E45B1 /* TableViewCellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002529E01857008E45B1 /* TableViewCellProvider.swift */; };
+		7EA9002829E01866008E45B1 /* TableViewCellModelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002729E01866008E45B1 /* TableViewCellModelProvider.swift */; };
+		7EA9002A29E01874008E45B1 /* TableViewCellConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002929E01874008E45B1 /* TableViewCellConfigurable.swift */; };
+		7EA9002C29E01883008E45B1 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002B29E01883008E45B1 /* BaseTableViewCell.swift */; };
+		7EA9002E29E01918008E45B1 /* TableViewHeaderProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002D29E01918008E45B1 /* TableViewHeaderProvider.swift */; };
+		7EA9003029E01927008E45B1 /* TableViewHeaderConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9002F29E01927008E45B1 /* TableViewHeaderConfigurable.swift */; };
+		7EA9003229E0193D008E45B1 /* BaseTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003129E0193D008E45B1 /* BaseTableViewHeader.swift */; };
+		7EA9003529E019D1008E45B1 /* ViewLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003429E019D1008E45B1 /* ViewLoadable.swift */; };
+		7EA9003729E01A10008E45B1 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003629E01A10008E45B1 /* NibLoadable.swift */; };
+		7EA9003929E01A96008E45B1 /* TableField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003829E01A96008E45B1 /* TableField.swift */; };
+		7EA9003B29E01ABE008E45B1 /* TableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003A29E01ABE008E45B1 /* TableSection.swift */; };
+		7EA9003D29E01ADC008E45B1 /* TableGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003C29E01ADC008E45B1 /* TableGroup.swift */; };
+		7EA9003F29E01E39008E45B1 /* Extensions+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9003E29E01E39008E45B1 /* Extensions+UITableView.swift */; };
+		7EA9004129E01E6F008E45B1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9004029E01E6F008E45B1 /* Reusable.swift */; };
+		7EA9004329E01EB0008E45B1 /* NibReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA9004229E01EB0008E45B1 /* NibReusable.swift */; };
 		7EAD534329D5DA8C0098B9B3 /* WebImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534229D5DA8C0098B9B3 /* WebImageProvider.swift */; };
 		7EAD534629D5E02B0098B9B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */; };
 		7EAD534829D5E46B0098B9B3 /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */; };
@@ -128,6 +144,22 @@
 		7EA9001729DF4BE7008E45B1 /* NotificationCentarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCentarManager.swift; sourceTree = "<group>"; };
 		7EA9001B29DF4C3E008E45B1 /* NotificationCentarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCentarManagerTests.swift; sourceTree = "<group>"; };
 		7EA9001D29E0176D008E45B1 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		7EA9002029E01824008E45B1 /* TableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
+		7EA9002529E01857008E45B1 /* TableViewCellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellProvider.swift; sourceTree = "<group>"; };
+		7EA9002729E01866008E45B1 /* TableViewCellModelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModelProvider.swift; sourceTree = "<group>"; };
+		7EA9002929E01874008E45B1 /* TableViewCellConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellConfigurable.swift; sourceTree = "<group>"; };
+		7EA9002B29E01883008E45B1 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		7EA9002D29E01918008E45B1 /* TableViewHeaderProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderProvider.swift; sourceTree = "<group>"; };
+		7EA9002F29E01927008E45B1 /* TableViewHeaderConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderConfigurable.swift; sourceTree = "<group>"; };
+		7EA9003129E0193D008E45B1 /* BaseTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewHeader.swift; sourceTree = "<group>"; };
+		7EA9003429E019D1008E45B1 /* ViewLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLoadable.swift; sourceTree = "<group>"; };
+		7EA9003629E01A10008E45B1 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		7EA9003829E01A96008E45B1 /* TableField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableField.swift; sourceTree = "<group>"; };
+		7EA9003A29E01ABE008E45B1 /* TableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSection.swift; sourceTree = "<group>"; };
+		7EA9003C29E01ADC008E45B1 /* TableGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableGroup.swift; sourceTree = "<group>"; };
+		7EA9003E29E01E39008E45B1 /* Extensions+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UITableView.swift"; sourceTree = "<group>"; };
+		7EA9004029E01E6F008E45B1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		7EA9004229E01EB0008E45B1 /* NibReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibReusable.swift; sourceTree = "<group>"; };
 		7EAD534229D5DA8C0098B9B3 /* WebImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageProvider.swift; sourceTree = "<group>"; };
 		7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
@@ -298,6 +330,58 @@
 			path = NotificationCentarManager;
 			sourceTree = "<group>";
 		};
+		7EA9001F29E017D0008E45B1 /* TableViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				7EA9002429E01844008E45B1 /* TableData */,
+				7EA9002329E01839008E45B1 /* TableViewHeader */,
+				7EA9002229E0182E008E45B1 /* TableViewCell */,
+				7EA9002029E01824008E45B1 /* TableViewManager.swift */,
+			);
+			path = TableViewManager;
+			sourceTree = "<group>";
+		};
+		7EA9002229E0182E008E45B1 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7EA9002529E01857008E45B1 /* TableViewCellProvider.swift */,
+				7EA9002729E01866008E45B1 /* TableViewCellModelProvider.swift */,
+				7EA9002929E01874008E45B1 /* TableViewCellConfigurable.swift */,
+				7EA9002B29E01883008E45B1 /* BaseTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		7EA9002329E01839008E45B1 /* TableViewHeader */ = {
+			isa = PBXGroup;
+			children = (
+				7EA9002D29E01918008E45B1 /* TableViewHeaderProvider.swift */,
+				7EA9002F29E01927008E45B1 /* TableViewHeaderConfigurable.swift */,
+				7EA9003129E0193D008E45B1 /* BaseTableViewHeader.swift */,
+			);
+			path = TableViewHeader;
+			sourceTree = "<group>";
+		};
+		7EA9002429E01844008E45B1 /* TableData */ = {
+			isa = PBXGroup;
+			children = (
+				7EA9003829E01A96008E45B1 /* TableField.swift */,
+				7EA9003A29E01ABE008E45B1 /* TableSection.swift */,
+				7EA9003C29E01ADC008E45B1 /* TableGroup.swift */,
+			);
+			path = TableData;
+			sourceTree = "<group>";
+		};
+		7EA9003329E019B4008E45B1 /* Nib */ = {
+			isa = PBXGroup;
+			children = (
+				7EA9003429E019D1008E45B1 /* ViewLoadable.swift */,
+				7EA9003629E01A10008E45B1 /* NibLoadable.swift */,
+				7EA9004229E01EB0008E45B1 /* NibReusable.swift */,
+			);
+			path = Nib;
+			sourceTree = "<group>";
+		};
 		7EAD534429D5E0010098B9B3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,6 +423,7 @@
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7EA9003329E019B4008E45B1 /* Nib */,
 				7EA9001129DF257A008E45B1 /* DateFormat */,
 				7ED679CB29D997CB007990AC /* AppViewFactory */,
 				7E451BF829D87F500027827E /* AlertFactory */,
@@ -352,6 +437,7 @@
 				7E451BE929D87EAC0027827E /* PresentableProvider.swift */,
 				7EA9001429DF4A79008E45B1 /* Validation.swift */,
 				7EA9001D29E0176D008E45B1 /* Bindable.swift */,
+				7EA9004029E01E6F008E45B1 /* Reusable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -670,6 +756,7 @@
 				D0375641265AE36B009EE660 /* Extensions+Date.swift */,
 				7EDECBA129D59D0600182C82 /* Extensions+Data.swift */,
 				7EDECBBA29D5D83900182C82 /* Extensions+UIImageView.swift */,
+				7EA9003E29E01E39008E45B1 /* Extensions+UITableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -677,6 +764,7 @@
 		D094F6AF265824100011EEA9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7EA9001F29E017D0008E45B1 /* TableViewManager */,
 				7EA9001629DF4BDB008E45B1 /* NotificationCentarManager */,
 				D039438026584C8B0088A386 /* Networking */,
 				D039437F26584C680088A386 /* Haptics */,
@@ -827,12 +915,14 @@
 			files = (
 				D03943D32659C2170088A386 /* Extensions+String.swift in Sources */,
 				D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */,
+				7EA9004329E01EB0008E45B1 /* NibReusable.swift in Sources */,
 				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
 				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
 				7EA9001829DF4BE7008E45B1 /* NotificationCentarManager.swift in Sources */,
 				7E451BE629D85E4E0027827E /* StoryboardInstantiable.swift in Sources */,
+				7EA9002C29E01883008E45B1 /* BaseTableViewCell.swift in Sources */,
 				7ED679BD29D8CA4D007990AC /* PlayerAddEditViewModel.swift in Sources */,
 				7EA9000529DB059D008E45B1 /* ModalNavigationRouter.swift in Sources */,
 				7EDECB9329D58DC100182C82 /* TokenRefresher.swift in Sources */,
@@ -845,6 +935,7 @@
 				7EDECBA829D5B06500182C82 /* PlayerNetworkRouter.swift in Sources */,
 				7ED679D329D9B7DB007990AC /* AppError.swift in Sources */,
 				7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */,
+				7EA9003929E01A96008E45B1 /* TableField.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
 				7ED679B929D897A1007990AC /* LocalImage.swift in Sources */,
@@ -855,11 +946,13 @@
 				7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */,
 				7EAD534829D5E46B0098B9B3 /* PlayerListViewModel.swift in Sources */,
 				D03943A8265991AF0088A386 /* Player.swift in Sources */,
+				7EA9002E29E01918008E45B1 /* TableViewHeaderProvider.swift in Sources */,
 				7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */,
 				7EA9000E29DD86FB008E45B1 /* AlertFactory.swift in Sources */,
 				7E451BE429D85B1B0027827E /* AppDelegateRouter.swift in Sources */,
 				7ED679CA29D98596007990AC /* AppMainCoordinator.swift in Sources */,
 				7EDECB9C29D590DB00182C82 /* NetworkingManagerAlamofire.swift in Sources */,
+				7EA9003029E01927008E45B1 /* TableViewHeaderConfigurable.swift in Sources */,
 				7EDECBBB29D5D83900182C82 /* Extensions+UIImageView.swift in Sources */,
 				7E451BE029D72BAD0027827E /* Router.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
@@ -871,34 +964,45 @@
 				D03943BA2659A57E0088A386 /* Constant.swift in Sources */,
 				7ED679CF29D99883007990AC /* ViewModelFactory.swift in Sources */,
 				7ED679D129D99FF5007990AC /* TournamentBracketViewModel.swift in Sources */,
+				7EA9003729E01A10008E45B1 /* NibLoadable.swift in Sources */,
 				7EDECBA529D5A7E400182C82 /* NetworkRoutable.swift in Sources */,
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
+				7EA9003229E0193D008E45B1 /* BaseTableViewHeader.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
+				7EA9003F29E01E39008E45B1 /* Extensions+UITableView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
+				7EA9003B29E01ABE008E45B1 /* TableSection.swift in Sources */,
 				7EDECBAD29D5B40800182C82 /* ApiParameter.swift in Sources */,
 				7EDECBAB29D5B0F100182C82 /* PlayerService.swift in Sources */,
 				7ED679C829D98495007990AC /* TournamentCoordinator.swift in Sources */,
 				7EDECBA029D5911C00182C82 /* OAuth2HandlerAlamofire.swift in Sources */,
 				7E451BF629D87F3F0027827E /* DefaultAlert.swift in Sources */,
+				7EA9004129E01E6F008E45B1 /* Reusable.swift in Sources */,
+				7EA9002829E01866008E45B1 /* TableViewCellModelProvider.swift in Sources */,
 				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
 				7E451BEC29D87F280027827E /* AlertableProvider.swift in Sources */,
 				7EDECBA229D59D0600182C82 /* Extensions+Data.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
+				7EA9003529E019D1008E45B1 /* ViewLoadable.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */,
 				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
 				7EA9000C29DD86B1008E45B1 /* ErrorAlert.swift in Sources */,
 				7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */,
+				7EA9002A29E01874008E45B1 /* TableViewCellConfigurable.swift in Sources */,
 				7EA9001029DD873B008E45B1 /* Alert.swift in Sources */,
 				D039438826584DD40088A386 /* HapticsManager.swift in Sources */,
 				7ED679C329D8F5E3007990AC /* AppDependencyContainer.swift in Sources */,
+				7EA9002629E01857008E45B1 /* TableViewCellProvider.swift in Sources */,
 				D03943DD2659D5050088A386 /* BioTableViewCell.swift in Sources */,
 				D03943C62659AE450088A386 /* PlayerDetail.swift in Sources */,
 				D0394377265849AB0088A386 /* PlayerViewController.swift in Sources */,
 				7E451BE229D72C020027827E /* NavigationRouter.swift in Sources */,
 				7EA9001529DF4A79008E45B1 /* Validation.swift in Sources */,
 				7EAD534629D5E02B0098B9B3 /* HomeViewModel.swift in Sources */,
+				7EA9002129E01824008E45B1 /* TableViewManager.swift in Sources */,
+				7EA9003D29E01ADC008E45B1 /* TableGroup.swift in Sources */,
 				7EDECB9129D58C6C00182C82 /* NetworkError.swift in Sources */,
 				D088CDE02667E1FC00F96ED3 /* SetDraw.swift in Sources */,
 				7EDECB8B29D58AFC00182C82 /* NetworkingManagerModels.swift in Sources */,
