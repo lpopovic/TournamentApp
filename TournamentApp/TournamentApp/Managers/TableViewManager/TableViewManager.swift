@@ -85,7 +85,7 @@ class TableViewManager: NSObject {
     
     private func setupSpinner(in tableView: UITableView) {
         let spinner = UIActivityIndicatorView(style: .large)
-        spinner.color = .black
+        spinner.color = .label
         spinner.frame = CGRect(
             x: CGFloat(0),
             y: CGFloat(0),
@@ -96,7 +96,7 @@ class TableViewManager: NSObject {
     
     private func setupRefreshControl() {
         let refresher = UIRefreshControl()
-        refresher.tintColor = .black
+        refresher.tintColor = .label
         refresher.addTarget(
             self,
             action: #selector(didSwipeRefresh),

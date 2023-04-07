@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlayerListViewController: BaseViewController {
+class PlayerListViewController: BaseViewController, Bindable {
     
     // MARK: - Properties
     // MARK: Private
@@ -15,21 +15,19 @@ class PlayerListViewController: BaseViewController {
     //Variable
     private let viewModel: PlayerListViewModel
     private let hapticsManager: HapticsManagerProvider
+    private let tableViewManager: TableViewManager
+    private let tableViewCells: [UITableViewCell.Type] = [PlayerTableViewCell.self]
     
     // IBOutlet
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
    
-    private lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        return refreshControl
-    }()
-    
     // MARK: - Initialization
     
     init?(coder: NSCoder, viewModel: PlayerListViewModel, hapticsManager: HapticsManagerProvider) {
         self.viewModel = viewModel
         self.hapticsManager = hapticsManager
+        self.tableViewManager = TableViewManager(dataSource: [])
         super.init(coder: coder)
     }
     
@@ -58,7 +56,6 @@ class PlayerListViewController: BaseViewController {
             guard let self else { return }
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
-                self.refreshControl.endRefreshing()
             }
         }
         viewModel.showProgress = { [weak self]  in
@@ -70,7 +67,7 @@ class PlayerListViewController: BaseViewController {
         viewModel.reloadListView = { [weak self] in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.updateTableViewManager()
             }
         }
         viewModel.onSelectItem = { [weak self] item in
@@ -94,7 +91,6 @@ class PlayerListViewController: BaseViewController {
         setupNavigationBar()
         setupSpinner()
         setupTableView()
-        setupRefreshControl()
     }
     
     private func setupNavigationBar() {
@@ -120,23 +116,29 @@ class PlayerListViewController: BaseViewController {
         spinner.style = .large
     }
     
-    private func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: viewModel.refreshViewTitle,
-                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.label])
-        refreshControl.tintColor = .label
-        refreshControl.addTarget(self,
-                                 action: #selector(didSwipeRefresh),
-                                 for: .valueChanged)
-    }
-    
     private func setupTableView() {
-        tableView.register(UINib(nibName: PlayerTableViewCell.identifier, bundle: nil),
-                                forCellReuseIdentifier: PlayerTableViewCell.identifier)
+        setupTableViewManager()
+        tableView.registerCells(tableViewCells)
         tableView.separatorColor = .label
         tableView.backgroundColor = .systemBackground
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.addSubview(refreshControl)
+        tableView.dataSource = tableViewManager
+        tableView.delegate = tableViewManager
+    }
+    
+    private func setupTableViewManager() {
+        tableViewManager.onReloadDataPresenter = weak(Function.reloadDataPresenterView)
+        tableViewManager.onSwipeRefresh = weak(Function.swipeRefresh)
+        tableViewManager.onReachEnd = weak(Function.reachEnd)
+        tableViewManager.addRefreshController(to: tableView)
+        tableViewManager.addFooterSpinner(to: tableView)
+    }
+    
+    private func updateTableViewManager() {
+        tableViewManager.update(with: viewModel.tableSections)
+    }
+    
+    private func reloadDataPresenterView() {
+        tableView.reloadData()
     }
     
     // MARK: Actions
@@ -144,7 +146,6 @@ class PlayerListViewController: BaseViewController {
     @objc private func didTapAddPlayerButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.hapticsManager.vibrateForSelection()
             self.pushPlayerAddEditViewController()
         }
     }
@@ -152,70 +153,39 @@ class PlayerListViewController: BaseViewController {
     @objc private func didTapAddDrawButton() {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            self.hapticsManager.vibrateForSelection()
             self.pushTournamentBracketViewController()
         }
     }
     
-    @objc private func didSwipeRefresh() {
+    @objc private func swipeRefresh() {
         self.viewModel.fetchInitData()
+    }
+    
+    @objc private func reachEnd() {
+        if viewModel.checkIfCanLoadMore() {
+            viewModel.fetchMoreData()
+        }
     }
     
     // MARK: Other
     
     private func pushPlayerViewController(with model: Player) {
+        hapticsManager.vibrateForSelection()
         viewModel.showPlayerScreen?(model.id)
     }
     
     private func pushPlayerAddEditViewController() {
+        hapticsManager.vibrateForSelection()
         viewModel.showAddPlayerScreen?()
     }
     
     func pushTournamentBracketViewController() {
+        hapticsManager.vibrateForSelection()
         viewModel.pushTournamentBracketViewController()
     }
 }
 
 // MARK: - Delegates
-// MARK: UITableViewDataSource
-
-extension PlayerListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfItems()
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let (model, rank) = viewModel.getItem(at: indexPath.row),
-              let cell = tableView.dequeueReusableCell(withIdentifier: PlayerTableViewCell.identifier) as? PlayerTableViewCell
-        else { return UITableViewCell() }
-        cell.configure(with: model, rank)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-        if indexPath.section == lastSectionIndex,
-            indexPath.row == lastRowIndex,
-           viewModel.checkIfCanLoadMore() {
-            viewModel.fetchMoreData()
-        }
-    }
-}
-
-// MARK: UITableViewDelegate
-
-extension PlayerListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.didSelectItem(at: indexPath.row)
-        hapticsManager.vibrateForSelection()
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-
 // MARK: PlayerViewControllerDelegate
 
 extension PlayerListViewController: PlayerViewControllerDelegate {
@@ -240,7 +210,6 @@ extension PlayerListViewController: PlayerAddEditViewControllerDelegate {
     }
 
     func playerIsEdited(player: PlayerDetail) { }
-
 }
 
 // MARK: - StoryboardInstantiable

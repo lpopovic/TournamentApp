@@ -131,8 +131,7 @@ final class PlayerViewModel {
         let bioTableViewCellModel = BioTableViewCellModel(key: TableRow.bio.key,
                                                           title: "Bio",
                                                           bio: player.description)
-        let bioTableViewCellRow: TableField<BioTableViewCell> = TableField(model: bioTableViewCellModel,
-                                                                           delegate: nil)
+        let bioTableViewCellRow: TableField<BioTableViewCell> = TableField(model: bioTableViewCellModel)
         return bioTableViewCellRow
     }
     
@@ -144,8 +143,7 @@ final class PlayerViewModel {
                                                           pointsText: player.getPoints().formatedWithSeparator,
                                                           isProfessionalText: player.getStringIsProfessional(),
                                                           photoImageUrl: player.profileImageUrl)
-        let playerInfoRow: TableField<PlayerInfoTableCell> = TableField(model: playerInfoRowModel,
-                                                                        delegate: nil)
+        let playerInfoRow: TableField<PlayerInfoTableCell> = TableField(model: playerInfoRowModel)
         return playerInfoRow
     }
     

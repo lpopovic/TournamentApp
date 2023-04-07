@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlayerTableViewCell: UITableViewCell {
+class PlayerTableViewCell: BaseTableViewCell {
     
     // MARK: - Outlets
     
@@ -18,7 +18,8 @@ class PlayerTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     
-    static let identifier = "PlayerTableViewCell"
+    static var height: CGFloat = UITableView.automaticDimension
+    private(set) var rowKey: RowKey?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,13 @@ class PlayerTableViewCell: UITableViewCell {
     }
     
     // MARK: - UI
+    
+    func fill(with model: PlayerTableViewCellModel) {
+        self.firstNameLabel.text = model.firstName
+        self.lastNameLabel.text = model.lastName
+        self.pointsLabel.text = "\(model.pointsPreview) points"
+        self.rankLabel.text = "# \(model.rank)"
+    }
     
     private func setupFirstNameLabel() {
         self.firstNameLabel.font = .systemFont(ofSize: 18, weight: .regular)
@@ -64,13 +72,12 @@ class PlayerTableViewCell: UITableViewCell {
         self.rankLabel.textColor = .systemBlue
         self.rankLabel.textAlignment = .right
     }
-    
-    
-    func configure(with model: Player, _ rank: Int) {
-        self.firstNameLabel.text = model.firstName
-        self.lastNameLabel.text = model.lastName
-        self.pointsLabel.text = "\(model.getPoints().formatedWithSeparator) points"
-        self.rankLabel.text = "# \(rank)"
-        
-    }
+}
+
+struct PlayerTableViewCellModel: TableViewCellModelProvider {
+    var key: RowKey
+    var rank: Int
+    var firstName: String
+    var lastName: String
+    var pointsPreview: String
 }

@@ -11,16 +11,38 @@ final class PlayerListViewModel {
     
     // MARK: - Properties
     
+    enum TableSection {
+        case base
+        
+        var key: String {
+            switch self {
+            case .base:
+                return "baseKey"
+            }
+        }
+    }
+    
+    enum TableRow  {
+        case player(Int)
+        var key: String {
+            switch self {
+            case .player(let id):
+                return "\(id)Key"
+            }
+        }
+    }
+    
     let navigationTitle = "Player List"
     let drawButtonTitle = "Draw"
     let refreshViewTitle = "Pull to refresh"
     
+    private(set) var tableSections = [TableGroup]()
     private var playerList = [Player]()
     private var isMoreLoading = false
     private var detectEmptyResponse = false
     private var page: Int = 1
     private let limit: Int = 20
-    
+
     // MARK: Service
     
     private let apiCaller: PlayerNetworkServiceProvider
@@ -45,15 +67,17 @@ final class PlayerListViewModel {
     
     // MARK: - Public methods
     
-    func fetchInitData() {
-        showProgress?()
+    func fetchInitData(from swipeRefresh: Bool = false) {
+        if !swipeRefresh {
+            showProgress?()
+        }
         page = 1
         isMoreLoading = false
         detectEmptyResponse = false
         apiGetPlayerList { [weak self] result in
             guard let self else { return }
             self.hideProgress?()
-            self.reloadListView?()
+            self.setTableSections()
             if case .failure(let error) = result {
                 self.onError?(error.localizedDescription)
             }
@@ -66,27 +90,16 @@ final class PlayerListViewModel {
             guard let self else { return }
             self.isMoreLoading = false
             self.hideProgress?()
-            self.reloadListView?()
+            self.setTableSections()
             if case .failure(let error) = result {
                 self.onError?(error.localizedDescription)
             }
         }
     }
     
-    func numberOfItems() -> Int {
-        playerList.count
-    }
-    
-    func getItem(at index: Int) -> (model: Player, rank: Int)? {
-        guard index < playerList.count else { return nil }
-        let model = playerList[index]
-        let rank = index + 1
-        return(model, rank)
-    }
-    
     func playerIsDeleted(_ id: Int) {
         self.playerList = self.playerList.filter{ $0.id != id }
-        self.reloadListView?()
+        self.setTableSections()
     }
     
     func playerIsUpdated(with id: Int, player: PlayerDetail, _ completion: VoidReturnClosure<Int>?) {
@@ -102,18 +115,15 @@ final class PlayerListViewModel {
                                         points: player.points,
                                         tournament_id: player.tournamentId)
         self.playerList.sort{ $0.getPoints() > $1.getPoints() }
-        reloadListView?()
+        self.setTableSections()
         completion?(index)
-    }
-    
-    func didSelectItem(at index: Int) {
-        guard index < playerList.count else { return }
-        onSelectItem?(playerList[index])
     }
     
     func checkIfCanLoadMore() -> Bool {
         guard !isMoreLoading, playerList.count >= limit, !detectEmptyResponse
-        else { return false }
+        else {
+            return false
+        }
         return true
     }
     
@@ -124,6 +134,39 @@ final class PlayerListViewModel {
     }
     
     // MARK: - Private methods
+    
+    private func createRows() -> [TableGroup.Row] {
+        var rows: [TableGroup.Row] = []
+        for (index, element) in playerList.enumerated() {
+            let row = createPlayerTableRow(from: element, index: index)
+            rows.append(row)
+        }
+        
+        return rows
+    }
+    
+    private func createPlayerTableRow(from player: Player, index: Int) -> TableField<PlayerTableViewCell> {
+        let playerInfoRowModel = PlayerTableViewCellModel(key: TableRow.player(player.id).key,
+                                                          rank: index + 1,
+                                                          firstName: player.firstName,
+                                                          lastName: player.lastName,
+                                                          pointsPreview: player.getPoints().formatedWithSeparator)
+        let playerInfoRow: TableField<PlayerTableViewCell> = TableField(model: playerInfoRowModel) { [weak self] rowKey in
+            guard let self,
+                  let player = self.playerList.first(where: { TableRow.player($0.id).key == rowKey })
+            else { return }
+            self.onSelectItem?(player)
+        }
+        return playerInfoRow
+    }
+    
+    private func setTableSections() {
+        tableSections.removeAll()
+        let rows = createRows()
+        let section = TableGroup(key: TableSection.base.key, rows: rows)
+        tableSections.append(section)
+        reloadListView?()
+    }
     
     private func getItemsForBracket() -> [Player]? {
         var playersForDraw = [Player]()
