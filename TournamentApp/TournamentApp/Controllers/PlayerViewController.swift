@@ -12,7 +12,7 @@ protocol PlayerViewControllerDelegate: AnyObject {
     func playerIsUpdated(with id: Int, player: PlayerDetail)
 }
 
-class PlayerViewController: BaseViewController {
+class PlayerViewController: BaseViewController, Bindable {
     
     // MARK: - Properties
     // MARK: Public
@@ -24,20 +24,20 @@ class PlayerViewController: BaseViewController {
     private let viewModel: PlayerViewModel
     private let hapticsManager: HapticsManagerProvider
     private let localImage: LocalImage.Type = LocalImage.self
+    private let tableViewManager: TableViewManager
+    private let tableViewCells: [UITableViewCell.Type] = [PlayerInfoTableCell.self,
+                                                          BioTableViewCell.self]
     
     // IBOutlet
     @IBOutlet private weak var spinner: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
-    private lazy var refresher: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        return refreshControl
-    }()
     
     // MARK: - Initialization
     
     init?(coder: NSCoder, viewModel: PlayerViewModel, hapticsManager: HapticsManagerProvider) {
         self.viewModel = viewModel
         self.hapticsManager = hapticsManager
+        self.tableViewManager = TableViewManager(dataSource: [])
         super.init(coder: coder)
     }
     
@@ -79,7 +79,6 @@ class PlayerViewController: BaseViewController {
             guard let self else { return }
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
-                self.refresher.endRefreshing()
             }
         }
         viewModel.showNavigationBar = {[weak self] show in
@@ -105,7 +104,7 @@ class PlayerViewController: BaseViewController {
         viewModel.reloadListView = { [weak self] in
             guard let self else { return }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.updateTableViewManager()
             }
         }
         viewModel.playerWasUpdated = {[weak self] player in
@@ -121,7 +120,6 @@ class PlayerViewController: BaseViewController {
         title = "Player"
         setupSpinner()
         setupTableView()
-        setupRefreshControl()
         setupViewModel()
     }
     
@@ -150,28 +148,30 @@ class PlayerViewController: BaseViewController {
         spinner.hidesWhenStopped = true
         spinner.style = .large
     }
-    
-    private func setupRefreshControl() {
-        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh",
-                                                       attributes: [NSAttributedString.Key.foregroundColor : UIColor.label])
-        refresher.tintColor = .label
-        refresher.addTarget(self,
-                            action: #selector(didSwipeRefresh),
-                            for: .valueChanged)
-    }
-    
+        
     private func setupTableView() {
-        tableView.register(UINib(nibName: PlayerInfoTableCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: PlayerInfoTableCell.identifier)
-        tableView.register(UINib(nibName: BioTableViewCell.identifier, bundle: nil),
-                           forCellReuseIdentifier: BioTableViewCell.identifier)
+        setupTableViewManager()
+        tableView.registerCells(tableViewCells)
         tableView.separatorColor = .clear
         tableView.backgroundColor = .secondarySystemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.addSubview(refresher)
+        tableView.dataSource = tableViewManager
+        tableView.delegate = tableViewManager
+    }
+    
+    private func setupTableViewManager() {
+        tableViewManager.onReloadDataPresenter = weak(Function.reloadDataPresenterView)
+        tableViewManager.onSwipeRefresh = weak(Function.swipeRefresh)
+        tableViewManager.addRefreshController(to: tableView)
+    }
+    
+    private func updateTableViewManager() {
+        tableViewManager.update(with: viewModel.tableSections)
+    }
+    
+    private func reloadDataPresenterView() {
+        tableView.reloadData()
     }
     
     // MARK: Actions
@@ -190,8 +190,7 @@ class PlayerViewController: BaseViewController {
         viewModel.showEditPlayerScreen?((playerId, playerDetailInfo))
     }
     
-    @objc private func didSwipeRefresh() {
-        refresher.beginRefreshing()
+    @objc private func swipeRefresh() {
         viewModel.fetchData(didSwipeRefresh: true)
     }
    
@@ -213,42 +212,6 @@ class PlayerViewController: BaseViewController {
         }
         let alert = DefaultAlert(title: "Successfully", message: message, completion: action)
         presentAlert(with: alert)
-    }
-}
-
-extension PlayerViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.playerDetailInfo != nil ? 2 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayerInfoTableCell.identifier) as? PlayerInfoTableCell,
-                  let model = viewModel.playerDetailInfo else {
-                return UITableViewCell()
-            }
-            cell.configure(with: model)
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: BioTableViewCell.identifier) as? BioTableViewCell,
-                  let model = viewModel.playerDetailInfo else {
-                return UITableViewCell()
-            }
-            cell.configure(with: "Bio", bio: model.description)
-            return cell
-        default:
-            return UITableViewCell()
-        }
-    }
-}
-
-extension PlayerViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }
 

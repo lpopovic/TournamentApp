@@ -7,11 +7,12 @@
 
 import UIKit
 
-class BioTableViewCell: UITableViewCell {
+class BioTableViewCell: BaseTableViewCell {
 
     // MARK: - Variables
     
-    static let identifier = "BioTableViewCell"
+    static var height: CGFloat = UITableView.automaticDimension
+    private(set) var rowKey: RowKey?
     
     // MARK: - IBOutlet
     
@@ -47,8 +48,14 @@ class BioTableViewCell: UITableViewCell {
         self.bioLabel.textAlignment = .left
     }
   
-    func configure(with title: String, bio: String?) {
-        self.titleLabel.text = title
-        self.bioLabel.text = bio ?? "undefined"
+    func fill(with model: BioTableViewCellModel) {
+        self.titleLabel.text = model.title
+        self.bioLabel.text = model.bio ?? "undefined"
     }
+}
+
+struct BioTableViewCellModel: TableViewCellModelProvider {
+    var key: RowKey
+    var title: String?
+    var bio: String?
 }

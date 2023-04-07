@@ -7,12 +7,14 @@
 
 import UIKit
 
-class PlayerInfoTableCell: UITableViewCell {
-    
+
+class PlayerInfoTableCell: BaseTableViewCell {
+   
     // MARK: - Variables
     
-    static let identifier = "PlayerInfoTableCell"
-    
+    static var height: CGFloat = UITableView.automaticDimension
+    private(set) var rowKey: RowKey?
+
     // MARK: - IBOutlet
     
     @IBOutlet weak var photoImageView: UIImageView!
@@ -20,7 +22,7 @@ class PlayerInfoTableCell: UITableViewCell {
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var isProfessionalLabel: UILabel!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.clipsToBounds = true
@@ -40,6 +42,16 @@ class PlayerInfoTableCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    func fill(with model: PlayerInfoTableCellModel) {
+        rowKey = model.key
+        self.nameLabel.text = model.nameText
+        self.dateOfBirthLabel.text = "\(model.dateOfBirthText ?? "Date of birth undefined")"
+        self.pointsLabel.text = "Scored points: \(model.pointsText)"
+        self.isProfessionalLabel.text = "Professional athlete: \(model.isProfessionalText)"
+        self.photoImageView.setImage(with: URL(string: model.photoImageUrl ?? ""),
+                                     placeholderImage: LocalImage.photo.value)
     }
     
     private func setupNameLabel() {
@@ -71,15 +83,13 @@ class PlayerInfoTableCell: UITableViewCell {
         self.photoImageView.clipsToBounds = true
         self.photoImageView.contentMode = .scaleAspectFill
     }
-    
-    func configure(with model: PlayerDetail) {
-        self.nameLabel.text = "\(model.firstName) \(model.lastName)"
-        self.dateOfBirthLabel.text = "\(model.getStringDateOfBirth() ?? "Date of birth undefined")"
-        self.pointsLabel.text = "Scored points: \(model.getPoints().formatedWithSeparator)"
-        self.isProfessionalLabel.text = "Professional athlete: \(model.getStringIsProfessional())"
-        self.photoImageView.setImage(
-            with: URL(string: model.profileImageUrl ?? ""),
-            placeholderImage: UIImage(systemName: "photo"))
-    }
-    
+}
+
+struct PlayerInfoTableCellModel: TableViewCellModelProvider {
+    var key: RowKey
+    var nameText: String?
+    var dateOfBirthText: String?
+    var pointsText: String
+    var isProfessionalText: String
+    var photoImageUrl: String?
 }

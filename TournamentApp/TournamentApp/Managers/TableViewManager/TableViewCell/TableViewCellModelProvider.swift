@@ -7,8 +7,9 @@
 
 import Foundation
 
+typealias RowKey = String
+
 protocol TableViewCellModelProvider {
     var key: RowKey { get set }
 }
 
-typealias RowKey = String

@@ -10,9 +10,21 @@ import Foundation
 final class PlayerViewModel {
    
     // MARK: - Properties
+    
     typealias EditPlayerRequest = (playerId: Int?, playerDetailInfo: PlayerDetail?)
+    
+    enum TableSection: String {
+        case base = "baseKey"
+    }
+    
+    enum TableRow: String, CaseIterable {
+        case playerInfo
+        case bio
+    }
+    
     let playerId: Int
     private(set) var playerDetailInfo: PlayerDetail?
+    private(set) var tableSections = [TableGroup]()
     private var isPlayerEdit = false
     
     // MARK: Service
@@ -54,7 +66,7 @@ final class PlayerViewModel {
                 self.onError?(error.localizedDescription)
             }
             self.setupNavigationActions()
-            self.reloadListView?()
+            self.setTableSections()
         }
     }
     
@@ -86,6 +98,48 @@ final class PlayerViewModel {
     }
     
     // MARK: Private methods
+    
+    private func createRows() -> [TableGroup.Row] {
+        var rows = [TableGroup.Row]()
+        if let row = createPlayerInfoRow() {
+            rows.append(row)
+        }
+        if let row = createBioTableViewCellRow() {
+            rows.append(row)
+        }
+        return rows
+    }
+    
+    private func createBioTableViewCellRow() -> TableField<BioTableViewCell>? {
+        guard let player = playerDetailInfo else { return nil }
+        let bioTableViewCellModel = BioTableViewCellModel(key: TableRow.bio.rawValue,
+                                                          title: "Bio",
+                                                          bio: player.description)
+        let bioTableViewCellRow: TableField<BioTableViewCell> = TableField(model: bioTableViewCellModel,
+                                                                           delegate: nil)
+        return bioTableViewCellRow
+    }
+    
+    private func createPlayerInfoRow() -> TableField<PlayerInfoTableCell>? {
+        guard let player = playerDetailInfo else { return nil }
+        let playerInfoRowModel = PlayerInfoTableCellModel(key: TableRow.playerInfo.rawValue,
+                                                          nameText: "\(player.firstName) \(player.lastName)",
+                                                          dateOfBirthText: player.getStringDateOfBirth(),
+                                                          pointsText: player.getPoints().formatedWithSeparator,
+                                                          isProfessionalText: player.getStringIsProfessional(),
+                                                          photoImageUrl: player.profileImageUrl)
+        let playerInfoRow: TableField<PlayerInfoTableCell> = TableField(model: playerInfoRowModel,
+                                                                        delegate: nil)
+        return playerInfoRow
+    }
+    
+    private func setTableSections() {
+        tableSections.removeAll()
+        let rows = createRows()
+        let section = TableGroup(key: TableSection.base.rawValue, rows: rows)
+        tableSections.append(section)
+        reloadListView?()
+    }
     
     private func setupNavigationActions() {
         let showButtons: Bool

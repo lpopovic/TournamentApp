@@ -14,3 +14,7 @@ protocol TableViewCellConfigurable {
     func fill(with model: Model)
     func setup(_ delegate: CellDelegate?)
 }
+
+extension TableViewCellConfigurable {
+    func setup(_ delegate: Self?) { }
+}
