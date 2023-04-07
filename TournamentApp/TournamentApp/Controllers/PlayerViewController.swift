@@ -230,16 +230,7 @@ extension PlayerViewController: StoryboardInstantiable {
         let hapticsManager: HapticsManagerProvider
         let delegate: PlayerViewControllerDelegate?
     }
-    public class func instantiate(viewModel: PlayerViewModel,
-                                  hapticsManager: HapticsManagerProvider,
-                                  delegate: PlayerViewControllerDelegate?) -> PlayerViewController {
-        let playerViewController = instanceFromStoryboard(nil) { coder -> PlayerViewController? in
-            PlayerViewController(coder: coder, viewModel: viewModel, hapticsManager: hapticsManager)
-        }
-        playerViewController.delegate = delegate
-        return playerViewController
-    }
-    
+   
     public class func instantiate(with dependencies: Dependencies) -> PlayerViewController {
         let playerViewController = instanceFromStoryboard(nil) { coder -> PlayerViewController? in
             PlayerViewController(coder: coder, viewModel: dependencies.viewModel, hapticsManager: dependencies.hapticsManager)
