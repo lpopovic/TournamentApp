@@ -258,6 +258,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E26E36529E7E6DD00E28BAA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D039436F265847DE0088A386 /* HomeViewController.swift */,
+				7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7E26E36629E7E6E700E28BAA /* PlayerList */ = {
+			isa = PBXGroup;
+			children = (
+				D0394372265848210088A386 /* PlayerListViewController.swift */,
+				7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */,
+			);
+			path = PlayerList;
+			sourceTree = "<group>";
+		};
+		7E26E36729E7E6F000E28BAA /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D0394376265849AB0088A386 /* PlayerViewController.swift */,
+				7ED679B629D88BD3007990AC /* PlayerViewModel.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		7E26E36829E7E70000E28BAA /* PlayerAddEdit */ = {
+			isa = PBXGroup;
+			children = (
+				D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */,
+				7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */,
+			);
+			path = PlayerAddEdit;
+			sourceTree = "<group>";
+		};
+		7E26E36929E7E70E00E28BAA /* TournamentBracket */ = {
+			isa = PBXGroup;
+			children = (
+				D039437926584A760088A386 /* TournamentBracketViewController.swift */,
+				7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */,
+			);
+			path = TournamentBracket;
+			sourceTree = "<group>";
+		};
 		7E451BDB29D72B210027827E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,18 +425,6 @@
 				7EA9004229E01EB0008E45B1 /* NibReusable.swift */,
 			);
 			path = Nib;
-			sourceTree = "<group>";
-		};
-		7EAD534429D5E0010098B9B3 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				7EAD534529D5E02B0098B9B3 /* HomeViewModel.swift */,
-				7EAD534729D5E46B0098B9B3 /* PlayerListViewModel.swift */,
-				7ED679B629D88BD3007990AC /* PlayerViewModel.swift */,
-				7ED679BC29D8CA4D007990AC /* PlayerAddEditViewModel.swift */,
-				7ED679D029D99FF5007990AC /* TournamentBracketViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		7ED679C129D8F5C8007990AC /* AppDependencyContainer */ = {
@@ -690,7 +723,6 @@
 				D094F6A9265822A30011EEA9 /* Models */,
 				D094F6AA265822AF0011EEA9 /* Views */,
 				D094F6AC265822BA0011EEA9 /* Controllers */,
-				7EAD534429D5E0010098B9B3 /* ViewModels */,
 				D094F6AE2658236A0011EEA9 /* Extensions */,
 				7EDECB8129D583BF00182C82 /* Utilities */,
 				D094F6B2265828310011EEA9 /* Supporting Files */,
@@ -725,12 +757,12 @@
 		D094F6AC265822BA0011EEA9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E26E36529E7E6DD00E28BAA /* Home */,
+				7E26E36729E7E6F000E28BAA /* Player */,
+				7E26E36629E7E6E700E28BAA /* PlayerList */,
+				7E26E36829E7E70000E28BAA /* PlayerAddEdit */,
+				7E26E36929E7E70E00E28BAA /* TournamentBracket */,
 				D039438C265854AB0088A386 /* Other */,
-				D039436F265847DE0088A386 /* HomeViewController.swift */,
-				D0394372265848210088A386 /* PlayerListViewController.swift */,
-				D0394376265849AB0088A386 /* PlayerViewController.swift */,
-				D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */,
-				D039437926584A760088A386 /* TournamentBracketViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
