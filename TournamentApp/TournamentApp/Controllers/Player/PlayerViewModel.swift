@@ -110,7 +110,7 @@ final class PlayerViewModel {
     func updated(_ player: PlayerDetail) {
         isPlayerEdit = true
         playerDetailInfo = player
-        reloadListView?()
+        setTableSections()
     }
     
     func checkIfDataWasUpdated() {

@@ -12,9 +12,6 @@ public class TournamentCoordinator: Coordinator {
     public var children: [Coordinator] = []
 
     private let appDIContainer: AppDependencyContainer
-    private var factoryViewModel: ViewModelFactoryProvider {
-        appDIContainer.factoryViewModel
-    }
     private var factoryAppViewController: AppViewControllerFactoryProvider {
         appDIContainer.factoryAppViewController
     }
@@ -31,69 +28,64 @@ public class TournamentCoordinator: Coordinator {
 
 extension TournamentCoordinator {
     private func showPlayerListViewController(_ animated: Bool) {
-        let viewModel = factoryViewModel.makePlayerListViewModel(appDIContainer.playerNetworkService)
-      
-        let dependencies = PlayerListViewController.Dependencies(viewModel: viewModel,
-                                                                 hapticsManager: appDIContainer.hapticsManager)
-        let playerListViewController = factoryAppViewController.makePlayerListViewController(with: dependencies)
-        viewModel.showTournamentBracketScreen = { [weak self] players in
+        var playerListViewController: BaseViewController?
+        let showTournamentBracketScreen: VoidReturnClosure<[Player]> = { [weak self] players in
             self?.showTournamentBracketViewController(for: players, true)
         }
-        viewModel.showAddPlayerScreen = { [weak self] in
-            self?.showPlayerAddViewController(for: playerListViewController)
+        let showAddPlayerScreen: NoArgsClosure = { [weak self] in
+            guard let self, let playerListViewController = playerListViewController else { return }
+            self.showPlayerAddViewController(for: playerListViewController)
         }
-        viewModel.showPlayerScreen = { [weak self] playerId in
+        let showPlayerScreen: VoidReturnClosure<Int> = { [weak self] playerId in
             self?.showPlayerViewController(playerId: playerId,
                                            playerListViewController as? PlayerViewControllerDelegate)
         }
+        playerListViewController = factoryAppViewController.makePlayerListViewController(showTournamentBracketScreen: showTournamentBracketScreen,
+                                                                                             showAddPlayerScreen: showAddPlayerScreen,
+                                                                                             showPlayerScreen: showPlayerScreen)
+        guard let playerListViewController = playerListViewController else { return }
         router.present(playerListViewController, animated: animated)
     }
     
     private func showTournamentBracketViewController(for players: [Player], _ animated: Bool) {
-        let viewModel = factoryViewModel.makeTournamentBracketViewModel(players)
-        let dependencies = TournamentBracketViewController.Dependencies(viewModel: viewModel,
-                                                                 hapticsManager: appDIContainer.hapticsManager)
-        let playerListViewController = factoryAppViewController.makeTournamentBracketViewController(with: dependencies)
+        let playerListViewController = factoryAppViewController.makeTournamentBracketViewController(with: players)
         router.present(playerListViewController, animated: animated)
     }
     
     private func showPlayerAddViewController(for parentViewController: BaseViewController,
                                              _ animated: Bool = true) {
-        let viewModelDependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: .add,
-                                                                        playerId: nil,
-                                                                        playerDetailInfo: nil,
-                                                                        apiCaller: appDIContainer.playerNetworkService)
-        let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
-      
-        let delegate = parentViewController as? PlayerAddEditViewControllerDelegate
-        let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
-                                                                                               hapticsManager: appDIContainer.hapticsManager,
-                                                                                               delegate: delegate)
-        let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(with: playerAddEditViewControllerDependencies)
-        
-        let modalNavigationRouter = ModalNavigationRouter(parentViewController: parentViewController)
-        modalNavigationRouter.present(playerAddEditViewController, animated: animated)
-        viewModel.onCloseRequestScreen = { screen in
-            modalNavigationRouter.dismiss(screen, animated: true)
+        var modalNavigationRouter: ModalNavigationRouter?
+        let onCloseRequestScreen: VoidReturnClosure<BaseViewController> = { screen in
+            modalNavigationRouter?.dismiss(screen, animated: true)
         }
+        let delegate = parentViewController as? PlayerAddEditViewControllerDelegate
+        let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(typeOfVC: .add,
+                                                                                                   playerId: nil,
+                                                                                                   playerDetailInfo: nil,
+                                                                                                   onCloseRequestScreen: onCloseRequestScreen,
+                                                                                                   with: delegate)
+        modalNavigationRouter = ModalNavigationRouter(parentViewController: parentViewController)
+        modalNavigationRouter?.present(playerAddEditViewController, animated: animated)
     }
     
     private func showPlayerViewController(playerId: Int,
                                           _ delegate: PlayerViewControllerDelegate?,
                                           _ animated: Bool = true) {
-        let viewModel = factoryViewModel.makePlayerViewModel(playerId, appDIContainer.playerNetworkService)
-        let playerViewControllerDependencies = PlayerViewController.Dependencies(viewModel: viewModel,
-                                                                                 hapticsManager: appDIContainer.hapticsManager,
-                                                                                 delegate: delegate)
-        let playerViewController = factoryAppViewController.makePlayerViewController(with: playerViewControllerDependencies)
-        viewModel.showEditPlayerScreen = { [weak self] request in
+       
+        var playerViewController: BaseViewController?
+        let showEditPlayerScreen: VoidReturnClosure<PlayerViewModel.EditPlayerRequest> = { [weak self] request in
             self?.showPlayerEditViewController(playerId: request.playerId,
                                                playerDetailInfo: request.playerDetailInfo,
                                                playerViewController as? PlayerAddEditViewControllerDelegate)
         }
-        viewModel.onCloseRequestScreen = { [weak self] screen in
+        let onCloseRequestScreen: VoidReturnClosure<BaseViewController> = { [weak self] screen in
             self?.onCloseRequest(screen)
         }
+        playerViewController = factoryAppViewController.makePlayerViewController(with: playerId,
+                                                                                 showEditPlayerScreen: showEditPlayerScreen,
+                                                                                 onCloseRequestScreen: onCloseRequestScreen,
+                                                                                 delegate: delegate)
+        guard let playerViewController = playerViewController else { return }
         router.present(playerViewController, animated: animated)
     }
     
@@ -101,18 +93,14 @@ extension TournamentCoordinator {
                                               playerDetailInfo: PlayerDetail?,
                                              _ delegate: PlayerAddEditViewControllerDelegate?,
                                              _ animated: Bool = true) {
-        let viewModelDependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: .edit,
-                                                                        playerId: playerId,
-                                                                        playerDetailInfo: playerDetailInfo,
-                                                                        apiCaller: appDIContainer.playerNetworkService)
-        let viewModel = factoryViewModel.makePlayerAddEditViewModel(viewModelDependencies)
-        viewModel.onCloseRequestScreen = { [weak self] screen in
+        let onCloseRequestScreen: VoidReturnClosure<BaseViewController> = { [weak self] screen in
             self?.onCloseRequest(screen)
         }
-        let playerAddEditViewControllerDependencies = PlayerAddEditViewController.Dependencies(viewModel: viewModel,
-                                                                                               hapticsManager: appDIContainer.hapticsManager,
-                                                                                               delegate: delegate)
-        let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(with: playerAddEditViewControllerDependencies)
+        let playerAddEditViewController = factoryAppViewController.makePlayerAddEditViewController(typeOfVC: .edit,
+                                                                                                   playerId: playerId,
+                                                                                                   playerDetailInfo: playerDetailInfo,
+                                                                                                   onCloseRequestScreen: onCloseRequestScreen,
+                                                                                                   with: delegate)
         router.present(playerAddEditViewController, animated: animated)
     }
 }

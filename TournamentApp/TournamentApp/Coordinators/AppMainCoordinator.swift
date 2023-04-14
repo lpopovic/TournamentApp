@@ -10,11 +10,9 @@ import Foundation
 public class AppMainCoordinator: Coordinator {
     public let router: Router
     public var children: [Coordinator] = []
+    
     private let appDIContainer: AppDependencyContainer
     private var rootViewController: NavigationViewController?
-    private var factoryViewModel: ViewModelFactoryProvider {
-        appDIContainer.factoryViewModel
-    }
     private var factoryAppViewController: AppViewControllerFactoryProvider {
         appDIContainer.factoryAppViewController
     }
@@ -31,12 +29,10 @@ public class AppMainCoordinator: Coordinator {
 
 extension AppMainCoordinator {
     private func showHomeViewController(_ animated: Bool) {
-        let viewModel = factoryViewModel.makeHomeViewModel()
-        viewModel.showPlayerListScreen = { [weak self] in
+        let showPlayerListScreen: NoArgsClosure = { [weak self] in
             self?.startTournamentCoordinator(true)
         }
-        let dependencies = HomeViewController.Dependencies(viewModel: viewModel, hapticsManager: appDIContainer.hapticsManager)
-        let homeViewController = factoryAppViewController.makeHomeViewController(with: dependencies)
+        let homeViewController = factoryAppViewController.makeHomeViewController(showPlayerListScreen: showPlayerListScreen)
         let navigationViewController = NavigationViewController(rootViewController: homeViewController)
         rootViewController = navigationViewController
         router.present(navigationViewController, animated: animated)

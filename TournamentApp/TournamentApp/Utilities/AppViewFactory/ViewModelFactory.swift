@@ -9,19 +9,28 @@ import Foundation
 
 protocol ViewModelFactoryProvider {
     func makeHomeViewModel() -> HomeViewModel
-    func makePlayerListViewModel(_ playerNetworkService: PlayerNetworkServiceProvider) -> PlayerListViewModel
+    func makePlayerListViewModel() -> PlayerListViewModel
     func makeTournamentBracketViewModel(_ players: [Player]) -> TournamentBracketViewModel
-    func makePlayerAddEditViewModel(_ dependencies: PlayerAddEditViewModel.Dependencies) -> PlayerAddEditViewModel
-    func makePlayerViewModel(_ playerId: Int, _ apiCaller: PlayerNetworkServiceProvider) -> PlayerViewModel 
+    func makePlayerAddEditViewModel(_ typeOfVC: PlayerAddEditViewModel.TypeViewController, playerId: Int?, playerDetailInfo: PlayerDetail?) -> PlayerAddEditViewModel
+    func makePlayerViewModel(_ playerId: Int) -> PlayerViewModel
 }
 
 
-class ViewModelFactory: ViewModelFactoryProvider {
+class ViewModelFactory {
+    
+    private let playerNetworkService: PlayerNetworkServiceProvider
+    
+    init(playerNetworkService: PlayerNetworkServiceProvider) {
+        self.playerNetworkService = playerNetworkService
+    }
+}
+
+extension ViewModelFactory: ViewModelFactoryProvider {
     func makeHomeViewModel() -> HomeViewModel {
         HomeViewModel()
     }
     
-    func makePlayerListViewModel(_ playerNetworkService: PlayerNetworkServiceProvider) -> PlayerListViewModel {
+    func makePlayerListViewModel() -> PlayerListViewModel {
         PlayerListViewModel(apiCaller: playerNetworkService)
     }
     
@@ -29,11 +38,15 @@ class ViewModelFactory: ViewModelFactoryProvider {
         TournamentBracketViewModel(playerList: players)
     }
     
-    func makePlayerAddEditViewModel(_ dependencies: PlayerAddEditViewModel.Dependencies) -> PlayerAddEditViewModel {
-        PlayerAddEditViewModel(dependencies: dependencies)
+    func makePlayerAddEditViewModel(_ typeOfVC: PlayerAddEditViewModel.TypeViewController, playerId: Int?, playerDetailInfo: PlayerDetail?) -> PlayerAddEditViewModel {
+        let dependencies = PlayerAddEditViewModel.Dependencies(typeOfVC: typeOfVC,
+                                                               playerId: playerId,
+                                                               playerDetailInfo: playerDetailInfo,
+                                                               apiCaller: playerNetworkService)
+        return PlayerAddEditViewModel(dependencies: dependencies)
     }
     
-    func makePlayerViewModel(_ playerId: Int, _ apiCaller: PlayerNetworkServiceProvider) -> PlayerViewModel {
-        PlayerViewModel(playerId: playerId, apiCaller: apiCaller)
+    func makePlayerViewModel(_ playerId: Int) -> PlayerViewModel {
+        PlayerViewModel(playerId: playerId, apiCaller: playerNetworkService)
     }
 }

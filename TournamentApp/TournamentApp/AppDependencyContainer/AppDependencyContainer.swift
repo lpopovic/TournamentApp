@@ -12,30 +12,22 @@ final class AppDependencyContainer {
     // MARK: - Properties
 
     // Long-lived dependencies
-    let networkingManager: NetworkingManagerProvider
-    let factoryAppViewController: AppViewControllerFactory
-    let factoryViewModel: ViewModelFactory
-    let hapticsManager: HapticsManager
+    lazy var networkingManager: NetworkingManagerProvider = {
+        NetworkingManagerAlamofire()
+    }()
     lazy var playerNetworkService: PlayerNetworkService = {
         PlayerNetworkService(networkSessionManager: networkingManager)
     }()
+    lazy var factoryAppViewController: AppViewControllerFactory = {
+        AppViewControllerFactory(hapticsManager: hapticsManager,
+                                 factoryViewModel: factoryViewModel)
+    }()
+    lazy var factoryViewModel: ViewModelFactory = {
+        ViewModelFactory(playerNetworkService: playerNetworkService)
+    }()
+    lazy var hapticsManager: HapticsManager = {
+        HapticsManager()
+    }()
     
-    public init() {
-        func makeNetworkingManager() -> NetworkingManagerProvider {
-          return NetworkingManagerAlamofire()
-        }
-        func makeFactoryAppViewController() -> AppViewControllerFactory {
-            return AppViewControllerFactory()
-        }
-        func makeFactoryViewModel() -> ViewModelFactory {
-            return ViewModelFactory()
-        }
-        func makeHapticsManager() -> HapticsManager {
-            HapticsManager()
-        }
-        self.networkingManager = makeNetworkingManager()
-        self.factoryAppViewController = makeFactoryAppViewController()
-        self.factoryViewModel = makeFactoryViewModel()
-        self.hapticsManager = makeHapticsManager()
-    }
+    public init() { }
 }
