@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E26E37129E9650C00E28BAA /* AppDelegateBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37029E9650C00E28BAA /* AppDelegateBehavior.swift */; };
+		7E26E37429E9657100E28BAA /* Extensions+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37329E9657100E28BAA /* Extensions+UIApplication.swift */; };
+		7E26E37729E9662600E28BAA /* Extensions+NSUserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37629E9662600E28BAA /* Extensions+NSUserActivity.swift */; };
+		7E26E37E29E9674200E28BAA /* BroadcastableAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37D29E9674200E28BAA /* BroadcastableAppDelegate.swift */; };
+		7E26E38129E967A400E28BAA /* StartupAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E38029E967A400E28BAA /* StartupAppDelegate.swift */; };
+		7E26E38429E9683400E28BAA /* Extensions+UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E38329E9683400E28BAA /* Extensions+UIWindow.swift */; };
+		7E26E38629E968C800E28BAA /* AppearanceAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E38529E968C800E28BAA /* AppearanceAppDelegate.swift */; };
+		7E26E38829E968EC00E28BAA /* CompositionRootAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E38729E968EC00E28BAA /* CompositionRootAppDelegate.swift */; };
 		7E451BDD29D72B6C0027827E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BDC29D72B6C0027827E /* Coordinator.swift */; };
 		7E451BE029D72BAD0027827E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BDF29D72BAD0027827E /* Router.swift */; };
 		7E451BE229D72C020027827E /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E451BE129D72C020027827E /* NavigationRouter.swift */; };
@@ -127,6 +135,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E26E37029E9650C00E28BAA /* AppDelegateBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateBehavior.swift; sourceTree = "<group>"; };
+		7E26E37329E9657100E28BAA /* Extensions+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIApplication.swift"; sourceTree = "<group>"; };
+		7E26E37629E9662600E28BAA /* Extensions+NSUserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+NSUserActivity.swift"; sourceTree = "<group>"; };
+		7E26E37D29E9674200E28BAA /* BroadcastableAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastableAppDelegate.swift; sourceTree = "<group>"; };
+		7E26E38029E967A400E28BAA /* StartupAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupAppDelegate.swift; sourceTree = "<group>"; };
+		7E26E38329E9683400E28BAA /* Extensions+UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIWindow.swift"; sourceTree = "<group>"; };
+		7E26E38529E968C800E28BAA /* AppearanceAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceAppDelegate.swift; sourceTree = "<group>"; };
+		7E26E38729E968EC00E28BAA /* CompositionRootAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRootAppDelegate.swift; sourceTree = "<group>"; };
 		7E451BDC29D72B6C0027827E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7E451BDF29D72BAD0027827E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7E451BE129D72C020027827E /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
@@ -303,6 +319,58 @@
 			path = TournamentBracket;
 			sourceTree = "<group>";
 		};
+		7E26E36F29E964F100E28BAA /* AppDelegateComposite */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E37029E9650C00E28BAA /* AppDelegateBehavior.swift */,
+				7E26E37829E966BE00E28BAA /* CompositionRoot */,
+				7E26E37929E966CC00E28BAA /* AppDelegateTypes */,
+			);
+			path = AppDelegateComposite;
+			sourceTree = "<group>";
+		};
+		7E26E37829E966BE00E28BAA /* CompositionRoot */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E38729E968EC00E28BAA /* CompositionRootAppDelegate.swift */,
+			);
+			path = CompositionRoot;
+			sourceTree = "<group>";
+		};
+		7E26E37929E966CC00E28BAA /* AppDelegateTypes */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E37A29E966F700E28BAA /* Brodcastable */,
+				7E26E37B29E9670400E28BAA /* Startup */,
+				7E26E37C29E9671700E28BAA /* Appearance */,
+			);
+			path = AppDelegateTypes;
+			sourceTree = "<group>";
+		};
+		7E26E37A29E966F700E28BAA /* Brodcastable */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E37D29E9674200E28BAA /* BroadcastableAppDelegate.swift */,
+			);
+			path = Brodcastable;
+			sourceTree = "<group>";
+		};
+		7E26E37B29E9670400E28BAA /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E38029E967A400E28BAA /* StartupAppDelegate.swift */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
+		7E26E37C29E9671700E28BAA /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				7E26E38529E968C800E28BAA /* AppearanceAppDelegate.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 		7E451BDB29D72B210027827E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +524,7 @@
 		7EDECB8129D583BF00182C82 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7E26E36F29E964F100E28BAA /* AppDelegateComposite */,
 				7EA9003329E019B4008E45B1 /* Nib */,
 				7EA9001129DF257A008E45B1 /* DateFormat */,
 				7ED679CB29D997CB007990AC /* AppViewFactory */,
@@ -779,6 +848,8 @@
 		D094F6AE2658236A0011EEA9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7E26E37629E9662600E28BAA /* Extensions+NSUserActivity.swift */,
+				7E26E37329E9657100E28BAA /* Extensions+UIApplication.swift */,
 				D039437C26584C5D0088A386 /* Extensions+UIView.swift */,
 				D039439026585F910088A386 /* Extensions+UIImage.swift */,
 				D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */,
@@ -789,6 +860,7 @@
 				7EDECBA129D59D0600182C82 /* Extensions+Data.swift */,
 				7EDECBBA29D5D83900182C82 /* Extensions+UIImageView.swift */,
 				7EA9003E29E01E39008E45B1 /* Extensions+UITableView.swift */,
+				7E26E38329E9683400E28BAA /* Extensions+UIWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -949,6 +1021,7 @@
 				D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */,
 				7EA9004329E01EB0008E45B1 /* NibReusable.swift in Sources */,
 				D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */,
+				7E26E38629E968C800E28BAA /* AppearanceAppDelegate.swift in Sources */,
 				D03943C32659AB680088A386 /* DefaultResponse.swift in Sources */,
 				D0394394265903410088A386 /* BaseViewController.swift in Sources */,
 				D0375642265AE36B009EE660 /* Extensions+Date.swift in Sources */,
@@ -968,10 +1041,12 @@
 				7ED679D329D9B7DB007990AC /* AppError.swift in Sources */,
 				7ED679CD29D997FD007990AC /* AppViewControllerFactory.swift in Sources */,
 				7EA9003929E01A96008E45B1 /* TableField.swift in Sources */,
+				7E26E38129E967A400E28BAA /* StartupAppDelegate.swift in Sources */,
 				D039438E265854C40088A386 /* NavigationViewController.swift in Sources */,
 				D03943CE2659B5860088A386 /* PlayerInfoTableCell.swift in Sources */,
 				7ED679B929D897A1007990AC /* LocalImage.swift in Sources */,
 				7ED679B729D88BD3007990AC /* PlayerViewModel.swift in Sources */,
+				7E26E37129E9650C00E28BAA /* AppDelegateBehavior.swift in Sources */,
 				7EA9001329DF258F008E45B1 /* AppDateFormatter.swift in Sources */,
 				7ED679BB29D8A751007990AC /* ConfirmAlert.swift in Sources */,
 				7EA9001E29E0176D008E45B1 /* Bindable.swift in Sources */,
@@ -987,6 +1062,7 @@
 				7EA9003029E01927008E45B1 /* TableViewHeaderConfigurable.swift in Sources */,
 				7EDECBBB29D5D83900182C82 /* Extensions+UIImageView.swift in Sources */,
 				7E451BE029D72BAD0027827E /* Router.swift in Sources */,
+				7E26E37729E9662600E28BAA /* Extensions+NSUserActivity.swift in Sources */,
 				D039437A26584A760088A386 /* TournamentBracketViewController.swift in Sources */,
 				7E451BEA29D87EAC0027827E /* PresentableProvider.swift in Sources */,
 				D039439126585F910088A386 /* Extensions+UIImage.swift in Sources */,
@@ -1001,6 +1077,7 @@
 				D094F6942658225D0011EEA9 /* AppDelegate.swift in Sources */,
 				7EA9003229E0193D008E45B1 /* BaseTableViewHeader.swift in Sources */,
 				D0375645265B0301009EE660 /* ImagePickerView.swift in Sources */,
+				7E26E38829E968EC00E28BAA /* CompositionRootAppDelegate.swift in Sources */,
 				7EA9003F29E01E39008E45B1 /* Extensions+UITableView.swift in Sources */,
 				D01E7729265E99C800FA65FE /* Match.swift in Sources */,
 				7EA9003B29E01ABE008E45B1 /* TableSection.swift in Sources */,
@@ -1013,6 +1090,7 @@
 				7EA9002829E01866008E45B1 /* TableViewCellModelProvider.swift in Sources */,
 				7EDECB8D29D58C1500182C82 /* RequestResponseProvider.swift in Sources */,
 				D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */,
+				7E26E37E29E9674200E28BAA /* BroadcastableAppDelegate.swift in Sources */,
 				7E451BEC29D87F280027827E /* AlertableProvider.swift in Sources */,
 				7EDECBA229D59D0600182C82 /* Extensions+Data.swift in Sources */,
 				D0394373265848210088A386 /* PlayerListViewController.swift in Sources */,
@@ -1034,10 +1112,12 @@
 				7EA9001529DF4A79008E45B1 /* Validation.swift in Sources */,
 				7EAD534629D5E02B0098B9B3 /* HomeViewModel.swift in Sources */,
 				7EA9002129E01824008E45B1 /* TableViewManager.swift in Sources */,
+				7E26E38429E9683400E28BAA /* Extensions+UIWindow.swift in Sources */,
 				7EA9003D29E01ADC008E45B1 /* TableGroup.swift in Sources */,
 				7EDECB9129D58C6C00182C82 /* NetworkError.swift in Sources */,
 				D088CDE02667E1FC00F96ED3 /* SetDraw.swift in Sources */,
 				7EDECB8B29D58AFC00182C82 /* NetworkingManagerModels.swift in Sources */,
+				7E26E37429E9657100E28BAA /* Extensions+UIApplication.swift in Sources */,
 				7EDECB9829D5901400182C82 /* Tokens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
