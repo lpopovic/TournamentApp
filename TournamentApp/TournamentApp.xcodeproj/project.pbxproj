@@ -104,7 +104,7 @@
 		D039439D265924680088A386 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D039439B265924680088A386 /* PlayerTableViewCell.swift */; };
 		D039439E265924680088A386 /* PlayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D039439C265924680088A386 /* PlayerTableViewCell.xib */; };
 		D03943A426597DCA0088A386 /* PlayerAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */; };
-		D03943A8265991AF0088A386 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A7265991AF0088A386 /* Player.swift */; };
+		D03943A8265991AF0088A386 /* PlayerBaseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943A7265991AF0088A386 /* PlayerBaseInfo.swift */; };
 		D03943B626599FE30088A386 /* Extensions+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */; };
 		D03943BA2659A57E0088A386 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943B92659A57E0088A386 /* Constant.swift */; };
 		D03943BD2659A8810088A386 /* Extensions+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03943BC2659A8810088A386 /* Extensions+Formatter.swift */; };
@@ -232,7 +232,7 @@
 		D039439B265924680088A386 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		D039439C265924680088A386 /* PlayerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerTableViewCell.xib; sourceTree = "<group>"; };
 		D03943A326597DCA0088A386 /* PlayerAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAddEditViewController.swift; sourceTree = "<group>"; };
-		D03943A7265991AF0088A386 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D03943A7265991AF0088A386 /* PlayerBaseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBaseInfo.swift; sourceTree = "<group>"; };
 		D03943B526599FE30088A386 /* Extensions+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIAlertController.swift"; sourceTree = "<group>"; };
 		D03943B92659A57E0088A386 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D03943BC2659A8810088A386 /* Extensions+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Formatter.swift"; sourceTree = "<group>"; };
@@ -274,6 +274,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E163FB62A41CBEE002B00F2 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D03943A7265991AF0088A386 /* PlayerBaseInfo.swift */,
+				D03943C52659AE450088A386 /* PlayerDetail.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		7E163FB72A41CC08002B00F2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D03943C22659AB680088A386 /* DefaultResponse.swift */,
+				D088CDD52667DF7200F96ED3 /* DataResponse.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		7E26E36529E7E6DD00E28BAA /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,11 +820,9 @@
 		D094F6A9265822A30011EEA9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D03943A7265991AF0088A386 /* Player.swift */,
-				D03943C52659AE450088A386 /* PlayerDetail.swift */,
+				7E163FB72A41CC08002B00F2 /* Networking */,
+				7E163FB62A41CBEE002B00F2 /* Player */,
 				D01E7728265E99C800FA65FE /* Match.swift */,
-				D03943C22659AB680088A386 /* DefaultResponse.swift */,
-				D088CDD52667DF7200F96ED3 /* DataResponse.swift */,
 				7ED679D229D9B7DB007990AC /* AppError.swift */,
 			);
 			path = Models;
@@ -1052,7 +1068,7 @@
 				7EA9001E29E0176D008E45B1 /* Bindable.swift in Sources */,
 				7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */,
 				7EAD534829D5E46B0098B9B3 /* PlayerListViewModel.swift in Sources */,
-				D03943A8265991AF0088A386 /* Player.swift in Sources */,
+				D03943A8265991AF0088A386 /* PlayerBaseInfo.swift in Sources */,
 				7EA9002E29E01918008E45B1 /* TableViewHeaderProvider.swift in Sources */,
 				7EDECB8629D58A8200182C82 /* NetworkingManagerHTTPMethod.swift in Sources */,
 				7EA9000E29DD86FB008E45B1 /* AlertFactory.swift in Sources */,

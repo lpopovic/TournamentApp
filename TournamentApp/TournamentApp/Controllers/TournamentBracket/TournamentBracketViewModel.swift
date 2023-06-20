@@ -8,9 +8,9 @@
 import Foundation
 
 final class TournamentBracketViewModel {
-    var playerList: [Player]
+    var playerList: [PlayerBaseInfo]
     
-    init(playerList: [Player]) {
+    init(playerList: [PlayerBaseInfo]) {
         self.playerList = playerList
     }
 }

@@ -169,7 +169,7 @@ class PlayerListViewController: BaseViewController, Bindable {
     
     // MARK: Other
     
-    private func pushPlayerViewController(with model: Player) {
+    private func pushPlayerViewController(with model: PlayerBaseInfo) {
         hapticsManager.vibrateForSelection()
         viewModel.showPlayerScreen?(model.id)
     }

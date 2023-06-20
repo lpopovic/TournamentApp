@@ -10,7 +10,7 @@ import Foundation
 protocol ViewModelFactoryProvider {
     func makeHomeViewModel() -> HomeViewModel
     func makePlayerListViewModel() -> PlayerListViewModel
-    func makeTournamentBracketViewModel(_ players: [Player]) -> TournamentBracketViewModel
+    func makeTournamentBracketViewModel(_ players: [PlayerBaseInfo]) -> TournamentBracketViewModel
     func makePlayerAddEditViewModel(_ typeOfVC: PlayerAddEditViewModel.TypeViewController, playerId: Int?, playerDetailInfo: PlayerDetail?) -> PlayerAddEditViewModel
     func makePlayerViewModel(_ playerId: Int) -> PlayerViewModel
 }
@@ -34,7 +34,7 @@ extension ViewModelFactory: ViewModelFactoryProvider {
         PlayerListViewModel(apiCaller: playerNetworkService)
     }
     
-    func makeTournamentBracketViewModel(_ players: [Player]) -> TournamentBracketViewModel {
+    func makeTournamentBracketViewModel(_ players: [PlayerBaseInfo]) -> TournamentBracketViewModel {
         TournamentBracketViewModel(playerList: players)
     }
     

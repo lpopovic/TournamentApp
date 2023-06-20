@@ -82,7 +82,7 @@ class TournamentTableViewCell: UITableViewCell {
         }
     }
     
-    func configureData(player1: Player, with rank1: Int, and player2: Player, with rank2: Int) {
+    func configureData(player1: PlayerBaseInfo, with rank1: Int, and player2: PlayerBaseInfo, with rank2: Int) {
         self.firstPlayerLabel.text = "#\(rank1) \(player1.firstName.prefix(1)). \(player1.lastName)"
         self.secondPlayerLabel.text = "#\(rank2) \(player2.firstName.prefix(1)). \(player2.lastName)"
     }

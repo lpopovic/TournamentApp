@@ -8,9 +8,9 @@
 import Foundation
 
 struct Match: Codable {
-    let playerOne: Player
+    let playerOne: PlayerBaseInfo
     let playerOneRank: Int
     
-    let playerSecond: Player
+    let playerSecond: PlayerBaseInfo
     let playerSecondRank: Int
 }

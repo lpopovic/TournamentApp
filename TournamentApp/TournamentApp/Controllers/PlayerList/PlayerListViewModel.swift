@@ -37,7 +37,7 @@ final class PlayerListViewModel {
     let refreshViewTitle = "Pull to refresh"
     
     private(set) var tableSections = [TableGroup]()
-    private var playerList = [Player]()
+    private var playerList = [PlayerBaseInfo]()
     private var isMoreLoading = false
     private var detectEmptyResponse = false
     private var page: Int = 1
@@ -54,8 +54,8 @@ final class PlayerListViewModel {
     var hideProgress: NoArgsClosure?
     var reloadListView: NoArgsClosure?
     var onSwipeRefresh: NoArgsClosure?
-    var onSelectItem: VoidReturnClosure<Player>?
-    var showTournamentBracketScreen: VoidReturnClosure<[Player]>?
+    var onSelectItem: VoidReturnClosure<PlayerBaseInfo>?
+    var showTournamentBracketScreen: VoidReturnClosure<[PlayerBaseInfo]>?
     var showAddPlayerScreen: NoArgsClosure?
     var showPlayerScreen: VoidReturnClosure<Int>?
 
@@ -109,21 +109,21 @@ final class PlayerListViewModel {
                 item.lastName != player.lastName ||
                 item.points != player.points
         else { return }
-        self.playerList[index] = Player(id: id,
-                                        firstName: player.firstName,
-                                        lastName: player.lastName,
-                                        points: player.points,
-                                        tournament_id: player.tournamentId)
+        self.playerList[index] = PlayerBaseInfo(id: id,
+                                                firstName: player.firstName,
+                                                lastName: player.lastName,
+                                                points: player.points,
+                                                tournament_id: player.tournamentId)
         self.playerList.sort{ $0.getPoints() > $1.getPoints() }
         self.setTableSections()
         completion?(index)
     }
     
     func checkIfCanLoadMore() -> Bool {
-        guard !isMoreLoading, playerList.count >= limit, !detectEmptyResponse
-        else {
-            return false
-        }
+        guard !isMoreLoading,
+              playerList.count >= limit,
+              !detectEmptyResponse
+        else { return false }
         return true
     }
     
@@ -145,7 +145,7 @@ final class PlayerListViewModel {
         return rows
     }
     
-    private func createPlayerTableRow(from player: Player, index: Int) -> TableField<PlayerTableViewCell> {
+    private func createPlayerTableRow(from player: PlayerBaseInfo, index: Int) -> TableField<PlayerTableViewCell> {
         let playerInfoRowModel = PlayerTableViewCellModel(key: TableRow.player(player.id).key,
                                                           rank: index + 1,
                                                           firstName: player.firstName,
@@ -170,8 +170,8 @@ final class PlayerListViewModel {
         tableSections.append(section)
     }
     
-    private func getItemsForBracket() -> [Player]? {
-        var playersForDraw = [Player]()
+    private func getItemsForBracket() -> [PlayerBaseInfo]? {
+        var playersForDraw = [PlayerBaseInfo]()
         for item in playerList {
             if playersForDraw.count == 32 {
                 break

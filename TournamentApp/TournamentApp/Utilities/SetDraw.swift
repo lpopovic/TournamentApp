@@ -34,7 +34,7 @@ final class SetDraw {
     
     func setDrawForPlayer(
         for numberOfMatchInEachBracket: [Int],
-        with playerList: inout [Player]) -> (
+        with playerList: inout [PlayerBaseInfo]) -> (
             drawPositionForPlayers: [[Int]],
             matchInEachBracket: [[Match]]
         ) {
@@ -79,7 +79,7 @@ final class SetDraw {
         )
     }
     
-    private func setMatchList(with drawPositionForPlayers: [[Int]], from playerList: inout [Player]) -> [[Match]] {
+    private func setMatchList(with drawPositionForPlayers: [[Int]], from playerList: inout [PlayerBaseInfo]) -> [[Match]] {
         var matchInEachBracket: [[Match]] = []
         
         for section in 0..<(drawPositionForPlayers.count - 1) {

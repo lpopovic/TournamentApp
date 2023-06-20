@@ -29,7 +29,7 @@ public class TournamentCoordinator: Coordinator {
 extension TournamentCoordinator {
     private func showPlayerListViewController(_ animated: Bool) {
         var playerListViewController: BaseViewController?
-        let showTournamentBracketScreen: VoidReturnClosure<[Player]> = { [weak self] players in
+        let showTournamentBracketScreen: VoidReturnClosure<[PlayerBaseInfo]> = { [weak self] players in
             self?.showTournamentBracketViewController(for: players, true)
         }
         let showAddPlayerScreen: NoArgsClosure = { [weak self] in
@@ -47,7 +47,7 @@ extension TournamentCoordinator {
         router.present(playerListViewController, animated: animated)
     }
     
-    private func showTournamentBracketViewController(for players: [Player], _ animated: Bool) {
+    private func showTournamentBracketViewController(for players: [PlayerBaseInfo], _ animated: Bool) {
         let playerListViewController = factoryAppViewController.makeTournamentBracketViewController(with: players)
         router.present(playerListViewController, animated: animated)
     }

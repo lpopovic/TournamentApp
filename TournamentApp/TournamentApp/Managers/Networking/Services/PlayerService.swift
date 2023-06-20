@@ -8,8 +8,8 @@
 import Foundation
 
 protocol PlayerNetworkServiceProvider {
-    func getAllPlayerList(completion: @escaping (Result<[Player], NetworkError>) -> Void)
-    func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], NetworkError>) -> Void)
+    func getAllPlayerList(completion: @escaping (Result<[PlayerBaseInfo], NetworkError>) -> Void)
+    func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[PlayerBaseInfo], NetworkError>) -> Void)
     func deletePlayer(with id: Int, completion: @escaping (ResultObject<String>) -> Void)
     func getDetailPlayer(with id: Int, completion: @escaping (Result<PlayerDetail, NetworkError>) -> Void)
     func postCreatePlayer(_ parameters: ApiParameters,
@@ -31,13 +31,13 @@ class PlayerNetworkService {
 }
 
 extension PlayerNetworkService: PlayerNetworkServiceProvider {
-    func getAllPlayerList(completion: @escaping (Result<[Player], NetworkError>) -> Void) {
+    func getAllPlayerList(completion: @escaping (Result<[PlayerBaseInfo], NetworkError>) -> Void) {
         let networkRoutable = PlayerNetworkRouter.getAllPlayerList
         networkSessionManager.request(networkRoutable)
             .responseArray(completion: completion)
     }
     
-    func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[Player], NetworkError>) -> Void) {
+    func getPlayerList(from page: Int, with limit: Int, completion: @escaping (Result<[PlayerBaseInfo], NetworkError>) -> Void) {
         let parameters: ApiParameters = [.limit: "\(limit)",
                                          .page: "\(page)"]
         let networkRoutable = PlayerNetworkRouter.getPlayerList(parameters)

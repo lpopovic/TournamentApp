@@ -1,5 +1,5 @@
 //
-//  Player.swift
+//  PlayerBaseInfo.swift
 //  TournamentApp
 //
 //  Created by MacBook on 5/22/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Player: Codable {
+struct PlayerBaseInfo: Codable {
     let id: Int
     let firstName: String
     let lastName: String
@@ -23,7 +23,7 @@ struct Player: Codable {
     }
 }
 
-extension Player {
+extension PlayerBaseInfo {
     func getPoints() -> Int {
         return self.points ?? 0
     }

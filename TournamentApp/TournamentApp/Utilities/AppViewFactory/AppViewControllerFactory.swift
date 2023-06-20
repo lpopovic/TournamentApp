@@ -9,7 +9,7 @@ import Foundation
 
 protocol AppViewControllerFactoryProvider {
     func makeHomeViewController(showPlayerListScreen: NoArgsClosure?) -> BaseViewController
-    func makePlayerListViewController(showTournamentBracketScreen: VoidReturnClosure<[Player]>?,
+    func makePlayerListViewController(showTournamentBracketScreen: VoidReturnClosure<[PlayerBaseInfo]>?,
                                       showAddPlayerScreen: NoArgsClosure?,
                                       showPlayerScreen: VoidReturnClosure<Int>?) -> BaseViewController
     func makePlayerViewController(with playerId: Int,
@@ -21,7 +21,7 @@ protocol AppViewControllerFactoryProvider {
                                          playerDetailInfo: PlayerDetail?,
                                          onCloseRequestScreen: VoidReturnClosure<BaseViewController>?,
                                          with delegate: PlayerAddEditViewControllerDelegate?) -> BaseViewController
-    func makeTournamentBracketViewController(with players: [Player]) -> BaseViewController
+    func makeTournamentBracketViewController(with players: [PlayerBaseInfo]) -> BaseViewController
 }
 
 class AppViewControllerFactory {
@@ -43,7 +43,7 @@ extension AppViewControllerFactory: AppViewControllerFactoryProvider {
         return HomeViewController.instantiate(with: dependencies)
     }
     
-    func makePlayerListViewController(showTournamentBracketScreen: VoidReturnClosure<[Player]>?,
+    func makePlayerListViewController(showTournamentBracketScreen: VoidReturnClosure<[PlayerBaseInfo]>?,
                                       showAddPlayerScreen: NoArgsClosure?,
                                       showPlayerScreen: VoidReturnClosure<Int>?) -> BaseViewController {
         let viewModel = factoryViewModel.makePlayerListViewModel()
@@ -70,7 +70,7 @@ extension AppViewControllerFactory: AppViewControllerFactoryProvider {
         return PlayerAddEditViewController.instantiate(with: dependencies)
     }
     
-    func makeTournamentBracketViewController(with players: [Player]) -> BaseViewController {
+    func makeTournamentBracketViewController(with players: [PlayerBaseInfo]) -> BaseViewController {
         let viewModel = factoryViewModel.makeTournamentBracketViewModel(players)
         let dependencies = TournamentBracketViewController.Dependencies(viewModel: viewModel,
                                                                         hapticsManager: hapticsManager)

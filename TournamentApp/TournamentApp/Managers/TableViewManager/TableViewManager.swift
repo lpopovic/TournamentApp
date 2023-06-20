@@ -179,7 +179,7 @@ extension TableViewManager: AppTableViewDelegate {
                 !(spinnerTableView?.isAnimating == true) &&
                 tableView.tableFooterView != nil
         else { return }
-        reachedEnd()
+//        reachedEnd()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
