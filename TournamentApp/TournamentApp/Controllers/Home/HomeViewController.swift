@@ -113,3 +113,14 @@ extension HomeViewController: StoryboardInstantiable {
     }
 }
 
+
+//#if DEBUG
+//
+//import SwiftUI
+//
+//struct HomeViewController_Preview: PreviewProvider {
+//    static let viewController = AppDependencyContainer().factoryAppViewController.makeHomeViewController(showPlayerListScreen: nil)
+//    static var previews: some View = PreviewViewControllerUtilityView(for: viewController)
+//}
+//
+//#endif
