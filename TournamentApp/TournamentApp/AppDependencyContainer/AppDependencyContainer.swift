@@ -28,6 +28,9 @@ final class AppDependencyContainer {
     lazy var hapticsManager: HapticsManager = {
         HapticsManager()
     }()
+    lazy var debuggingNetworkManager: DebuggingNetworkManager = {
+        DebuggingNetworkManager()
+    }()
     
     public init() { }
 }

@@ -14,13 +14,17 @@ final class CompositionRootAppDelegate {
     let startup: AppDelegateBehavior
     let appearance: AppDelegateBehavior
     let broadcastable: AppDelegateBehavior
+    let thirdParty: AppDelegateBehavior
 
     // MARK: - Initialization
     
     init(window: WindowProvider?, appDIContainer: AppDependencyContainer) {
         self.startup = StartupAppDelegate(window: window, appDIContainer: appDIContainer)
         self.appearance = AppearanceAppDelegate(window: window, appDIContainer: appDIContainer)
-        let appDelegates = [self.startup, self.appearance]
+        self.thirdParty = ThirdPartyAppDelegate(window: window, appDIContainer: appDIContainer)
+        let appDelegates = [self.startup,
+                            self.appearance,
+                            self.thirdParty]
         self.broadcastable = BroadcastableAppDelegate(appDelegates: appDelegates)
     }
 }

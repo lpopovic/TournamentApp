@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E163FBA2A431F31002B00F2 /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 7E163FB92A431F31002B00F2 /* netfox */; };
+		7E163FBD2A431F97002B00F2 /* ThirdPartyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E163FBC2A431F97002B00F2 /* ThirdPartyAppDelegate.swift */; };
+		7E163FC12A432099002B00F2 /* DebuggingNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E163FC02A432099002B00F2 /* DebuggingNetworkManager.swift */; };
 		7E26E37129E9650C00E28BAA /* AppDelegateBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37029E9650C00E28BAA /* AppDelegateBehavior.swift */; };
 		7E26E37429E9657100E28BAA /* Extensions+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37329E9657100E28BAA /* Extensions+UIApplication.swift */; };
 		7E26E37729E9662600E28BAA /* Extensions+NSUserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E26E37629E9662600E28BAA /* Extensions+NSUserActivity.swift */; };
@@ -135,6 +138,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E163FBC2A431F97002B00F2 /* ThirdPartyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyAppDelegate.swift; sourceTree = "<group>"; };
+		7E163FC02A432099002B00F2 /* DebuggingNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingNetworkManager.swift; sourceTree = "<group>"; };
 		7E26E37029E9650C00E28BAA /* AppDelegateBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateBehavior.swift; sourceTree = "<group>"; };
 		7E26E37329E9657100E28BAA /* Extensions+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIApplication.swift"; sourceTree = "<group>"; };
 		7E26E37629E9662600E28BAA /* Extensions+NSUserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+NSUserActivity.swift"; sourceTree = "<group>"; };
@@ -268,6 +273,7 @@
 			files = (
 				7EDECBB929D5D66B00182C82 /* Alamofire in Frameworks */,
 				7EDECBB629D5D64800182C82 /* SDWebImage in Frameworks */,
+				7E163FBA2A431F31002B00F2 /* netfox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +296,30 @@
 				D088CDD52667DF7200F96ED3 /* DataResponse.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		7E163FBB2A431F71002B00F2 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				7E163FBC2A431F97002B00F2 /* ThirdPartyAppDelegate.swift */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		7E163FBE2A432020002B00F2 /* ThirdPartyManagers */ = {
+			isa = PBXGroup;
+			children = (
+				7E163FBF2A432039002B00F2 /* DebuggingNetwork */,
+			);
+			path = ThirdPartyManagers;
+			sourceTree = "<group>";
+		};
+		7E163FBF2A432039002B00F2 /* DebuggingNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				7E163FC02A432099002B00F2 /* DebuggingNetworkManager.swift */,
+			);
+			path = DebuggingNetwork;
 			sourceTree = "<group>";
 		};
 		7E26E36529E7E6DD00E28BAA /* Home */ = {
@@ -360,6 +390,7 @@
 			children = (
 				7E26E37A29E966F700E28BAA /* Brodcastable */,
 				7E26E37B29E9670400E28BAA /* Startup */,
+				7E163FBB2A431F71002B00F2 /* ThirdParty */,
 				7E26E37C29E9671700E28BAA /* Appearance */,
 			);
 			path = AppDelegateTypes;
@@ -884,6 +915,7 @@
 		D094F6AF265824100011EEA9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7E163FBE2A432020002B00F2 /* ThirdPartyManagers */,
 				7EA9001F29E017D0008E45B1 /* TableViewManager */,
 				7EA9001629DF4BDB008E45B1 /* NotificationCentarManager */,
 				D039438026584C8B0088A386 /* Networking */,
@@ -946,6 +978,7 @@
 			packageProductDependencies = (
 				7EDECBB529D5D64800182C82 /* SDWebImage */,
 				7EDECBB829D5D66B00182C82 /* Alamofire */,
+				7E163FB92A431F31002B00F2 /* netfox */,
 			);
 			productName = TournamentApp;
 			productReference = D094F6902658225D0011EEA9 /* TournamentApp.app */;
@@ -982,6 +1015,7 @@
 			packageReferences = (
 				7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				7EDECBB729D5D66B00182C82 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7E163FB82A431F31002B00F2 /* XCRemoteSwiftPackageReference "netfox" */,
 			);
 			productRefGroup = D094F6912658225D0011EEA9 /* Products */;
 			projectDirPath = "";
@@ -1065,6 +1099,7 @@
 				7E26E37129E9650C00E28BAA /* AppDelegateBehavior.swift in Sources */,
 				7EA9001329DF258F008E45B1 /* AppDateFormatter.swift in Sources */,
 				7ED679BB29D8A751007990AC /* ConfirmAlert.swift in Sources */,
+				7E163FBD2A431F97002B00F2 /* ThirdPartyAppDelegate.swift in Sources */,
 				7EA9001E29E0176D008E45B1 /* Bindable.swift in Sources */,
 				7EDECB8429D58A6B00182C82 /* NetworkingManagerParameterEncoding.swift in Sources */,
 				7EAD534829D5E46B0098B9B3 /* PlayerListViewModel.swift in Sources */,
@@ -1113,6 +1148,7 @@
 				7EA9003529E019D1008E45B1 /* ViewLoadable.swift in Sources */,
 				D0394370265847DE0088A386 /* HomeViewController.swift in Sources */,
 				D088CDD62667DF7200F96ED3 /* DataResponse.swift in Sources */,
+				7E163FC12A432099002B00F2 /* DebuggingNetworkManager.swift in Sources */,
 				D037569B265D9588009EE660 /* TournamentCollectionViewCell.swift in Sources */,
 				7EA9000C29DD86B1008E45B1 /* ErrorAlert.swift in Sources */,
 				7EDECB9529D58DE800182C82 /* ResultObject.swift in Sources */,
@@ -1402,6 +1438,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7E163FB82A431F31002B00F2 /* XCRemoteSwiftPackageReference "netfox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kasketis/netfox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
@@ -1421,6 +1465,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7E163FB92A431F31002B00F2 /* netfox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E163FB82A431F31002B00F2 /* XCRemoteSwiftPackageReference "netfox" */;
+			productName = netfox;
+		};
 		7EDECBB529D5D64800182C82 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7EDECBB429D5D64800182C82 /* XCRemoteSwiftPackageReference "SDWebImage" */;

@@ -30,6 +30,7 @@ final class NetworkingManagerAlamofire {
     private let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 30
+        configuration.protocolClasses?.insert(DebuggingNetworkProtocol.self, at: 0)
         return Session(configuration: configuration)
     }()
     
